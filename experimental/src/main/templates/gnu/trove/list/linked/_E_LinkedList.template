@@ -192,11 +192,14 @@ public class T#E#LinkedList implements T#E#List, Externalizable {
     }
 
    /**
+     * <p>
      * Returns the link at the given offset.
-     * <p/>
+     * </p>
+     * <p>
      * A simple bisection criteria is used to keep the worst case complexity equal to
      * O(n/2) where n = size(). Simply start from head of list or tail depending on offset
      * and list size.
+     * </p>
      *
      * @param offset of the link
      * @return link or null if non-existent

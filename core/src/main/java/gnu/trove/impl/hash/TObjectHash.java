@@ -32,7 +32,7 @@ import java.util.Set;
 
 /**
  * An open addressed hashing implementation for Object types.
- * <p/>
+ * <br>
  * Created: Sun Nov  4 08:56:06 2001
  *
  * @author Eric D. Friedman
@@ -256,12 +256,15 @@ abstract public class TObjectHash<T> extends THash {
     }
 
     /**
+     * <p>
      * Locates the index at which <tt>key</tt> can be inserted.  if
      * there is already a value equal()ing <tt>key</tt> in the set,
      * returns that value's index as <tt>-index - 1</tt>.
-     * <p/>
+     * </p>
+     * <p>
      * If a slot is found the value is inserted. When a FREE slot is used the consumeFreeSlot field is
      * set to true. This field should be used in the method invoking insertKey() to pass to postInsertHook()
+     * </p>
      *
      * @param key an <code>Object</code> value
      * @return the index of a FREE slot at which key can be inserted

@@ -133,10 +133,13 @@ public class T#E#ArrayList implements T#E#List, Externalizable {
     }
 
     /**
+     * <p>
      * Returns a primitive List implementation that wraps around the given primitive array.
-     * <p/>
+     * </p>
+     * <p>
      * NOTE: mutating operation are allowed as long as the List does not grow. In that case
      * an IllegalStateException will be thrown
+     * </p>
      *
      * @param values
      */
@@ -145,10 +148,13 @@ public class T#E#ArrayList implements T#E#List, Externalizable {
     }
 
     /**
+     * <p>
      * Returns a primitive List implementation that wraps around the given primitive array.
-     * <p/>
+     * </p>
+     * <p>
      * NOTE: mutating operation are allowed as long as the List does not grow. In that case
      * an IllegalStateException will be thrown
+     * </p>
      *
      * @param values
      * @param no_entry_value

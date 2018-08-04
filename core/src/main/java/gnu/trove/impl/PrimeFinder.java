@@ -37,7 +37,7 @@ import java.util.Arrays;
 public final class PrimeFinder {
     /**
      * The largest prime this class can generate; currently equal to
-     * <tt>2,004,663,929/tt>.
+     * <tt>2,004,663,929</tt>.
      *
      * While Integer.MAX_VALUE is in fact the largest representable
      * prime in the integer space, consumers of this class are

@@ -33,15 +33,19 @@ import java.util.*;
 
 
 /**
+ * <p>
  * Wrapper class to make a T#K##V#Map conform to the <tt>java.util.Map</tt> API.
  * This class simply decorates an underlying T#K##V#Map and translates the Object-based
  * APIs into their Trove primitive analogs.
- * <p/>
+ * </p>
+ * <p>
  * Note that wrapping and unwrapping primitive values is extremely inefficient.  If
  * possible, users of this class should override the appropriate methods in this class
  * and use a table of canonical values.
- * <p/>
+ * </p>
+ * <p>
  * Created: Mon Sep 23 22:07:40 PDT 2002
+ * <p>
  *
  * @author Eric D. Friedman
  * @author Robert D. Eden

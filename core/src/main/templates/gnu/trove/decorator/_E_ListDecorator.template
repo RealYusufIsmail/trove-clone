@@ -30,14 +30,16 @@ import java.util.*;
 
 
 /**
+ * <p>
  * Wrapper class to make a T#E#List conform to the <tt>java.util.List</tt> API.
  * This class simply decorates an underlying T#E#List and translates the Object-based
  * APIs into their Trove primitive analogs.
- * <p/>
+ * </p>
+ * <p>
  * Note that wrapping and unwrapping primitive values is extremely inefficient.  If
  * possible, users of this class should override the appropriate methods in this class
  * and use a table of canonical values.
- * <p/>
+ * </p>
  *
  * @author Robert D. Eden
  */

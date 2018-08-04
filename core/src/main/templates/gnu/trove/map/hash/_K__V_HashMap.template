@@ -566,7 +566,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
         /**
          * Unsupported when operating upon a Key Set view of a T#K##V#Map
-         * <p/>
+         * <br>
          * {@inheritDoc}
          */
         public boolean add( #k# entry ) {
@@ -621,7 +621,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
         /**
          * Unsupported when operating upon a Key Set view of a T#K##V#Map
-         * <p/>
+         * <br>
          * {@inheritDoc}
          */
         public boolean addAll( Collection<? extends #KT#> collection ) {
@@ -631,7 +631,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
         /**
          * Unsupported when operating upon a Key Set view of a T#K##V#Map
-         * <p/>
+         * <br>
          * {@inheritDoc}
          */
         public boolean addAll( T#K#Collection collection ) {
@@ -641,7 +641,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
         /**
          * Unsupported when operating upon a Key Set view of a T#K##V#Map
-         * <p/>
+         * <br>
          * {@inheritDoc}
          */
         public boolean addAll( #k#[] array ) {

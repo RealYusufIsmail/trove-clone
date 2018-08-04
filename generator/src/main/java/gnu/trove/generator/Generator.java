@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
  *
  * <p>In map-like classes, the letters "k" and "v" are used to indicate "key" and "value".
  * In classes with a single element type, "e" is used. The patterns start and end with a
- * hash sign and come in these variants:
+ * hash sign and come in these variants:</p>
  * <ul>
  *     <li>lowercase (eg: "#e#")- the primitive type (eg: "int" or "float")</li>
  *     <li>T (eg: "#ET#")- the class type (eg: "Integer" or "Float")</li>
@@ -52,7 +52,6 @@ import java.util.regex.Pattern;
  *         Float.NEGATIVE_INFINITY")</li>
  *     <li>underbar (eg: "_E_") - Only applicable in file names, same as "uppercase".</li>
  * </ul>
- * </p>
  *
  * <p><b>Block Replication</b></p>
  *
@@ -61,7 +60,7 @@ import java.util.regex.Pattern;
  * <code>====START_REPLICATED_CONTENT #&lt;number&gt;====</code> and ends with
  * <code>=====END_REPLICATED_CONTENT #&lt;number&gt;=====</code> (each on a new line) where
  * "&lt;number&gt;" is an integer. Then, that content is replicated for each type where
- * the pattern "#REPLICATED<number>#" is found.</p>
+ * the pattern "#REPLICATED&lt;number&gt;#" is found.</p>
  *
  */
 public class Generator {

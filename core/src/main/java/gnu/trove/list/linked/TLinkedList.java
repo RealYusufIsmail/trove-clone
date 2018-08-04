@@ -35,16 +35,15 @@ import java.lang.reflect.Array;
 /**
  * <p>A LinkedList implementation which holds instances of type
  * <tt>TLinkable</tt>.
- * <p/>
  * Using this implementation allows you to get java.util.LinkedList
  * behavior (a doubly linked list, with Iterators that support insert
  * and delete operations) without incurring the overhead of creating
  * <tt>Node</tt> wrapper objects for every element in your list.
- * <p/>
+ * <br>
  * The requirement to achieve this time/space gain is that the
  * Objects stored in the List implement the <tt>TLinkable</tt>
  * interface.
- * <p/>
+ * <br>
  * The limitations are: <ul>
  * <li>the same object cannot be put into more than one list at the same time.
  * <li>the same object cannot be put into the same list more than once at the same time.
@@ -113,7 +112,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
     /**
      * Inserts <tt>linkable</tt> at index <tt>index</tt> in the list.
-     * All values > index are shifted over one position to accommodate
+     * All values &gt; index are shifted over one position to accommodate
      * the new addition.
      *
      * @param index    an <code>int</code> value
@@ -327,7 +326,6 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
      * <li>This solves problems arising from generics when working with the linked
      * objects directly.</li>
      * </ol>
-     * <p/>
      * NOTE: this should only be used with nodes contained in the list. The results are
      * undefined with anything else.
      *
@@ -348,7 +346,6 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
      * <li>This solves problems arising from generics when working with the linked
      * objects directly.</li>
      * </ol>
-     * <p/>
      * NOTE: this should only be used with nodes contained in the list. The results are
      * undefined with anything else.
      *

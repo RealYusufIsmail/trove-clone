@@ -78,7 +78,7 @@ package gnu.trove.iterator;
  * <pre>
  * // faster iteration by avoiding hasNext():
  * T#K##V#Iterator iterator = map.iterator();
- * for ( int i = map.size(); i-- > 0; ) {
+ * for ( int i = map.size(); i-- &gt; 0; ) {
  *   iterator.advance();
  *   doSomethingWithKeyAndValue( iterator.key(), iterator.value() );
  * }

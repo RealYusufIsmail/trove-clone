@@ -1,3 +1,6 @@
+import static java.util.Objects.nonNull
+import static java.util.stream.Collectors.toList
+
 ///////////////////////////////////////////////////////////////////////////////
 // Copyright (c) 2009-2010, Rob Eden All Rights Reserved.
 //
@@ -17,22 +20,33 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 apply plugin: 'base'
-
+group = "net.sf.trove4j"
+version = "3.1.0"
 
 subprojects {
+    String pomName = "Trove (${project.name})"
+
     apply plugin: 'java'
     apply plugin: 'osgi'
 
-    sourceCompatibility = 1.7
-    targetCompatibility = 1.7
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+
+    project.group = rootProject.group
+    project.version = rootProject.version
 
     repositories {
         mavenCentral()
     }
-    dependencies {
-        testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    configurations {
+        generateTemplates
     }
 
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+        generateTemplates project(":generator")
+    }
 
     jar {
         manifest {
@@ -50,21 +64,106 @@ subprojects {
             instruction 'Bundle-ContactAddress:', 'http://trove.starlight-systems.com/contacts'
         }
     }
-}
 
+    task generateTemplates( type: JavaExec, dependsOn: ":generator:build" ) {
+        inputs.dir('src/main/templates')
+        outputs.dir("${buildDir}/generated-src")
 
-
-task assembleDistDir {
-    outputs.dir file("${buildDir}/dist")
-    subprojects.each { project ->
-        inputs.dir project.buildDir
+        classpath configurations.generateTemplates
+        main = 'gnu.trove.generator.Generator'
+        args = [ 'src/main/templates', "${buildDir}/generated-src" ]
+        sourceSets.main.java.srcDirs += "${buildDir}/generated-src"
     }
 
-    dependsOn(subprojects.jar)
-    dependsOn(subprojects.javadoc)
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    task sourceJar(type: Jar) {
+        classifier = "sources"
+        sourceSets.each { sourceSet ->
+            from sourceSet.allJava
+        }
+    }
+
+    task docJar(type: Jar, dependsOn: javadoc) {
+        classifier = "javadoc"
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives jar
+        archives sourceJar
+        archives docJar
+    }
+
+    publishing {
+        publications {
+            "${project.name}"(MavenPublication) {
+                artifactId = project.archivesBaseName
+                from components.java
+                artifact sourceJar
+                artifact docJar
+                pom {
+                    name = pomName
+                    description = 'High performance collections for Java'
+                    url = "https://bitbucket.org/trove4j/trove/src/master/"
+                    licenses {
+                        license {
+                            name = "GNU Lesser General Public License 2.1"
+                            url = "http://www.gnu.org/licenses/lgpl-2.1.txt"
+                            distribution = "repo"
+                        }
+                    }
+                    scm {
+                        url = "https://bitbucket.org/trove4j/trove/src/master/"
+                    }
+                    developers {
+                        developer {
+                            name = "Rob Eden"
+                            email = "robeden1@gmail.com"
+                        }
+                        developer {
+                            name = "Johan Parent"
+                            email = "jparent@users.sourceforge.net"
+                        }
+                        developer {
+                            name = "Jeff Randall"
+                            email = "randall@uph.com"
+                        }
+                        developer {
+                            name = "Eric D. Friedman"
+                            email = "ericdf@users.sourceforge.net"
+                        }
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                url = "$buildDir/release"
+            }
+        }
+    }
 }
 
+project(":core") {
+    compileJava.dependsOn(generateTemplates)
+    archivesBaseName = "trove4j"
+    description = "The Trove library provides high speed regular and primitive collections for Java."
+}
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.2'
+project(":experimental") {
+    compileJava.dependsOn(generateTemplates)
+    archivesBaseName = "trove4j-experimental"
+    description = "The trove4j experimental library."
+
+    dependencies {
+        compile project( ':core' )
+    }
+}
+
+project(":generator") {
+    publishGeneratorPublicationToMavenRepository.onlyIf {false}
+    publishGeneratorPublicationToMavenLocal.onlyIf{false}
+    publish.onlyIf {false}
 }

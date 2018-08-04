@@ -257,7 +257,7 @@ public interface T#E#List extends T#E#Collection {
      * @param end high endpoint (exclusive) of the subList.
      * @return sublist of this list from begin, inclusive to end, exclusive.
      * @throws IndexOutOfBoundsException - endpoint out of range
-     * @throws IllegalArgumentException - endpoints out of order (end > begin)
+     * @throws IllegalArgumentException - endpoints out of order (end &gt; begin)
      */
     public T#E#List subList( int begin, int end );
 

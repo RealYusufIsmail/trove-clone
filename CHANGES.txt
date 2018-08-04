@@ -1,3 +1,9 @@
+--- 3.1.0 ---
+Bugs Fixed:
+  - [25] _K__V_HashMap.TValueView.remove is implemented incorrectly
+  - [41] NullPointerException in TIntLinkedList
+  - [66] TIntIntMapDecorator allows for NPE when passed in map object is null
+
 --- 3.0.5 ---
 Note:
   - Issue tracking is now done on BitBucket (https://bitbucket.org/robeden/trove) so

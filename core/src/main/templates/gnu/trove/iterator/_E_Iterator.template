@@ -22,6 +22,7 @@ package gnu.trove.iterator;
 // THIS IS A GENERATED CLASS. DO NOT HAND EDIT! //
 //////////////////////////////////////////////////
 
+import java.util.NoSuchElementException;
 
 /**
  * Iterator for #e# collections.
