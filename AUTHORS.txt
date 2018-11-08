@@ -1,7 +1,7 @@
-Rob Eden <robeden1@gmail.com>
-Johan Parent <jparent@users.sourceforge.net>
+Rob Eden <rob@robeden.com>
+Johan Parent
 Jeff Randall <randall@uph.com>
-Eric D. Friedman <ericdf@users.sourceforge.net>
+Eric D. Friedman
 
 Please do NOT email bug reports or feature requests.
 
