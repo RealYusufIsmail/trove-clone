@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.set.hash;
 
 import gnu.trove.iterator.TIntIterator;
@@ -15,26 +30,20 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Johan
- * Date: 15/03/11
- * Time: 18:15
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: Johan Date: 15/03/11 Time: 18:15 To change this template use File
+ * | Settings | File Templates.
  */
 public class TLinkedHashSet<E> extends THashSet<E> {
     TIntList order;
 
     /**
-     * Creates a new <code>THashSet</code> instance with the default
-     * capacity and load factor.
+     * Creates a new <code>THashSet</code> instance with the default capacity and load factor.
      */
-    public TLinkedHashSet() {
-    }
+    public TLinkedHashSet() {}
 
     /**
-     * Creates a new <code>THashSet</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
-     * with the default load factor.
+     * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
+     * <kbd>initialCapacity</kbd> and with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
      */
@@ -43,20 +52,19 @@ public class TLinkedHashSet<E> extends THashSet<E> {
     }
 
     /**
-     * Creates a new <code>THashSet</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
-     * with the specified load factor.
+     * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
+     * <kbd>initialCapacity</kbd> and with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
-     * @param loadFactor      a <code>float</code> value
+     * @param loadFactor a <code>float</code> value
      */
     public TLinkedHashSet(int initialCapacity, float loadFactor) {
         super(initialCapacity, loadFactor);
     }
 
     /**
-     * Creates a new <code>THashSet</code> instance containing the
-     * elements of <tt>collection</tt>.
+     * Creates a new <code>THashSet</code> instance containing the elements of
+     * <kbd>collection</kbd>.
      *
      * @param es a <code>Collection</code> value
      */
@@ -88,7 +96,8 @@ public class TLinkedHashSet<E> extends THashSet<E> {
                 }
             }
         };
-        return super.setUp(initialCapacity);    //To change body of overridden methods use File | Settings | File Templates.
+        return super.setUp(initialCapacity); // To change body of overridden methods use File |
+                                             // Settings | File Templates.
     }
 
 
@@ -131,14 +140,14 @@ public class TLinkedHashSet<E> extends THashSet<E> {
         int index = insertKey(obj);
 
         if (index < 0) {
-            return false;       // already present in set, nothing to add
+            return false; // already present in set, nothing to add
         }
 
         if (!order.add(index))
             throw new IllegalStateException("Order not changed after insert");
 
         postInsertHook(consumeFreeSlot);
-        return true;            // yes, we added something
+        return true; // yes, we added something
     }
 
     @Override
@@ -219,8 +228,7 @@ public class TLinkedHashSet<E> extends THashSet<E> {
     }
 
     /**
-     * Creates an iterator over the values of the set.  The iterator
-     * supports element deletion.
+     * Creates an iterator over the values of the set. The iterator supports element deletion.
      *
      * @return an <code>Iterator</code> value
      */
@@ -234,12 +242,9 @@ public class TLinkedHashSet<E> extends THashSet<E> {
              * Moves the iterator to the next Object and returns it.
              *
              * @return an <code>Object</code> value
-             * @throws java.util.ConcurrentModificationException
-             *          if the structure
-             *          was changed using a method that isn't on this iterator.
-             * @throws java.util.NoSuchElementException
-             *          if this is called on an
-             *          exhausted iterator.
+             * @throws java.util.ConcurrentModificationException if the structure was changed using
+             *         a method that isn't on this iterator.
+             * @throws java.util.NoSuchElementException if this is called on an exhausted iterator.
              */
             @Override
             public E next() {
@@ -248,21 +253,19 @@ public class TLinkedHashSet<E> extends THashSet<E> {
             }
 
             /**
-             * Returns true if the iterator can be advanced past its current
-             * location.
+             * Returns true if the iterator can be advanced past its current location.
              *
              * @return a <code>boolean</code> value
              */
             @Override
             public boolean hasNext() {
-                return localIterator.hasNext();    //To change body of overridden methods use File | Settings | File Templates.
+                return localIterator.hasNext(); // To change body of overridden methods use File |
+                                                // Settings | File Templates.
             }
 
             /**
-             * Removes the last entry returned by the iterator.
-             * Invoking this method more than once for a single entry
-             * will leave the underlying data structure in a confused
-             * state.
+             * Removes the last entry returned by the iterator. Invoking this method more than once
+             * for a single entry will leave the underlying data structure in a confused state.
              */
             @Override
             public void remove() {
@@ -277,7 +280,7 @@ public class TLinkedHashSet<E> extends THashSet<E> {
                     _hash.reenableAutoCompaction(false);
                 }
             }
-        };    //To change body of overridden methods use File | Settings | File Templates.
+        }; // To change body of overridden methods use File | Settings | File Templates.
     }
 
     class ForEachProcedure implements TIntProcedure {
@@ -291,13 +294,11 @@ public class TLinkedHashSet<E> extends THashSet<E> {
         }
 
         /**
-         * Executes this procedure. A false return value indicates that
-         * the application executing this procedure should not invoke this
-         * procedure again.
+         * Executes this procedure. A false return value indicates that the application executing
+         * this procedure should not invoke this procedure again.
          *
          * @param value a value of type <code>int</code>
-         * @return true if additional invocations of the procedure are
-         *         allowed.
+         * @return true if additional invocations of the procedure are allowed.
          */
         public boolean execute(int value) {
             return procedure.execute((E) set[value]);
@@ -305,11 +306,11 @@ public class TLinkedHashSet<E> extends THashSet<E> {
     }
 
     /**
-     * Executes <tt>procedure</tt> for each element in the set.
+     * Executes <kbd>procedure</kbd> for each element in the set.
      *
      * @param procedure a <code>TObjectProcedure</code> value
-     * @return false if the loop over the set terminated because
-     *         the procedure returned false for some value.
+     * @return false if the loop over the set terminated because the procedure returned false for
+     *         some value.
      */
     @Override
     public boolean forEach(TObjectProcedure<? super E> procedure) {

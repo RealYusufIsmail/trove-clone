@@ -64,7 +64,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
     /**
      * Creates a new <code>T#K##V#HashMap</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
+     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
      * with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
@@ -76,7 +76,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
     /**
      * Creates a new <code>T#K##V#HashMap</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
+     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
      * with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
@@ -89,15 +89,15 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
     /**
      * Creates a new <code>T#K##V#HashMap</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
+     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
      * with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
      * @param loadFactor a <code>float</code> value
      * @param noEntryKey a <code>#k#</code> value that represents
-     *                   <tt>null</tt> for the Key set.
+     *                   <kbd>null</kbd> for the Key set.
      * @param noEntryValue a <code>#v#</code> value that represents
-     *                   <tt>null</tt> for the Value set.
+     *                   <kbd>null</kbd> for the Value set.
      */
     public T#K##V#HashMap( int initialCapacity, float loadFactor,
         #k# noEntryKey, #v# noEntryValue ) {
@@ -109,8 +109,8 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
      * Creates a new <code>T#K##V#HashMap</code> instance containing
      * all of the entries in the map passed in.
      *
-     * @param keys a <tt>#k#</tt> array containing the keys for the matching values.
-     * @param values a <tt>#v#</tt> array containing the values.
+     * @param keys a <kbd>#k#</kbd> array containing the keys for the matching values.
+     * @param values a <kbd>#v#</kbd> array containing the values.
      */
     public T#K##V#HashMap( #k#[] keys, #v#[] values ) {
         super( Math.max( keys.length, values.length ) );
@@ -126,7 +126,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
      * Creates a new <code>T#K##V#HashMap</code> instance containing
      * all of the entries in the map passed in.
      *
-     * @param map a <tt>T#K##V#Map</tt> that will be duplicated.
+     * @param map a <kbd>T#K##V#Map</kbd> that will be duplicated.
      */
     public T#K##V#HashMap( T#K##V#Map map ) {
         super( map.size() );
@@ -151,7 +151,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
 
     /**
      * initializes the hashtable to a prime capacity which is at least
-     * <tt>initialCapacity + 1</tt>.
+     * <kbd>initialCapacity + 1</kbd>.
      *
      * @param initialCapacity an <code>int</code> value
      * @return the actual capacity chosen
@@ -1068,7 +1068,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
         /**
          * Creates an iterator over the specified map
          *
-         * @param hash the <tt>TPrimitiveHash</tt> we will be iterating over.
+         * @param hash the <kbd>TPrimitiveHash</kbd> we will be iterating over.
          */
         T#K##V#KeyHashIterator( TPrimitiveHash hash ) {
             super( hash );
@@ -1106,7 +1106,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
         /**
          * Creates an iterator over the specified map
          *
-         * @param hash the <tt>TPrimitiveHash</tt> we will be iterating over.
+         * @param hash the <kbd>TPrimitiveHash</kbd> we will be iterating over.
          */
         T#K##V#ValueHashIterator( TPrimitiveHash hash ) {
             super( hash );
@@ -1143,7 +1143,7 @@ public class T#K##V#HashMap extends T#K##V#Hash implements T#K##V#Map, Externali
         /**
          * Creates an iterator over the specified map
          *
-         * @param map the <tt>T#K##V#HashMap</tt> we will be iterating over.
+         * @param map the <kbd>T#K##V#HashMap</kbd> we will be iterating over.
          */
         T#K##V#HashIterator( T#K##V#HashMap map ) {
             super( map );

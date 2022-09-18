@@ -1,23 +1,18 @@
 /*
- * ///////////////////////////////////////////////////////////////////////////////
- * // Copyright (c) 2009, Rob Eden All Rights Reserved.
- * // Copyright (c) 2009, Jeff Randall All Rights Reserved.
- * //
- * // This library is free software; you can redistribute it and/or
- * // modify it under the terms of the GNU Lesser General Public
- * // License as published by the Free Software Foundation; either
- * // version 2.1 of the License, or (at your option) any later version.
- * //
- * // This library is distributed in the hope that it will be useful,
- * // but WITHOUT ANY WARRANTY; without even the implied warranty of
- * // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * // GNU General Public License for more details.
- * //
- * // You should have received a copy of the GNU Lesser General Public
- * // License along with this program; if not, write to the Free Software
- * // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- * ///////////////////////////////////////////////////////////////////////////////
- */
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.generator;
 
 import java.io.*;
@@ -33,38 +28,48 @@ import java.util.regex.Pattern;
 
 
 /**
- * <p>Generator class that builds final source files from templates. It does so by
- * replacing patterns in the template files.</p>
+ * <p>
+ * Generator class that builds final source files from templates. It does so by replacing patterns
+ * in the template files.
+ * </p>
  *
- * <p><b>Patterns</b></p>
+ * <p>
+ * <b>Patterns</b>
+ * </p>
  *
- * <p>In map-like classes, the letters "k" and "v" are used to indicate "key" and "value".
- * In classes with a single element type, "e" is used. The patterns start and end with a
- * hash sign and come in these variants:</p>
+ * <p>
+ * In map-like classes, the letters "k" and "v" are used to indicate "key" and "value". In classes
+ * with a single element type, "e" is used. The patterns start and end with a hash sign and come in
+ * these variants:
+ * </p>
  * <ul>
- *     <li>lowercase (eg: "#e#")- the primitive type (eg: "int" or "float")</li>
- *     <li>T (eg: "#ET#")- the class type (eg: "Integer" or "Float")</li>
- *     <li>uppercase (eg: "#E#")- the abbreviated class type (eg: "Int" or "Float")</li>
- *     <li>C (eg: "#EC#") - uppercase primitive (eg: "INT" or "FLOAT")</li>
- *     <li>MAX (eg: "#EMAX#") - max value for the type (eg: "Integer.MAX_VALUE" or
- *         Float.POSITIVE_INFINITY")</li>
- *     <li>MIN (eg: "#EMIN#") - min value for the type (eg: "Integer.MIN_VALUE" or
- *         Float.NEGATIVE_INFINITY")</li>
- *     <li>underbar (eg: "_E_") - Only applicable in file names, same as "uppercase".</li>
+ * <li>lowercase (eg: "#e#")- the primitive type (eg: "int" or "float")</li>
+ * <li>T (eg: "#ET#")- the class type (eg: "Integer" or "Float")</li>
+ * <li>uppercase (eg: "#E#")- the abbreviated class type (eg: "Int" or "Float")</li>
+ * <li>C (eg: "#EC#") - uppercase primitive (eg: "INT" or "FLOAT")</li>
+ * <li>MAX (eg: "#EMAX#") - max value for the type (eg: "Integer.MAX_VALUE" or
+ * Float.POSITIVE_INFINITY")</li>
+ * <li>MIN (eg: "#EMIN#") - min value for the type (eg: "Integer.MIN_VALUE" or
+ * Float.NEGATIVE_INFINITY")</li>
+ * <li>underbar (eg: "_E_") - Only applicable in file names, same as "uppercase".</li>
  * </ul>
  *
- * <p><b>Block Replication</b></p>
+ * <p>
+ * <b>Block Replication</b>
+ * </p>
  *
- * <p>In addition to regular patterns, some classes use block replication. This allows
- * replicating a block of code for each type. A block starts with
+ * <p>
+ * In addition to regular patterns, some classes use block replication. This allows replicating a
+ * block of code for each type. A block starts with
  * <code>====START_REPLICATED_CONTENT #&lt;number&gt;====</code> and ends with
  * <code>=====END_REPLICATED_CONTENT #&lt;number&gt;=====</code> (each on a new line) where
- * "&lt;number&gt;" is an integer. Then, that content is replicated for each type where
- * the pattern "#REPLICATED&lt;number&gt;#" is found.</p>
+ * "&lt;number&gt;" is an integer. Then, that content is replicated for each type where the pattern
+ * "#REPLICATED&lt;number&gt;#" is found.
+ * </p>
  *
  */
 public class Generator {
-    private static final WrapperInfo[] WRAPPERS = new WrapperInfo[]{
+    private static final WrapperInfo[] WRAPPERS = new WrapperInfo[] {
             new WrapperInfo("double", "Double", "POSITIVE_INFINITY", "NEGATIVE_INFINITY"),
             new WrapperInfo("float", "Float", "POSITIVE_INFINITY", "NEGATIVE_INFINITY"),
             new WrapperInfo("int", "Integer", "MAX_VALUE", "MIN_VALUE"),
@@ -161,8 +166,8 @@ public class Generator {
     }
 
     /**
-     * Creates dirs, throw IllegalArgumentException or IllegalStateException if
-     * argument is invalid or creation fails
+     * Creates dirs, throw IllegalArgumentException or IllegalStateException if argument is invalid
+     * or creation fails
      *
      * @param directory
      */
@@ -184,11 +189,13 @@ public class Generator {
         File[] files = input_directory.listFiles();
         for (File file : files) {
             // Ignore hidden files
-            if (file.isHidden()) continue;
+            if (file.isHidden())
+                continue;
 
             if (file.isDirectory()) {
                 // Ignore CVS directories
-                if (file.getName().equals("CVS")) continue;
+                if (file.getName().equals("CVS"))
+                    continue;
 
                 scanForFiles(file, new File(output_directory, file.getName()));
                 continue;
@@ -199,8 +206,7 @@ public class Generator {
     }
 
 
-    private static void processFile(File input_file, File output_directory)
-            throws IOException {
+    private static void processFile(File input_file, File output_directory) throws IOException {
 
         System.out.println("Process file: " + input_file);
 
@@ -237,8 +243,8 @@ public class Generator {
     }
 
 
-    private static void processKVMarkers(String content, File output_dir,
-                                         String file_name) throws IOException {
+    private static void processKVMarkers(String content, File output_dir, String file_name)
+            throws IOException {
 
         for (WrapperInfo info : WRAPPERS) {
             String k = info.primitive;
@@ -280,12 +286,11 @@ public class Generator {
                 Map<Integer, String> replicated_blocks =
                         findReplicatedBlocks(processed_output, processed_replication_output);
                 if (replicated_blocks != null) {
-                    processed_output = processReplication(
-                            processed_replication_output.toString(), replicated_blocks);
+                    processed_output = processReplication(processed_replication_output.toString(),
+                            replicated_blocks);
                 }
 
-                String processed_filename =
-                        PATTERN_V_UNDERBAR.matcher(out_file_name).replaceAll(V);
+                String processed_filename = PATTERN_V_UNDERBAR.matcher(out_file_name).replaceAll(V);
 
                 writeFile(processed_output, new File(output_dir, processed_filename));
             }
@@ -293,8 +298,8 @@ public class Generator {
     }
 
 
-    private static void processEMarkers(String content, File output_dir,
-                                        String file_name) throws IOException {
+    private static void processEMarkers(String content, File output_dir, String file_name)
+            throws IOException {
 
         for (WrapperInfo info : WRAPPERS) {
             String e = info.primitive;
@@ -319,8 +324,8 @@ public class Generator {
             Map<Integer, String> replicated_blocks =
                     findReplicatedBlocks(processed_output, processed_replication_output);
             if (replicated_blocks != null) {
-                processed_output = processReplication(
-                        processed_replication_output.toString(), replicated_blocks);
+                processed_output = processReplication(processed_replication_output.toString(),
+                        replicated_blocks);
             }
 
             writeFile(processed_output, new File(output_dir, out_file_name));
@@ -328,8 +333,7 @@ public class Generator {
     }
 
 
-    static String processReplication(String content,
-                                     Map<Integer, String> replicated_blocks) {
+    static String processReplication(String content, Map<Integer, String> replicated_blocks) {
 
         for (Map.Entry<Integer, String> entry : replicated_blocks.entrySet()) {
             // Replace the markers in the replicated content
@@ -369,7 +373,8 @@ public class Generator {
 
                     // If we use "e" (instead of "k" & "v", then we don't need the inner
                     // map. Yeah, this is ugly I know... but it works.
-                    if (uses_e && j != 0) break;
+                    if (uses_e && j != 0)
+                        break;
 
                     out = Pattern.compile("#v#").matcher(out).replaceAll(v);
                     out = Pattern.compile("#V#").matcher(out).replaceAll(V);
@@ -385,7 +390,8 @@ public class Generator {
                     out = Pattern.compile("#KMAX#").matcher(out).replaceAll(KMAX);
                     out = Pattern.compile("#KMIN#").matcher(out).replaceAll(KMIN);
 
-                    if (first_loop) first_loop = false;
+                    if (first_loop)
+                        first_loop = false;
                     else {
                         entry_buffer.append("\n\n");
                     }
@@ -394,16 +400,16 @@ public class Generator {
                 }
             }
 
-            content = Pattern.compile("#REPLICATED" + entry.getKey() + "#").matcher(
-                    content).replaceAll(entry_buffer.toString());
+            content = Pattern.compile("#REPLICATED" + entry.getKey() + "#")
+                .matcher(content)
+                .replaceAll(entry_buffer.toString());
         }
 
         return content;
     }
 
 
-    private static void writeFile(String content, File output_file)
-            throws IOException {
+    private static void writeFile(String content, File output_file) throws IOException {
 
         File parent = output_file.getParentFile();
         makeDirs(parent);
@@ -428,21 +434,21 @@ public class Generator {
 
                 matches = Arrays.equals(current_file, new_file);
             } catch (NoSuchAlgorithmException ex) {
-                System.err.println(
-                        "WARNING: Couldn't load digest algorithm to compare " +
-                                "new and old template. Generation will be forced.");
+                System.err.println("WARNING: Couldn't load digest algorithm to compare "
+                        + "new and old template. Generation will be forced.");
                 matches = false;
             }
 
             need_to_move = !matches;
-        } else need_to_move = true;
+        } else
+            need_to_move = true;
 
 
         // Now move it if we need to move it
         if (need_to_move) {
             delete(output_file);
-	        copyFile( temp, output_file );
-	        System.out.println("  Wrote: " + simplifyPath(output_file));
+            copyFile(temp, output_file);
+            System.out.println("  Wrote: " + simplifyPath(output_file));
         } else {
             System.out.println("  Skipped: " + simplifyPath(output_file));
             delete(temp);
@@ -511,7 +517,8 @@ public class Generator {
 
             while (true) {
                 String line = reader.readLine();
-                if (line == null) break;
+                if (line == null)
+                    break;
                 out.append(line);
                 out.append("\n");
             }
@@ -531,15 +538,14 @@ public class Generator {
     /**
      * Find replicated block definitions at the end of content.
      *
-     * @param content_in  The content
-     * @param content_out A StringBuffer into which the content (without the
-     *                    definition blocks is placed). This will be untouched
-     *                    if no definition blocks are found.
-     * @return Null if no definition blocks are found, otherwise a map
-     *         containing the blocks, keyed by their number.
+     * @param content_in The content
+     * @param content_out A StringBuffer into which the content (without the definition blocks is
+     *        placed). This will be untouched if no definition blocks are found.
+     * @return Null if no definition blocks are found, otherwise a map containing the blocks, keyed
+     *         by their number.
      */
-    static Map<Integer, String> findReplicatedBlocks(String content_in,
-                                                     StringBuilder content_out) throws IOException {
+    static Map<Integer, String> findReplicatedBlocks(String content_in, StringBuilder content_out)
+            throws IOException {
 
         Map<Integer, String> to_return = null;
 
@@ -551,8 +557,7 @@ public class Generator {
         boolean in_replicated_block = false;
         boolean need_newline = false;
         while ((line = reader.readLine()) != null) {
-            if (!in_replicated_block &&
-                    line.startsWith("====START_REPLICATED_CONTENT #")) {
+            if (!in_replicated_block && line.startsWith("====START_REPLICATED_CONTENT #")) {
 
                 in_replicated_block = true;
                 need_newline = false;
@@ -562,22 +567,24 @@ public class Generator {
                 }
 
                 buffer = new StringBuilder();
-            } else if (in_replicated_block &&
-                    line.startsWith("=====END_REPLICATED_CONTENT #")) {
+            } else if (in_replicated_block && line.startsWith("=====END_REPLICATED_CONTENT #")) {
                 int number_start_index = "=====END_REPLICATED_CONTENT #".length();
                 int number_end_index = line.indexOf("=", number_start_index);
 
                 String number = line.substring(number_start_index, number_end_index);
                 Integer number_obj = Integer.valueOf(number);
 
-                if (to_return == null) to_return = new HashMap<Integer, String>();
+                if (to_return == null)
+                    to_return = new HashMap<Integer, String>();
                 to_return.put(number_obj, buffer.toString());
 
                 in_replicated_block = false;
                 need_newline = false;
             } else {
-                if (need_newline) buffer.append("\n");
-                else need_newline = true;
+                if (need_newline)
+                    buffer.append("\n");
+                else
+                    need_newline = true;
 
                 buffer.append(line);
             }
@@ -607,16 +614,16 @@ public class Generator {
     }
 
 
-	private static void copyFile( File source, File dest ) throws IOException {
-		FileChannel srcChannel = new FileInputStream( source ).getChannel();
-		// Create channel on the destination
-		FileChannel dstChannel = new FileOutputStream( dest ).getChannel();
-		// Copy file contents from source to destination
-		dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
-		// Close the channels
-		srcChannel.close();
-		dstChannel.close();
-	}
+    private static void copyFile(File source, File dest) throws IOException {
+        FileChannel srcChannel = new FileInputStream(source).getChannel();
+        // Create channel on the destination
+        FileChannel dstChannel = new FileOutputStream(dest).getChannel();
+        // Copy file contents from source to destination
+        dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
+        // Close the channels
+        srcChannel.close();
+        dstChannel.close();
+    }
 
 
     private static class WrapperInfo {
@@ -625,8 +632,7 @@ public class Generator {
         final String max_value;
         final String min_value;
 
-        WrapperInfo(String primitive, String class_name, String max_value,
-                    String min_value) {
+        WrapperInfo(String primitive, String class_name, String max_value, String min_value) {
 
             this.primitive = primitive;
             this.class_name = class_name;

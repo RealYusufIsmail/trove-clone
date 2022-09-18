@@ -1,23 +1,18 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2002, Eric D. Friedman All Rights Reserved.
-// Copyright (c) 2009, Robert D. Eden All Rights Reserved.
-// Copyright (c) 2009, Jeff Randall All Rights Reserved.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-///////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.decorator;
 
 import gnu.trove.map.TIntObjectMap;
@@ -52,11 +47,12 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         boolean expectionThrown = false;
         try {
             TDecorators.wrap((TIntObjectMap<String>) null);
-        } catch(NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
             expectionThrown = true;
         }
 
-        assertTrue("Wrapping a null value should result in an expection being thrown.", expectionThrown);
+        assertTrue("Wrapping a null value should result in an expection being thrown.",
+                expectionThrown);
     }
 
     public void testConstructors() {
@@ -72,16 +68,14 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         }
         Map<Integer, String> map = TDecorators.wrap(raw_map);
 
-        TIntObjectMap<String> raw_capacity =
-                new TIntObjectHashMap<String>(20);
+        TIntObjectMap<String> raw_capacity = new TIntObjectHashMap<String>(20);
         for (int i = 0; i < element_count; i++) {
             raw_capacity.put(keys[i], vals[i]);
         }
         Map<Integer, String> capacity = TDecorators.wrap(raw_capacity);
         assertEquals(map, capacity);
 
-        TIntObjectMap<String> raw_cap_and_factor =
-                new TIntObjectHashMap<String>(20, 0.75f);
+        TIntObjectMap<String> raw_cap_and_factor = new TIntObjectHashMap<String>(20, 0.75f);
         for (int i = 0; i < element_count; i++) {
             raw_cap_and_factor.put(keys[i], vals[i]);
         }
@@ -96,8 +90,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         Map<Integer, String> fully_specified = TDecorators.wrap(raw_fully_specified);
         assertEquals(map, fully_specified);
 
-        TIntObjectMap<String> raw_copy =
-                new TIntObjectHashMap<String>(raw_map);
+        TIntObjectMap<String> raw_copy = new TIntObjectHashMap<String>(raw_map);
         Map<Integer, String> copy = TDecorators.wrap(raw_copy);
         assertEquals(map, copy);
     }
@@ -125,7 +118,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         assertNull(map.get(key));
 
         Long long_key = Long.valueOf(1138);
-        //noinspection SuspiciousMethodCalls
+        // noinspection SuspiciousMethodCalls
         assertNull(map.get(long_key));
 
         map.put(null, "null-key");
@@ -152,8 +145,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         }
 
         int key = 1138;
-        assertFalse("Key should not be present: " + key + ", map: " + map,
-                map.containsKey(key));
+        assertFalse("Key should not be present: " + key + ", map: " + map, map.containsKey(key));
     }
 
 
@@ -176,10 +168,9 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         }
 
         String val = "1138";
-        assertFalse("Key should not be present: " + val + ", map: " + map,
-                map.containsValue(val));
+        assertFalse("Key should not be present: " + val + ", map: " + map, map.containsValue(val));
 
-        //noinspection SuspiciousMethodCalls
+        // noinspection SuspiciousMethodCalls
         assertFalse("Random object should not be present in map: " + map,
                 map.containsValue(new Object()));
     }
@@ -216,7 +207,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         }
 
         assertNull(map.get(1138));
-        //noinspection SuspiciousMethodCalls
+        // noinspection SuspiciousMethodCalls
         assertNull(map.get(Integer.valueOf(1138)));
         assertNull(map.get(null));
 
@@ -228,7 +219,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         assertEquals("null-value", map.remove(null));
         assertFalse(map.containsKey(null));
 
-        //noinspection SuspiciousMethodCalls
+        // noinspection SuspiciousMethodCalls
         assertNull(map.remove(Long.valueOf(1138)));
     }
 
@@ -447,7 +438,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         }
 
         // Zero length array
-        //noinspection ToArrayCallWithZeroLengthArrayArgument
+        // noinspection ToArrayCallWithZeroLengthArrayArgument
         keys_array = map.keySet().toArray(new Integer[0]);
         assertEquals(element_count, keys_array.length);
         keys_list = Arrays.asList(keys_array);
@@ -504,7 +495,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
             count++;
         }
 
-        //noinspection ToArrayCallWithZeroLengthArrayArgument
+        // noinspection ToArrayCallWithZeroLengthArrayArgument
         String[] values_array = collection.toArray(new String[0]);
         count = 0;
         iter = collection.iterator();
@@ -625,11 +616,11 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
 
         List<String> java_list = new ArrayList<String>();
         java_list.addAll(Arrays.asList(vals));
-        assertTrue("collection: " + collection + ", should contain all in list: " +
-                java_list, collection.containsAll(java_list));
+        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
+                collection.containsAll(java_list));
         java_list.add(String.valueOf(1138));
-        assertFalse("collection: " + collection + ", should not contain all in list: " +
-                java_list, collection.containsAll(java_list));
+        assertFalse("collection: " + collection + ", should not contain all in list: " + java_list,
+                collection.containsAll(java_list));
 
         List<CharSequence> number_list = new ArrayList<CharSequence>();
         for (String value : vals) {
@@ -639,15 +630,15 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
                 number_list.add(String.valueOf(value));
             }
         }
-        assertFalse("collection: " + collection + ", should not contain all in list: " +
-                java_list, collection.containsAll(number_list));
+        assertFalse("collection: " + collection + ", should not contain all in list: " + java_list,
+                collection.containsAll(number_list));
 
         Collection<String> other = new ArrayList<String>(collection);
-        assertTrue("collection: " + collection + ", should contain all in other: " +
-                other, collection.containsAll(other));
+        assertTrue("collection: " + collection + ", should contain all in other: " + other,
+                collection.containsAll(other));
         other.add("1138");
-        assertFalse("collection: " + collection + ", should not contain all in other: " +
-                other, collection.containsAll(other));
+        assertFalse("collection: " + collection + ", should not contain all in other: " + other,
+                collection.containsAll(other));
     }
 
 
@@ -673,17 +664,17 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
 
         List<String> java_list = new ArrayList<String>();
         java_list.addAll(Arrays.asList(vals));
-        assertFalse("collection: " + collection + ", should contain all in list: " +
-                java_list, collection.retainAll(java_list));
+        assertFalse("collection: " + collection + ", should contain all in list: " + java_list,
+                collection.retainAll(java_list));
 
         java_list.remove(5);
-        assertTrue("collection: " + collection + ", should contain all in list: " +
-                java_list, collection.retainAll(java_list));
+        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
+                collection.retainAll(java_list));
         assertFalse(collection.contains(vals[5]));
         assertFalse(map.containsKey(keys[5]));
         assertFalse(map.containsValue(vals[5]));
-        assertTrue("collection: " + collection + ", should contain all in list: " +
-                java_list, collection.containsAll(java_list));
+        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
+                collection.containsAll(java_list));
     }
 
 
@@ -711,17 +702,17 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
                 collection.retainAll(collection));
 
         Collection<String> other = new ArrayList<String>(collection);
-        assertFalse("collection: " + collection + ", should be unmodified. other: " +
-                other, collection.retainAll(other));
+        assertFalse("collection: " + collection + ", should be unmodified. other: " + other,
+                collection.retainAll(other));
 
         other.remove(vals[5]);
-        assertTrue("collection: " + collection + ", should be modified. other: " +
-                other, collection.retainAll(other));
+        assertTrue("collection: " + collection + ", should be modified. other: " + other,
+                collection.retainAll(other));
         assertFalse(collection.contains(vals[5]));
         assertFalse(map.containsKey(keys[5]));
         assertFalse(map.containsValue(vals[5]));
-        assertTrue("collection: " + collection + ", should contain all in other: " +
-                other, collection.containsAll(other));
+        assertTrue("collection: " + collection + ", should contain all in other: " + other,
+                collection.containsAll(other));
     }
 
 
@@ -746,20 +737,20 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         assertFalse(collection.isEmpty());
 
         List<String> java_list = new ArrayList<String>();
-        assertFalse("collection: " + collection + ", should contain all in list: " +
-                java_list, collection.removeAll(java_list));
+        assertFalse("collection: " + collection + ", should contain all in list: " + java_list,
+                collection.removeAll(java_list));
 
         java_list.add(vals[5]);
-        assertTrue("collection: " + collection + ", should contain all in list: " +
-                java_list, collection.removeAll(java_list));
+        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
+                collection.removeAll(java_list));
         assertFalse(collection.contains(vals[5]));
         assertFalse(map.containsKey(keys[5]));
         assertFalse(map.containsValue(vals[5]));
 
         java_list = new ArrayList<String>();
         java_list.addAll(Arrays.asList(vals));
-        assertTrue("collection: " + collection + ", should contain all in list: " +
-                java_list, collection.removeAll(java_list));
+        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
+                collection.removeAll(java_list));
         assertTrue(collection.isEmpty());
     }
 
@@ -790,8 +781,8 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
 
         other = new ArrayList<String>(collection);
         other.remove(vals[5]);
-        assertTrue("collection: " + collection + ", should be modified. other: " +
-                other, collection.removeAll(other));
+        assertTrue("collection: " + collection + ", should be modified. other: " + other,
+                collection.removeAll(other));
         assertEquals(1, collection.size());
         for (int i = 0; i < element_count; i++) {
             if (i == 5) {
@@ -805,11 +796,11 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
             }
         }
 
-        assertFalse("collection: " + collection + ", should be unmodified. other: " +
-                other, collection.removeAll(other));
+        assertFalse("collection: " + collection + ", should be unmodified. other: " + other,
+                collection.removeAll(other));
 
-        assertTrue("collection: " + collection + ", should be modified. other: " +
-                other, collection.removeAll(collection));
+        assertTrue("collection: " + collection + ", should be modified. other: " + other,
+                collection.removeAll(collection));
         assertTrue(collection.isEmpty());
     }
 
@@ -837,7 +828,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         }
 
         // Zero length array
-        //noinspection ToArrayCallWithZeroLengthArrayArgument
+        // noinspection ToArrayCallWithZeroLengthArrayArgument
         String[] values_array = map.values().toArray(new String[0]);
         assertEquals(element_count, values_array.length);
         List<String> values_list = Arrays.asList(values_array);
@@ -883,9 +874,8 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         Set<Map.Entry<Integer, String>> entries = map.entrySet();
         assertEquals(element_count, entries.size());
         assertFalse(entries.isEmpty());
-        //noinspection unchecked
-        Map.Entry<Integer, String>[] array =
-                entries.toArray(new Map.Entry[entries.size()]);
+        // noinspection unchecked
+        Map.Entry<Integer, String>[] array = entries.toArray(new Map.Entry[entries.size()]);
         for (Map.Entry<Integer, String> entry : array) {
             assertTrue(entries.contains(entry));
         }
@@ -938,8 +928,7 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         assertFalse(entries.containsAll(invalid_entry_list));
         assertFalse(entries.removeAll(invalid_entry_list));
 
-        List<Map.Entry<Integer, String>> partial_list =
-                new ArrayList<Map.Entry<Integer, String>>();
+        List<Map.Entry<Integer, String>> partial_list = new ArrayList<Map.Entry<Integer, String>>();
         partial_list.add(array[3]);
         partial_list.add(array[4]);
         assertTrue(entries.removeAll(partial_list));
@@ -1015,12 +1004,13 @@ public class TPrimitiveObjectMapDecoratorTest extends TestCase {
         map.put(22, "Two");
 
         String to_string = map.toString();
-        assertTrue(to_string, to_string.equals("{11=One, 22=Two}")
-                || to_string.equals("{22=Two, 11=One}"));
+        assertTrue(to_string,
+                to_string.equals("{11=One, 22=Two}") || to_string.equals("{22=Two, 11=One}"));
     }
 
     public void testBug3432175() throws Exception {
-        Map<Integer, Object> trove = new TIntObjectMapDecorator<Object>(new TIntObjectHashMap<Object>());
+        Map<Integer, Object> trove =
+                new TIntObjectMapDecorator<Object>(new TIntObjectHashMap<Object>());
         trove.put(null, new Object());
         assertFalse(trove.isEmpty());
         assertEquals(1, trove.size());

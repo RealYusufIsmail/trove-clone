@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.strategy;
 
 import gnu.trove.map.hash.TCustomHashMap;
@@ -10,30 +25,30 @@ import java.util.Map;
  *
  */
 public class IdentityHashingStrategyTest extends TestCase {
-	public void testInMap() {
-		Map<Integer,String> map =
-			new TCustomHashMap<Integer, String>( new IdentityHashingStrategy<Integer>() );
+    public void testInMap() {
+        Map<Integer, String> map =
+                new TCustomHashMap<Integer, String>(new IdentityHashingStrategy<Integer>());
 
-		Integer first = new Integer( 0 );
-		Integer second = new Integer( 0 );
+        Integer first = new Integer(0);
+        Integer second = new Integer(0);
 
-		map.put( first, "first" );
+        map.put(first, "first");
 
-		assertEquals( 1, map.size() );
-		assertTrue( map.containsKey( first ));
-		assertFalse( map.containsKey( second ) );
-		assertEquals( "first", map.get( first ) );
+        assertEquals(1, map.size());
+        assertTrue(map.containsKey(first));
+        assertFalse(map.containsKey(second));
+        assertEquals("first", map.get(first));
 
-		map.put( second, "second" );
+        map.put(second, "second");
 
-		assertEquals( 2, map.size() );
-		assertEquals( "first", map.get( first ) );
-		assertEquals( "second", map.get( second ) );
+        assertEquals(2, map.size());
+        assertEquals("first", map.get(first));
+        assertEquals("second", map.get(second));
 
-		map.remove( first );
+        map.remove(first);
 
-		assertEquals( 1, map.size() );
-		assertFalse( map.containsKey( first ) );
-		assertTrue( map.containsKey( second ) );
-	}
+        assertEquals(1, map.size());
+        assertFalse(map.containsKey(first));
+        assertTrue(map.containsKey(second));
+    }
 }

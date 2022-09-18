@@ -60,7 +60,7 @@ public interface T#K##V#Map {
     /**
      * Inserts a key/value pair into the map.
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with <kbd>key</kbd>, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     public #v# put( #k# key, #v# value );
@@ -70,7 +70,7 @@ public interface T#K##V#Map {
      * Inserts a key/value pair into the map if the specified key is not already
      * associated with a value.
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with <kbd>key</kbd>, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     public #v# putIfAbsent( #k# key, #v# value );
@@ -93,9 +93,9 @@ public interface T#K##V#Map {
 
 
     /**
-     * Retrieves the value for <tt>key</tt>.
+     * Retrieves the value for <kbd>key</kbd>.
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with <kbd>key</kbd>, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     public #v# get( #k# key );
@@ -108,9 +108,9 @@ public interface T#K##V#Map {
 
 
     /**
-      * Returns <tt>true</tt> if this map contains no key-value mappings.
+      * Returns <kbd>true</kbd> if this map contains no key-value mappings.
       *
-      * @return <tt>true</tt> if this map contains no key-value mappings
+      * @return <kbd>true</kbd> if this map contains no key-value mappings
       */
      public boolean isEmpty();
 
@@ -120,32 +120,32 @@ public interface T#K##V#Map {
      *
      * @param key an <code>#k#</code> value
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with <kbd>key</kbd>, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     public #v# remove( #k# key );
 
 
     /**
-     * Returns an <tt>int</tt> value that is the number of elements in the map.
+     * Returns an <kbd>int</kbd> value that is the number of elements in the map.
      *
-     * @return an <tt>int</tt> value that is the number of elements in the map.
+     * @return an <kbd>int</kbd> value that is the number of elements in the map.
      */
     public int size();
 
 
     /**
-     * Returns the keys of the map as a <tt>T#K#Set</tt>
+     * Returns the keys of the map as a <kbd>T#K#Set</kbd>
      *
-     * @return the keys of the map as a <tt>T#K#Set</tt>
+     * @return the keys of the map as a <kbd>T#K#Set</kbd>
      */
     public T#K#Set keySet();
 
 
     /**
-     * Returns the keys of the map as an array of <tt>#k#</tt> values.
+     * Returns the keys of the map as an array of <kbd>#k#</kbd> values.
      *
-     * @return the keys of the map as an array of <tt>#k#</tt> values.
+     * @return the keys of the map as an array of <kbd>#k#</kbd> values.
      */
     public #k#[] keys();
 
@@ -162,17 +162,17 @@ public interface T#K##V#Map {
 
 
     /**
-     * Returns the values of the map as a <tt>T#V#Collection</tt>
+     * Returns the values of the map as a <kbd>T#V#Collection</kbd>
      *
-     * @return the values of the map as a <tt>T#V#Collection</tt>
+     * @return the values of the map as a <kbd>T#V#Collection</kbd>
      */
     public T#V#Collection valueCollection();
 
 
     /**
-     * Returns the values of the map as an array of <tt>#e#</tt> values.
+     * Returns the values of the map as an array of <kbd>#e#</kbd> values.
      *
-     * @return the values of the map as an array of <tt>#e#</tt> values.
+     * @return the values of the map as an array of <kbd>#e#</kbd> values.
      */
     public #v#[] values();
 
@@ -183,19 +183,19 @@ public interface T#K##V#Map {
      * @param array   the array into which the elements of the list are to be stored,
      *                if it is big enough; otherwise, a new array of the same type is
      *                allocated for this purpose.
-     * @return the values of the map as an array of <tt>#e#</tt> values.
+     * @return the values of the map as an array of <kbd>#e#</kbd> values.
      */
     public #v#[] values( #v#[] array );
 
 
     /**
-     * Checks for the presence of <tt>val</tt> in the values of the map.
+     * Checks for the presence of <kbd>val</kbd> in the values of the map.
      */
     public boolean containsValue( #v# val );
 
 
     /**
-     * Checks for the present of <tt>key</tt> in the keys of the map.
+     * Checks for the present of <kbd>key</kbd> in the keys of the map.
      */
     public boolean containsKey( #k# key );
 
@@ -207,7 +207,7 @@ public interface T#K##V#Map {
 
 
     /**
-     * Executes <tt>procedure</tt> for each key in the map.
+     * Executes <kbd>procedure</kbd> for each key in the map.
      *
      * @param procedure a <code>T#K#Procedure</code> value
      * @return false if the loop over the keys terminated because
@@ -217,7 +217,7 @@ public interface T#K##V#Map {
 
 
     /**
-     * Executes <tt>procedure</tt> for each value in the map.
+     * Executes <kbd>procedure</kbd> for each value in the map.
      *
      * @param procedure a <code>T#F#Procedure</code> value
      * @return false if the loop over the values terminated because
@@ -227,7 +227,7 @@ public interface T#K##V#Map {
 
 
     /**
-     * Executes <tt>procedure</tt> for each key/value entry in the
+     * Executes <kbd>procedure</kbd> for each key/value entry in the
      * map.
      *
      * @param procedure a <code>TO#K##V#Procedure</code> value
@@ -238,7 +238,7 @@ public interface T#K##V#Map {
 
 
     /**
-     * Transform the values in this map using <tt>function</tt>.
+     * Transform the values in this map using <kbd>function</kbd>.
      *
      * @param function a <code>T#V#Function</code> value
      */
@@ -276,7 +276,7 @@ public interface T#K##V#Map {
 
     /**
      * Adjusts the primitive value mapped to the key if the key is present in the map.
-     * Otherwise, the <tt>put_amount</tt> is put in the map.
+     * Otherwise, the <kbd>put_amount</kbd> is put in the map.
      *
      * @param key the key of the value to increment
      * @param adjust_amount the amount to adjust the value by

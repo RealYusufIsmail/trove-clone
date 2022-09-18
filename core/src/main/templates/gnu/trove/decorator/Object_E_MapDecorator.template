@@ -34,7 +34,7 @@ import java.util.*;
 
 /**
  * <p>
- * Wrapper class to make a TObject#E#Map conform to the <tt>java.util.Map</tt> API.
+ * Wrapper class to make a TObject#E#Map conform to the <kbd>java.util.Map</kbd> API.
  * This class simply decorates an underlying TObject#E#Map and translates the Object-based
  * APIs into their Trove primitive analogs.
  * </p>
@@ -69,7 +69,7 @@ public class TObject#E#MapDecorator<K> extends AbstractMap<K, #ET#>
     /**
      * Creates a wrapper that decorates the specified primitive map.
      *
-     * @param map the <tt>TObject#E#Map</tt> to wrap.
+     * @param map the <kbd>TObject#E#Map</kbd> to wrap.
      */
     public TObject#E#MapDecorator( TObject#E#Map<K> map ) {
         super();
@@ -81,7 +81,7 @@ public class TObject#E#MapDecorator<K> extends AbstractMap<K, #ET#>
     /**
      * Returns a reference to the map wrapped by this decorator.
      *
-     * @return the wrapped <tt>TObject#E#Map</tt> instance.
+     * @return the wrapped <kbd>TObject#E#Map</kbd> instance.
      */
     public TObject#E#Map<K> getMap() {
         return _map;
@@ -93,7 +93,7 @@ public class TObject#E#MapDecorator<K> extends AbstractMap<K, #ET#>
      *
      * @param key   an <code>Object</code> value
      * @param value an <code>#ET#</code> value
-     * @return the previous value associated with <tt>key</tt>,
+     * @return the previous value associated with <kbd>key</kbd>,
      *         or Integer(0) if none was found.
      */
     public #ET# put( K key, #ET# value ) {
@@ -103,10 +103,10 @@ public class TObject#E#MapDecorator<K> extends AbstractMap<K, #ET#>
 
 
     /**
-     * Retrieves the value for <tt>key</tt>
+     * Retrieves the value for <kbd>key</kbd>
      *
      * @param key an <code>Object</code> value
-     * @return the value of <tt>key</tt> or null if no such mapping exists.
+     * @return the value of <kbd>key</kbd> or null if no such mapping exists.
      */
     public #ET# get( Object key ) {
         #e# v = _map.get( key );
@@ -247,7 +247,7 @@ public class TObject#E#MapDecorator<K> extends AbstractMap<K, #ET#>
 
 
     /**
-     * Checks for the presence of <tt>val</tt> in the values of the map.
+     * Checks for the presence of <kbd>val</kbd> in the values of the map.
      *
      * @param val an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -258,7 +258,7 @@ public class TObject#E#MapDecorator<K> extends AbstractMap<K, #ET#>
 
 
     /**
-     * Checks for the present of <tt>key</tt> in the keys of the map.
+     * Checks for the present of <kbd>key</kbd> in the keys of the map.
      *
      * @param key an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -289,7 +289,7 @@ public class TObject#E#MapDecorator<K> extends AbstractMap<K, #ET#>
 
     
     /**
-     * Copies the key/value mappings in <tt>map</tt> into this map.
+     * Copies the key/value mappings in <kbd>map</kbd> into this map.
      * Note that this will be a <b>deep</b> copy, as storage is by
      * primitive value.
      *

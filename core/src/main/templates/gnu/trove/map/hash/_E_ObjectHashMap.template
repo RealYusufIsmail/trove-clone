@@ -82,7 +82,7 @@ public class T#E#ObjectHashMap<V> extends T#E#Hash implements
 
     /**
      * Creates a new <code>T#E#ObjectHashMap</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
+     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
      * with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
@@ -95,7 +95,7 @@ public class T#E#ObjectHashMap<V> extends T#E#Hash implements
 
     /**
      * Creates a new <code>T#E#ObjectHashMap</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
+     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
      * with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
@@ -126,7 +126,7 @@ public class T#E#ObjectHashMap<V> extends T#E#Hash implements
      * Creates a new <code>T#E#ObjectHashMap</code> that contains the entries
      * in the map passed to it.
      *
-     * @param map the <tt>T#E#ObjectMap</tt> to be copied.
+     * @param map the <kbd>T#E#ObjectMap</kbd> to be copied.
      */
     public T#E#ObjectHashMap( T#E#ObjectMap<? extends V> map ) {
         this( map.size(), 0.5f, map.getNoEntryKey() );

@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.map.hash;
 
 import gnu.trove.map.TObjectIntMap;
@@ -10,24 +25,24 @@ import java.util.Arrays;
  * Test for a number of bugs related to no_entry_value, including 3432402
  */
 public class NoEntryValueTest extends TestCase {
-	public void testAdjustToNoEntry() {
-		TObjectIntMap<String> map = new TObjectIntHashMap<String>();
-		
-		assertEquals( 0, map.getNoEntryValue() );
-		assertEquals( 0, map.get( "NotInThere" ) );
-		
-		map.put( "Value", 1 );
-		assertEquals( 1, map.size() );
-		assertEquals( 1, map.get( "Value" ) );
-		assertTrue( map.containsKey( "Value" ) );
-		assertTrue( map.containsValue( 1 ) );
-		assertTrue( Arrays.equals( new int[] { 1 }, map.values() ) );
-		
-		map.adjustValue( "Value", -1 );
-		assertEquals( 1, map.size() );
-		assertEquals( 0, map.get( "Value" ) );
-		assertTrue( map.containsKey( "Value" ) );
-		assertTrue( map.containsValue( 0 ) );
-		assertTrue( Arrays.equals( new int[] { 0 }, map.values() ) );
-	}
+    public void testAdjustToNoEntry() {
+        TObjectIntMap<String> map = new TObjectIntHashMap<String>();
+
+        assertEquals(0, map.getNoEntryValue());
+        assertEquals(0, map.get("NotInThere"));
+
+        map.put("Value", 1);
+        assertEquals(1, map.size());
+        assertEquals(1, map.get("Value"));
+        assertTrue(map.containsKey("Value"));
+        assertTrue(map.containsValue(1));
+        assertTrue(Arrays.equals(new int[] {1}, map.values()));
+
+        map.adjustValue("Value", -1);
+        assertEquals(1, map.size());
+        assertEquals(0, map.get("Value"));
+        assertTrue(map.containsKey("Value"));
+        assertTrue(map.containsValue(0));
+        assertTrue(Arrays.equals(new int[] {0}, map.values()));
+    }
 }

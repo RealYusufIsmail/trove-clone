@@ -1,23 +1,18 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2001, Eric D. Friedman All Rights Reserved.
-// Copyright (c) 2009, Rob Eden All Rights Reserved.
-// Copyright (c) 2009, Jeff Randall All Rights Reserved.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-///////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.impl.hash;
 
 import gnu.trove.procedure.TObjectProcedure;
@@ -31,9 +26,8 @@ import java.util.Set;
 
 
 /**
- * An open addressed hashing implementation for Object types.
- * <br>
- * Created: Sun Nov  4 08:56:06 2001
+ * An open addressed hashing implementation for Object types. <br>
+ * Created: Sun Nov 4 08:56:06 2001
  *
  * @author Eric D. Friedman
  * @author Rob Eden
@@ -54,15 +48,14 @@ abstract public class TObjectHash<T> extends THash {
     public static final Object REMOVED = new Object(), FREE = new Object();
 
     /**
-     * Indicates whether the last insertKey() call used a FREE slot. This field
-     * should be inspected right after call insertKey()
+     * Indicates whether the last insertKey() call used a FREE slot. This field should be inspected
+     * right after call insertKey()
      */
     protected boolean consumeFreeSlot;
 
 
     /**
-     * Creates a new <code>TObjectHash</code> instance with the
-     * default capacity and load factor.
+     * Creates a new <code>TObjectHash</code> instance with the default capacity and load factor.
      */
     public TObjectHash() {
         super();
@@ -70,9 +63,8 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Creates a new <code>TObjectHash</code> instance whose capacity
-     * is the next highest prime above <tt>initialCapacity + 1</tt>
-     * unless that value is already prime.
+     * Creates a new <code>TObjectHash</code> instance whose capacity is the next highest prime
+     * above <kbd>initialCapacity + 1</kbd> unless that value is already prime.
      *
      * @param initialCapacity an <code>int</code> value
      */
@@ -82,12 +74,11 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Creates a new <code>TObjectHash</code> instance with a prime
-     * value at or near the specified capacity and load factor.
+     * Creates a new <code>TObjectHash</code> instance with a prime value at or near the specified
+     * capacity and load factor.
      *
      * @param initialCapacity used to find a prime capacity for the table.
-     * @param loadFactor      used to calculate the threshold over which
-     *                        rehashing takes place.
+     * @param loadFactor used to calculate the threshold over which rehashing takes place.
      */
     public TObjectHash(int initialCapacity, float loadFactor) {
         super(initialCapacity, loadFactor);
@@ -122,19 +113,17 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Executes <tt>procedure</tt> for each element in the set.
+     * Executes <kbd>procedure</kbd> for each element in the set.
      *
      * @param procedure a <code>TObjectProcedure</code> value
-     * @return false if the loop over the set terminated because
-     *         the procedure returned false for some value.
+     * @return false if the loop over the set terminated because the procedure returned false for
+     *         some value.
      */
     @SuppressWarnings({"unchecked"})
     public boolean forEach(TObjectProcedure<? super T> procedure) {
         Object[] set = _set;
         for (int i = set.length; i-- > 0;) {
-            if (set[i] != FREE
-                    && set[i] != REMOVED
-                    && !procedure.execute((T) set[i])) {
+            if (set[i] != FREE && set[i] != REMOVED && !procedure.execute((T) set[i])) {
                 return false;
             }
         }
@@ -143,7 +132,7 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Searches the set for <tt>obj</tt>
+     * Searches the set for <kbd>obj</kbd>
      *
      * @param obj an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -155,10 +144,10 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Locates the index of <tt>obj</tt>.
+     * Locates the index of <kbd>obj</kbd>.
      *
      * @param obj an <code>Object</code> value
-     * @return the index of <tt>obj</tt> or -1 if it isn't in the set.
+     * @return the index of <kbd>obj</kbd> or -1 if it isn't in the set.
      */
     protected int index(Object obj) {
         if (obj == null)
@@ -182,9 +171,9 @@ abstract public class TObjectHash<T> extends THash {
     }
 
     /**
-     * Locates the index of non-null <tt>obj</tt>.
+     * Locates the index of non-null <kbd>obj</kbd>.
      *
-     * @param obj   target key, know to be non-null
+     * @param obj target key, know to be non-null
      * @param index we start from
      * @param hash
      * @param cur
@@ -218,12 +207,11 @@ abstract public class TObjectHash<T> extends THash {
     }
 
     /**
-     * Locates the index <tt>null</tt>.
+     * Locates the index <kbd>null</kbd>.
      * <p/>
-     * null specific loop exploiting several properties to simplify the iteration logic
-     * - the null value hashes to 0 we so we can iterate from the beginning.
-     * - the probe value is 1 for this case
-     * - object identity can be used to match this case
+     * null specific loop exploiting several properties to simplify the iteration logic - the null
+     * value hashes to 0 we so we can iterate from the beginning. - the probe value is 1 for this
+     * case - object identity can be used to match this case
      * <p/>
      * --> this result a simpler loop
      *
@@ -257,19 +245,18 @@ abstract public class TObjectHash<T> extends THash {
 
     /**
      * <p>
-     * Locates the index at which <tt>key</tt> can be inserted.  if
-     * there is already a value equal()ing <tt>key</tt> in the set,
-     * returns that value's index as <tt>-index - 1</tt>.
+     * Locates the index at which <kbd>key</kbd> can be inserted. if there is already a value
+     * equal()ing <kbd>key</kbd> in the set, returns that value's index as <kbd>-index - 1</kbd>.
      * </p>
      * <p>
-     * If a slot is found the value is inserted. When a FREE slot is used the consumeFreeSlot field is
-     * set to true. This field should be used in the method invoking insertKey() to pass to postInsertHook()
+     * If a slot is found the value is inserted. When a FREE slot is used the consumeFreeSlot field
+     * is set to true. This field should be used in the method invoking insertKey() to pass to
+     * postInsertHook()
      * </p>
      *
      * @param key an <code>Object</code> value
-     * @return the index of a FREE slot at which key can be inserted
-     *         or, if key is already stored in the hash, the negative value of
-     *         that index, minus 1: -index -1.
+     * @return the index of a FREE slot at which key can be inserted or, if key is already stored in
+     *         the hash, the negative value of that index, minus 1: -index -1.
      */
     protected int insertKey(T key) {
         consumeFreeSlot = false;
@@ -283,25 +270,25 @@ abstract public class TObjectHash<T> extends THash {
 
         if (cur == FREE) {
             consumeFreeSlot = true;
-            _set[index] = key;  // insert value
-            return index;       // empty, all done
+            _set[index] = key; // insert value
+            return index; // empty, all done
         }
 
         if (cur == key || equals(key, cur)) {
-            return -index - 1;   // already stored
+            return -index - 1; // already stored
         }
 
         return insertKeyRehash(key, index, hash, cur);
     }
 
     /**
-     * Looks for a slot using double hashing for a non-null key values and inserts the value
-     * in the slot
+     * Looks for a slot using double hashing for a non-null key values and inserts the value in the
+     * slot
      *
-     * @param key   non-null key value
+     * @param key non-null key value
      * @param index natural index
      * @param hash
-     * @param cur   value of first matched slot
+     * @param cur value of first matched slot
      */
     private int insertKeyRehash(T key, int index, int hash, Object cur) {
         final Object[] set = _set;
@@ -334,7 +321,7 @@ abstract public class TObjectHash<T> extends THash {
                     return firstRemoved;
                 } else {
                     consumeFreeSlot = true;
-                    _set[index] = key;  // insert value
+                    _set[index] = key; // insert value
                     return index;
                 }
             }
@@ -360,10 +347,9 @@ abstract public class TObjectHash<T> extends THash {
     /**
      * Looks for a slot using double hashing for a null key value and inserts the value.
      * <p/>
-     * null specific loop exploiting several properties to simplify the iteration logic
-     * - the null value hashes to 0 we so we can iterate from the beginning.
-     * - the probe value is 1 for this case
-     * - object identity can be used to match this case
+     * null specific loop exploiting several properties to simplify the iteration logic - the null
+     * value hashes to 0 we so we can iterate from the beginning. - the probe value is 1 for this
+     * case - object identity can be used to match this case
      *
      */
     private int insertKeyForNull() {
@@ -382,7 +368,7 @@ abstract public class TObjectHash<T> extends THash {
                     return firstRemoved;
                 } else {
                     consumeFreeSlot = true;
-                    _set[index] = null;  // insert value
+                    _set[index] = null; // insert value
                     return index;
                 }
             }
@@ -403,16 +389,16 @@ abstract public class TObjectHash<T> extends THash {
 
         // We scanned the entire key set and found nothing, is set full?
         // Can a resizing strategy be found that resizes the set?
-        throw new IllegalStateException("Could not find insertion index for null key. Key set full!?!!");
+        throw new IllegalStateException(
+                "Could not find insertion index for null key. Key set full!?!!");
     }
 
 
     /**
-     * Convenience methods for subclasses to use in throwing exceptions about
-     * badly behaved user objects employed as keys.  We have to throw an
-     * IllegalArgumentException with a rather verbose message telling the
-     * user that they need to fix their object implementation to conform
-     * to the general contract for java.lang.Object.
+     * Convenience methods for subclasses to use in throwing exceptions about badly behaved user
+     * objects employed as keys. We have to throw an IllegalArgumentException with a rather verbose
+     * message telling the user that they need to fix their object implementation to conform to the
+     * general contract for java.lang.Object.
      *
      *
      * @param o1 the first of the equal elements with unequal hash codes.
@@ -425,21 +411,20 @@ abstract public class TObjectHash<T> extends THash {
     }
 
     /**
-     * Convenience methods for subclasses to use in throwing exceptions about
-     * badly behaved user objects employed as keys.  We have to throw an
-     * IllegalArgumentException with a rather verbose message telling the
-     * user that they need to fix their object implementation to conform
-     * to the general contract for java.lang.Object.
+     * Convenience methods for subclasses to use in throwing exceptions about badly behaved user
+     * objects employed as keys. We have to throw an IllegalArgumentException with a rather verbose
+     * message telling the user that they need to fix their object implementation to conform to the
+     * general contract for java.lang.Object.
      *
      *
      * @param o1 the first of the equal elements with unequal hash codes.
      * @param o2 the second of the equal elements with unequal hash codes.
      * @param size
-     *@param oldSize
+     * @param oldSize
      * @param oldKeys @throws IllegalArgumentException the whole point of this method.
      */
-    protected final void throwObjectContractViolation(Object o1, Object o2, int size, int oldSize, Object[] oldKeys)
-            throws IllegalArgumentException {
+    protected final void throwObjectContractViolation(Object o1, Object o2, int size, int oldSize,
+            Object[] oldKeys) throws IllegalArgumentException {
         String extra = dumpExtraInfo(o1, o2, size(), oldSize, oldKeys);
 
 
@@ -447,25 +432,25 @@ abstract public class TObjectHash<T> extends THash {
     }
 
     /**
-     * Convenience methods for subclasses to use in throwing exceptions about
-     * badly behaved user objects employed as keys.  We have to throw an
-     * IllegalArgumentException with a rather verbose message telling the
-     * user that they need to fix their object implementation to conform
-     * to the general contract for java.lang.Object.
+     * Convenience methods for subclasses to use in throwing exceptions about badly behaved user
+     * objects employed as keys. We have to throw an IllegalArgumentException with a rather verbose
+     * message telling the user that they need to fix their object implementation to conform to the
+     * general contract for java.lang.Object.
      *
      *
      * @param o1 the first of the equal elements with unequal hash codes.
      * @param o2 the second of the equal elements with unequal hash codes.
      * @throws IllegalArgumentException the whole point of this method.
      */
-    protected final IllegalArgumentException buildObjectContractViolation(Object o1, Object o2, String extra ) {
-        return new IllegalArgumentException("Equal objects must have equal hashcodes. " +
-                "During rehashing, Trove discovered that the following two objects claim " +
-                "to be equal (as in java.lang.Object.equals()) but their hashCodes (or " +
-                "those calculated by your TObjectHashingStrategy) are not equal." +
-                "This violates the general contract of java.lang.Object.hashCode().  See " +
-                "bullet point two in that method's documentation. object #1 =" + objectInfo(o1) +
-                "; object #2 =" + objectInfo(o2) + "\n" + extra);
+    protected final IllegalArgumentException buildObjectContractViolation(Object o1, Object o2,
+            String extra) {
+        return new IllegalArgumentException("Equal objects must have equal hashcodes. "
+                + "During rehashing, Trove discovered that the following two objects claim "
+                + "to be equal (as in java.lang.Object.equals()) but their hashCodes (or "
+                + "those calculated by your TObjectHashingStrategy) are not equal."
+                + "This violates the general contract of java.lang.Object.hashCode().  See "
+                + "bullet point two in that method's documentation. object #1 =" + objectInfo(o1)
+                + "; object #2 =" + objectInfo(o2) + "\n" + extra);
     }
 
 
@@ -484,8 +469,8 @@ abstract public class TObjectHash<T> extends THash {
         // Note that we would not be able to detect concurrent paired of put()-remove()
         // operations with this simple check
         if (newSize != oldSize)
-            return "[Warning] apparent concurrent modification of the key set. " +
-                    "Size before and after rehash() do not match " + oldSize + " vs " + newSize;
+            return "[Warning] apparent concurrent modification of the key set. "
+                    + "Size before and after rehash() do not match " + oldSize + " vs " + newSize;
 
         return "";
     }
@@ -498,7 +483,8 @@ abstract public class TObjectHash<T> extends THash {
      * @param oldSize size of the key set before rehashing
      * @param oldKeys the old key set
      */
-    protected String dumpExtraInfo(Object newVal, Object oldVal, int currentSize, int oldSize, Object[] oldKeys) {
+    protected String dumpExtraInfo(Object newVal, Object oldVal, int currentSize, int oldSize,
+            Object[] oldKeys) {
         StringBuilder b = new StringBuilder();
         //
         b.append(dumpKeyTypes(newVal, oldVal));
@@ -525,7 +511,10 @@ abstract public class TObjectHash<T> extends THash {
         Set<Object> k = makeKeySet(keys);
         if (k.size() != oldSize) {
             buf.append("\nhashCode() and/or equals() have inconsistent implementation");
-            buf.append("\nKey set lost entries, now got ").append(k.size()).append(" instead of ").append(oldSize);
+            buf.append("\nKey set lost entries, now got ")
+                .append(k.size())
+                .append(" instead of ")
+                .append(oldSize);
             buf.append(". This can manifest itself as an apparent duplicate key.");
         }
 
@@ -536,7 +525,7 @@ abstract public class TObjectHash<T> extends THash {
         Set<Object> types = new HashSet<Object>();
         for (Object o : keys) {
             if (o != FREE && o != REMOVED) {
-                    types.add(o);
+                types.add(o);
             }
         }
 
@@ -546,11 +535,14 @@ abstract public class TObjectHash<T> extends THash {
     private static String equalsSymmetryInfo(Object a, Object b) {
         StringBuilder buf = new StringBuilder();
         if (a == b) {
-            return  "a == b";
+            return "a == b";
         }
 
         if (a.getClass() != b.getClass()) {
-            buf.append("Class of objects differ a=").append(a.getClass()).append(" vs b=").append(b.getClass());
+            buf.append("Class of objects differ a=")
+                .append(a.getClass())
+                .append(" vs b=")
+                .append(b.getClass());
 
             boolean aEb = a.equals(b);
             boolean bEa = b.equals(a);
@@ -566,7 +558,8 @@ abstract public class TObjectHash<T> extends THash {
 
     protected static String objectInfo(Object o) {
         return (o == null ? "class null" : o.getClass()) + " id= " + System.identityHashCode(o)
-                + " hashCode= " + (o == null ? 0 : o.hashCode()) + " toString= " + String.valueOf(o);
+                + " hashCode= " + (o == null ? 0 : o.hashCode()) + " toString= "
+                + String.valueOf(o);
     }
 
     private String dumpKeyTypes(Object newVal, Object oldVal) {
@@ -582,8 +575,8 @@ abstract public class TObjectHash<T> extends THash {
         }
 
         if (types.size() > 1) {
-            buf.append("\nMore than one type used for keys. Watch out for asymmetric equals(). " +
-                    "Read about the 'Liskov substitution principle' and the implications for equals() in java.");
+            buf.append("\nMore than one type used for keys. Watch out for asymmetric equals(). "
+                    + "Read about the 'Liskov substitution principle' and the implications for equals() in java.");
 
             buf.append("\nKey types: ").append(types);
             buf.append(equalsSymmetryInfo(newVal, oldVal));
@@ -604,8 +597,7 @@ abstract public class TObjectHash<T> extends THash {
 
 
     @Override
-    public void readExternal(ObjectInput in)
-            throws IOException, ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 
         // VERSION
         in.readByte();

@@ -108,7 +108,7 @@ public class T#E#ArrayList implements T#E#List, Externalizable {
 
     /**
      * Creates a new <code>T#E#ArrayList</code> instance whose
-     * capacity is the length of <tt>values</tt> array and whose
+     * capacity is the length of <kbd>values</kbd> array and whose
      * initial contents are the specified values.
      * <p>
      * A defensive copy of the given values is held by the new instance.
@@ -628,7 +628,7 @@ public class T#E#ArrayList implements T#E#List, Externalizable {
 
 
     /**
-     * Swap the values at offsets <tt>i</tt> and <tt>j</tt>.
+     * Swap the values at offsets <kbd>i</kbd> and <kbd>j</kbd>.
      *
      * @param i an offset into the data array
      * @param j an offset into the data array

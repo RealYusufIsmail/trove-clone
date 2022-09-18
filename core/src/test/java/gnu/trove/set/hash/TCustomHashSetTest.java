@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.set.hash;
 
 import gnu.trove.strategy.HashingStrategy;
@@ -15,67 +30,69 @@ import java.util.Set;
  *
  */
 public class TCustomHashSetTest extends TestCase {
-	public void testArray() {
-		char[] foo = new char[] { 'a', 'b', 'c' };
-		char[] bar = new char[] { 'a', 'b', 'c' };
+    public void testArray() {
+        char[] foo = new char[] {'a', 'b', 'c'};
+        char[] bar = new char[] {'a', 'b', 'c'};
 
-		assertFalse( foo.hashCode() == bar.hashCode() );
-		//noinspection ArrayEquals
-		assertFalse( foo.equals( bar ) );
+        assertFalse(foo.hashCode() == bar.hashCode());
+        // noinspection ArrayEquals
+        assertFalse(foo.equals(bar));
 
-		HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
-		assertTrue( strategy.computeHashCode( foo ) ==
-			strategy.computeHashCode( bar ) );
-		assertTrue( strategy.equals( foo, bar ) );
+        HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
+        assertTrue(strategy.computeHashCode(foo) == strategy.computeHashCode(bar));
+        assertTrue(strategy.equals(foo, bar));
 
-		Set<char[]> set = new TCustomHashSet<char[]>( strategy );
-		set.add( foo );
-		assertTrue( set.contains( foo ) );
-		assertTrue( set.contains( bar ) );
+        Set<char[]> set = new TCustomHashSet<char[]>(strategy);
+        set.add(foo);
+        assertTrue(set.contains(foo));
+        assertTrue(set.contains(bar));
 
-		set.remove( bar );
+        set.remove(bar);
 
-		assertTrue( set.isEmpty() );
-	}
+        assertTrue(set.isEmpty());
+    }
 
 
-	public void testSerialization() throws Exception {
-		char[] foo = new char[] { 'a', 'b', 'c' };
-		char[] bar = new char[] { 'a', 'b', 'c' };
+    public void testSerialization() throws Exception {
+        char[] foo = new char[] {'a', 'b', 'c'};
+        char[] bar = new char[] {'a', 'b', 'c'};
 
-		HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
-		Set<char[]> set = new TCustomHashSet<char[]>( strategy );
+        HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
+        Set<char[]> set = new TCustomHashSet<char[]>(strategy);
 
-		set.add( foo );
+        set.add(foo);
 
-		// Make sure it still works after being serialized
-		ObjectOutputStream oout = null;
-		ByteArrayOutputStream bout = null;
-		ObjectInputStream oin = null;
-		ByteArrayInputStream bin = null;
-		try {
-			bout = new ByteArrayOutputStream();
-			oout = new ObjectOutputStream( bout );
+        // Make sure it still works after being serialized
+        ObjectOutputStream oout = null;
+        ByteArrayOutputStream bout = null;
+        ObjectInputStream oin = null;
+        ByteArrayInputStream bin = null;
+        try {
+            bout = new ByteArrayOutputStream();
+            oout = new ObjectOutputStream(bout);
 
-			oout.writeObject( set );
+            oout.writeObject(set);
 
-			bin = new ByteArrayInputStream( bout.toByteArray() );
-			oin = new ObjectInputStream( bin );
+            bin = new ByteArrayInputStream(bout.toByteArray());
+            oin = new ObjectInputStream(bin);
 
-			set = ( Set<char[]> ) oin.readObject();
-		}
-		finally {
-			if ( oin != null ) oin.close();
-			if ( bin != null ) bin.close();
-			if ( oout != null ) oout.close();
-			if ( bout != null ) bout.close();
-		}
+            set = (Set<char[]>) oin.readObject();
+        } finally {
+            if (oin != null)
+                oin.close();
+            if (bin != null)
+                bin.close();
+            if (oout != null)
+                oout.close();
+            if (bout != null)
+                bout.close();
+        }
 
-		assertTrue( set.contains( foo ) );
-		assertTrue( set.contains( bar ) );
+        assertTrue(set.contains(foo));
+        assertTrue(set.contains(bar));
 
-		set.remove( bar );
+        set.remove(bar);
 
-		assertTrue( set.isEmpty() );
-	}
+        assertTrue(set.isEmpty());
+    }
 }

@@ -31,7 +31,7 @@ import java.util.*;
 
 /**
  * <p>
- * Wrapper class to make a T#E#List conform to the <tt>java.util.List</tt> API.
+ * Wrapper class to make a T#E#List conform to the <kbd>java.util.List</kbd> API.
  * This class simply decorates an underlying T#E#List and translates the Object-based
  * APIs into their Trove primitive analogs.
  * </p>
@@ -61,7 +61,7 @@ public class T#E#ListDecorator extends AbstractList<#ET#>
     /**
      * Creates a wrapper that decorates the specified primitive map.
      *
-     * @param list the <tt>T#E#List</tt> to wrap.
+     * @param list the <kbd>T#E#List</kbd> to wrap.
      */
     public T#E#ListDecorator( T#E#List list ) {
         super();
@@ -73,7 +73,7 @@ public class T#E#ListDecorator extends AbstractList<#ET#>
     /**
      * Returns a reference to the list wrapped by this decorator.
      *
-     * @return the wrapped <tt>T#E#List</tt> instance.
+     * @return the wrapped <kbd>T#E#List</kbd> instance.
      */
     public T#E#List getList() {
         return list;

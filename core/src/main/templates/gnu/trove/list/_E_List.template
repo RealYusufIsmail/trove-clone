@@ -64,7 +64,7 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Adds <tt>val</tt> to the end of the list, growing as needed.
+     * Adds <kbd>val</kbd> to the end of the list, growing as needed.
      *
      * @param val an <code>#e#</code> value
      * @return true if the list was modified by the add operation 
@@ -73,7 +73,7 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Adds the values in the array <tt>vals</tt> to the end of the
+     * Adds the values in the array <kbd>vals</kbd> to the end of the
      * list, in order.
      *
      * @param vals an <code>#e#[]</code> value
@@ -82,7 +82,7 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Adds a subset of the values in the array <tt>vals</tt> to the
+     * Adds a subset of the values in the array <kbd>vals</kbd> to the
      * end of the list, in order.
      *
      * @param vals an <code>#e#[]</code> value
@@ -93,8 +93,8 @@ public interface T#E#List extends T#E#Collection {
 
 
    /**
-     * Inserts <tt>value</tt> into the list at <tt>offset</tt>.  All
-     * values including and to the right of <tt>offset</tt> are shifted
+     * Inserts <kbd>value</kbd> into the list at <kbd>offset</kbd>.  All
+     * values including and to the right of <kbd>offset</kbd> are shifted
      * to the right.
      *
      * @param offset an <code>int</code> value
@@ -104,9 +104,9 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Inserts the array of <tt>values</tt> into the list at
-     * <tt>offset</tt>.  All values including and to the right of
-     * <tt>offset</tt> are shifted to the right.
+     * Inserts the array of <kbd>values</kbd> into the list at
+     * <kbd>offset</kbd>.  All values including and to the right of
+     * <kbd>offset</kbd> are shifted to the right.
      *
      * @param offset an <code>int</code> value
      * @param values an <code>#e#[]</code> value
@@ -115,9 +115,9 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Inserts a slice of the array of <tt>values</tt> into the list
-     * at <tt>offset</tt>.  All values including and to the right of
-     * <tt>offset</tt> are shifted to the right.
+     * Inserts a slice of the array of <kbd>values</kbd> into the list
+     * at <kbd>offset</kbd>.  All values including and to the right of
+     * <kbd>offset</kbd> are shifted to the right.
      *
      * @param offset an <code>int</code> value
      * @param values an <code>#e#[]</code> value
@@ -149,8 +149,8 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Replace the values in the list starting at <tt>offset</tt> with
-     * the contents of the <tt>values</tt> array.
+     * Replace the values in the list starting at <kbd>offset</kbd> with
+     * the contents of the <kbd>values</kbd> array.
      *
      * @param offset the first offset to replace
      * @param values the source of the new values
@@ -159,8 +159,8 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Replace the values in the list starting at <tt>offset</tt> with
-     * <tt>length</tt> values from the <tt>values</tt> array, starting
+     * Replace the values in the list starting at <kbd>offset</kbd> with
+     * <kbd>length</kbd> values from the <kbd>values</kbd> array, starting
      * at valOffset.
      *
      * @param offset the first offset to replace
@@ -190,7 +190,7 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Removes <tt>value</tt> from the list.
+     * Removes <kbd>value</kbd> from the list.
      *
      * @param value an <code>#e#</code> value
      * @return true if the list was modified by the remove operation.
@@ -199,18 +199,18 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Removes <tt>value</tt> at a given offset from the list.
+     * Removes <kbd>value</kbd> at a given offset from the list.
      *
      * @param offset an <code>int</code> value that represents
      *               the offset to the element to be removed
-     * @return an <tt>#e#</tt> that is the value removed.
+     * @return an <kbd>#e#</kbd> that is the value removed.
      */
     public #e# removeAt( int offset );
 
 
     /**
-     * Removes <tt>length</tt> values from the list, starting at
-     * <tt>offset</tt>
+     * Removes <kbd>length</kbd> values from the list, starting at
+     * <kbd>offset</kbd>
      *
      * @param offset an <code>int</code> value
      * @param length an <code>int</code> value
@@ -286,7 +286,7 @@ public interface T#E#List extends T#E#Collection {
      * <p>If the list fits in the specified array with room to spare (i.e.,
      * the array has more elements than the list), the element in the array
      * immediately following the end of the list is set to
-     * <tt>{@link #getNoEntryValue()}</tt>.
+     * <kbd>{@link #getNoEntryValue()}</kbd>.
      * (This is useful in determining the length of the list <i>only</i> if
      * the caller knows that the list does not contain any "null" elements.)
      *
@@ -382,7 +382,7 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Performs a binary search for <tt>value</tt> in the entire list.
+     * Performs a binary search for <kbd>value</kbd> in the entire list.
      * Note that you <b>must</b> @{link #sort sort} the list before
      * doing a search.
      *
@@ -394,7 +394,7 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Performs a binary search for <tt>value</tt> in the specified
+     * Performs a binary search for <kbd>value</kbd> in the specified
      * range.  Note that you <b>must</b> @{link #sort sort} the list
      * or the range before doing a search.
      *
@@ -409,7 +409,7 @@ public interface T#E#List extends T#E#Collection {
 
     /**
      * Searches the list front to back for the index of
-     * <tt>value</tt>.
+     * <kbd>value</kbd>.
      *
      * @param value an <code>#e#</code> value
      * @return the first offset of the value, or -1 if it is not in
@@ -421,7 +421,7 @@ public interface T#E#List extends T#E#Collection {
 
     /**
      * Searches the list front to back for the index of
-     * <tt>value</tt>, starting at <tt>offset</tt>.
+     * <kbd>value</kbd>, starting at <kbd>offset</kbd>.
      *
      * @param offset the offset at which to start the linear search
      * (inclusive)
@@ -435,7 +435,7 @@ public interface T#E#List extends T#E#Collection {
 
     /**
      * Searches the list back to front for the last index of
-     * <tt>value</tt>.
+     * <kbd>value</kbd>.
      *
      * @param value an <code>#e#</code> value
      * @return the last offset of the value, or -1 if it is not in
@@ -447,7 +447,7 @@ public interface T#E#List extends T#E#Collection {
 
     /**
      * Searches the list back to front for the last index of
-     * <tt>value</tt>, starting at <tt>offset</tt>.
+     * <kbd>value</kbd>, starting at <kbd>offset</kbd>.
      *
      * @param offset the offset at which to start the linear search
      * (exclusive)
@@ -460,7 +460,7 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Searches the list for <tt>value</tt>
+     * Searches the list for <kbd>value</kbd>
      *
      * @param value an <code>#e#</code> value
      * @return true if value is in the list.
@@ -469,8 +469,8 @@ public interface T#E#List extends T#E#Collection {
 
 
     /**
-     * Searches the list for values satisfying <tt>condition</tt> in
-     * the manner of the *nix <tt>grep</tt> utility.
+     * Searches the list for values satisfying <kbd>condition</kbd> in
+     * the manner of the *nix <kbd>grep</kbd> utility.
      *
      * @param condition a condition to apply to each element in the list
      * @return a list of values which match the condition.
@@ -480,7 +480,7 @@ public interface T#E#List extends T#E#Collection {
 
     /**
      * Searches the list for values which do <b>not</b> satisfy
-     * <tt>condition</tt>.  This is akin to *nix <code>grep -v</code>.
+     * <kbd>condition</kbd>.  This is akin to *nix <code>grep -v</code>.
      *
      * @param condition a condition to apply to each element in the list
      * @return a list of values which do not match the condition.

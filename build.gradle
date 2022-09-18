@@ -19,6 +19,12 @@ import static java.util.stream.Collectors.toList
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ///////////////////////////////////////////////////////////////////////////////
 
+plugins {
+    id 'java'
+    id "com.diffplug.spotless" version "6.6.1"
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
 apply plugin: 'base'
 group = "net.sf.trove4j"
 version = "3.1.0"
@@ -27,9 +33,10 @@ subprojects {
     String pomName = "Trove (${project.name})"
 
     apply plugin: 'java'
+    apply plugin: 'com.diffplug.spotless'
 
-    sourceCompatibility = 17
-    targetCompatibility = 17
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     project.group = rootProject.group
     project.version = rootProject.version
@@ -45,6 +52,39 @@ subprojects {
     dependencies {
         testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
         generateTemplates project(":generator")
+    }
+
+    compileJava {
+        // Makes spotlessApply task run on every compile/build.
+        dependsOn 'spotlessApply'
+
+        // Nails the Java-Version of every Subproject
+        sourceCompatibility = rootProject.sourceCompatibility
+        targetCompatibility = rootProject.targetCompatibility
+    }
+
+    spotless {
+        java {
+            // Excludes build folder since it contains generated java classes.
+            targetExclude("build/**")
+            eclipse('4.21.0').configFile("${rootProject.rootDir}/meta/formatting/google-style-eclipse.xml")
+
+            licenseHeader("""/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ """)
+        }
     }
 
     jar {
@@ -126,6 +166,10 @@ subprojects {
                             name = "Eric D. Friedman"
                             email = "ericdf@users.sourceforge.net"
                         }
+                        developer {
+                            name = "Yusuf Arfan Ismail"
+                            email = "yusufgamer222@gmail.com"
+                        }
                     }
                 }
             }
@@ -140,7 +184,7 @@ subprojects {
 
 project(":core") {
     compileJava.dependsOn(generateTemplates)
-    archivesBaseName = "trove4j"
+    archivesBaseName = "trove4j-clone"
     description = "The Trove library provides high speed regular and primitive collections for Java."
 }
 

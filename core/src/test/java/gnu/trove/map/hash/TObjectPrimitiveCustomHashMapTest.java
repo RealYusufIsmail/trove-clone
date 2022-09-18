@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.map.hash;
 
 import gnu.trove.map.TObjectIntMap;
@@ -16,72 +31,74 @@ import java.util.Set;
  *
  */
 public class TObjectPrimitiveCustomHashMapTest extends TestCase {
-	// Example from Trove overview doc
-	public void testArray() {
-		char[] foo = new char[] { 'a', 'b', 'c' };
-		char[] bar = new char[] { 'a', 'b', 'c' };
+    // Example from Trove overview doc
+    public void testArray() {
+        char[] foo = new char[] {'a', 'b', 'c'};
+        char[] bar = new char[] {'a', 'b', 'c'};
 
-		assertFalse( foo.hashCode() == bar.hashCode() );
-		//noinspection ArrayEquals
-		assertFalse( foo.equals( bar ) );
+        assertFalse(foo.hashCode() == bar.hashCode());
+        // noinspection ArrayEquals
+        assertFalse(foo.equals(bar));
 
-		HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
-		assertTrue( strategy.computeHashCode( foo ) ==
-			strategy.computeHashCode( bar ) );
-		assertTrue( strategy.equals( foo, bar ) );
+        HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
+        assertTrue(strategy.computeHashCode(foo) == strategy.computeHashCode(bar));
+        assertTrue(strategy.equals(foo, bar));
 
-		TObjectIntMap<char[]> map = new TObjectIntCustomHashMap<char[]>( strategy );
-		map.put( foo, 12 );
-		assertTrue( map.containsKey( foo ) );
-		assertTrue( map.containsKey( bar ) );
-		assertEquals( 12, map.get( foo ) );
-		assertEquals( 12, map.get( bar ) );
+        TObjectIntMap<char[]> map = new TObjectIntCustomHashMap<char[]>(strategy);
+        map.put(foo, 12);
+        assertTrue(map.containsKey(foo));
+        assertTrue(map.containsKey(bar));
+        assertEquals(12, map.get(foo));
+        assertEquals(12, map.get(bar));
 
-		Set<char[]> keys = map.keySet();
-		assertTrue( keys.contains( foo ) );
-		assertTrue( keys.contains( bar ) );
-	}
+        Set<char[]> keys = map.keySet();
+        assertTrue(keys.contains(foo));
+        assertTrue(keys.contains(bar));
+    }
 
 
-	public void testSerialization() throws Exception {
-		char[] foo = new char[] { 'a', 'b', 'c' };
-		char[] bar = new char[] { 'a', 'b', 'c' };
+    public void testSerialization() throws Exception {
+        char[] foo = new char[] {'a', 'b', 'c'};
+        char[] bar = new char[] {'a', 'b', 'c'};
 
-		HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
-		TObjectIntMap<char[]> map = new TObjectIntCustomHashMap<char[]>( strategy );
+        HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
+        TObjectIntMap<char[]> map = new TObjectIntCustomHashMap<char[]>(strategy);
 
-		map.put( foo, 33 );
+        map.put(foo, 33);
 
-		// Make sure it still works after being serialized
-		ObjectOutputStream oout = null;
-		ByteArrayOutputStream bout = null;
-		ObjectInputStream oin = null;
-		ByteArrayInputStream bin = null;
-		try {
-			bout = new ByteArrayOutputStream();
-			oout = new ObjectOutputStream( bout );
+        // Make sure it still works after being serialized
+        ObjectOutputStream oout = null;
+        ByteArrayOutputStream bout = null;
+        ObjectInputStream oin = null;
+        ByteArrayInputStream bin = null;
+        try {
+            bout = new ByteArrayOutputStream();
+            oout = new ObjectOutputStream(bout);
 
-			oout.writeObject( map );
+            oout.writeObject(map);
 
-			bin = new ByteArrayInputStream( bout.toByteArray() );
-			oin = new ObjectInputStream( bin );
+            bin = new ByteArrayInputStream(bout.toByteArray());
+            oin = new ObjectInputStream(bin);
 
-			map = ( TObjectIntMap<char[]> ) oin.readObject();
-		}
-		finally {
-			if ( oin != null ) oin.close();
-			if ( bin != null ) bin.close();
-			if ( oout != null ) oout.close();
-			if ( bout != null ) bout.close();
-		}
+            map = (TObjectIntMap<char[]>) oin.readObject();
+        } finally {
+            if (oin != null)
+                oin.close();
+            if (bin != null)
+                bin.close();
+            if (oout != null)
+                oout.close();
+            if (bout != null)
+                bout.close();
+        }
 
-		assertTrue( map.containsKey( foo ) );
-		assertTrue( map.containsKey( bar ) );
-		assertEquals( 33, map.get( foo ) );
-		assertEquals( 33, map.get( bar ) );
+        assertTrue(map.containsKey(foo));
+        assertTrue(map.containsKey(bar));
+        assertEquals(33, map.get(foo));
+        assertEquals(33, map.get(bar));
 
-		Set<char[]> keys = map.keySet();
-		assertTrue( keys.contains( foo ) );
-		assertTrue( keys.contains( bar ) );
-	}
+        Set<char[]> keys = map.keySet();
+        assertTrue(keys.contains(foo));
+        assertTrue(keys.contains(bar));
+    }
 }

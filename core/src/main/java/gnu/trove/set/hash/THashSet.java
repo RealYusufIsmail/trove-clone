@@ -1,23 +1,18 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2001, Eric D. Friedman All Rights Reserved.
-// Copyright (c) 2009, Rob Eden All Rights Reserved.
-// Copyright (c) 2009, Jeff Randall All Rights Reserved.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-///////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Copyright (C) 2022 RealYusufIsmail
+ *
+ * This library is free software; you can redistribute it and/or
+ *
+ * modify it under the terms of the GNU Lesser General Public
+ *
+ * License as published by the Free Software Foundation; either
+ *
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ */ 
 package gnu.trove.set.hash;
 
 import gnu.trove.impl.hash.TObjectHash;
@@ -35,8 +30,8 @@ import java.lang.reflect.Array;
 
 
 /**
- * An implementation of the <tt>Set</tt> interface that uses an
- * open-addressed hash table to store its contents.
+ * An implementation of the <kbd>Set</kbd> interface that uses an open-addressed hash table to store
+ * its contents.
  *
  * @author Eric D. Friedman
  * @author Rob Eden
@@ -44,15 +39,13 @@ import java.lang.reflect.Array;
  * @version $Id: THashSet.java,v 1.1.2.8 2010/03/02 04:09:50 robeden Exp $
  */
 
-public class THashSet<E> extends TObjectHash<E>
-        implements Set<E>, Iterable<E>, Externalizable {
+public class THashSet<E> extends TObjectHash<E> implements Set<E>, Iterable<E>, Externalizable {
 
     static final long serialVersionUID = 1L;
 
 
     /**
-     * Creates a new <code>THashSet</code> instance with the default
-     * capacity and load factor.
+     * Creates a new <code>THashSet</code> instance with the default capacity and load factor.
      */
     public THashSet() {
         super();
@@ -60,9 +53,8 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Creates a new <code>THashSet</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
-     * with the default load factor.
+     * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
+     * <kbd>initialCapacity</kbd> and with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
      */
@@ -72,12 +64,11 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Creates a new <code>THashSet</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
-     * with the specified load factor.
+     * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
+     * <kbd>initialCapacity</kbd> and with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
-     * @param loadFactor      a <code>float</code> value
+     * @param loadFactor a <code>float</code> value
      */
     public THashSet(int initialCapacity, float loadFactor) {
         super(initialCapacity, loadFactor);
@@ -85,8 +76,8 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Creates a new <code>THashSet</code> instance containing the
-     * elements of <tt>collection</tt>.
+     * Creates a new <code>THashSet</code> instance containing the elements of
+     * <kbd>collection</kbd>.
      *
      * @param collection a <code>Collection</code> value
      */
@@ -106,11 +97,11 @@ public class THashSet<E> extends TObjectHash<E>
         int index = insertKey(obj);
 
         if (index < 0) {
-            return false;       // already present in set, nothing to add
+            return false; // already present in set, nothing to add
         }
 
         postInsertHook(consumeFreeSlot);
-        return true;            // yes, we added something
+        return true; // yes, we added something
     }
 
 
@@ -234,7 +225,7 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Removes <tt>obj</tt> from the set.
+     * Removes <kbd>obj</kbd> from the set.
      *
      * @param obj an <code>Object</code> value
      * @return true if the set was modified by the remove operation.
@@ -251,8 +242,7 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Creates an iterator over the values of the set.  The iterator
-     * supports element deletion.
+     * Creates an iterator over the values of the set. The iterator supports element deletion.
      *
      * @return an <code>Iterator</code> value
      */
@@ -263,8 +253,7 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Tests the set to determine if all of the elements in
-     * <tt>collection</tt> are present.
+     * Tests the set to determine if all of the elements in <kbd>collection</kbd> are present.
      *
      * @param collection a <code>Collection</code> value
      * @return true if all elements were present in the set.
@@ -281,7 +270,7 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Adds all of the elements in <tt>collection</tt> to the set.
+     * Adds all of the elements in <kbd>collection</kbd> to the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the add all operation.
@@ -302,7 +291,7 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Removes all of the elements in <tt>collection</tt> from the set.
+     * Removes all of the elements in <kbd>collection</kbd> from the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the remove all operation.
@@ -323,8 +312,7 @@ public class THashSet<E> extends TObjectHash<E>
 
 
     /**
-     * Removes any values in the set which are not contained in
-     * <tt>collection</tt>.
+     * Removes any values in the set which are not contained in <kbd>collection</kbd>.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the retain all operation
@@ -389,8 +377,7 @@ public class THashSet<E> extends TObjectHash<E>
     }
 
     @SuppressWarnings({"unchecked"})
-    public void readExternal(ObjectInput in)
-            throws IOException, ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 
         // VERSION
         byte version = in.readByte();

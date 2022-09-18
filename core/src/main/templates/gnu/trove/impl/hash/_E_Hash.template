@@ -73,7 +73,7 @@ abstract public class T#E#Hash extends TPrimitiveHash {
 
     /**
      * Creates a new <code>T#E#Hash</code> instance whose capacity
-     * is the next highest prime above <tt>initialCapacity + 1</tt>
+     * is the next highest prime above <kbd>initialCapacity + 1</kbd>
      * unless that value is already prime.
      *
      * @param initialCapacity an <code>int</code> value
@@ -139,7 +139,7 @@ abstract public class T#E#Hash extends TPrimitiveHash {
 
     /**
      * initializes the hashtable to a prime capacity which is at least
-     * <tt>initialCapacity + 1</tt>.
+     * <kbd>initialCapacity + 1</kbd>.
      *
      * @param initialCapacity an <code>int</code> value
      * @return the actual capacity chosen
@@ -154,7 +154,7 @@ abstract public class T#E#Hash extends TPrimitiveHash {
 
 
     /**
-     * Searches the set for <tt>val</tt>
+     * Searches the set for <kbd>val</kbd>
      *
      * @param val an <code>#e#</code> value
      * @return a <code>boolean</code> value
@@ -165,7 +165,7 @@ abstract public class T#E#Hash extends TPrimitiveHash {
 
 
     /**
-     * Executes <tt>procedure</tt> for each element in the set.
+     * Executes <kbd>procedure</kbd> for each element in the set.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the set terminated because
@@ -184,7 +184,7 @@ abstract public class T#E#Hash extends TPrimitiveHash {
 
 
     /**
-     * Releases the element currently stored at <tt>index</tt>.
+     * Releases the element currently stored at <kbd>index</kbd>.
      *
      * @param index an <code>int</code> value
      */
@@ -195,10 +195,10 @@ abstract public class T#E#Hash extends TPrimitiveHash {
 
 
     /**
-     * Locates the index of <tt>val</tt>.
+     * Locates the index of <kbd>val</kbd>.
      *
      * @param val an <code>#e#</code> value
-     * @return the index of <tt>val</tt> or -1 if it isn't in the set.
+     * @return the index of <kbd>val</kbd> or -1 if it isn't in the set.
      */
     protected int index( #e# val ) {
         int hash, probe, index, length;
@@ -244,8 +244,8 @@ abstract public class T#E#Hash extends TPrimitiveHash {
     }
 
     /**
-     * Locates the index at which <tt>val</tt> can be inserted.  if
-     * there is already a value equal()ing <tt>val</tt> in the set,
+     * Locates the index at which <kbd>val</kbd> can be inserted.  if
+     * there is already a value equal()ing <kbd>val</kbd> in the set,
      * returns that value as a negative integer.
      *
      * @param val an <code>#e#</code> value
