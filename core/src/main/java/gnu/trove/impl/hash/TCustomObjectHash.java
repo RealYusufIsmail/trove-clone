@@ -56,7 +56,7 @@ abstract public class TCustomObjectHash<T> extends TObjectHash<T> {
 
     /**
      * Creates a new <code>TManualObjectHash</code> instance whose capacity is the next highest
-     * prime above <kbd>initialCapacity + 1</kbd> unless that value is already prime.
+     * prime above {@code initialCapacity + 1} unless that value is already prime.
      *
      * @param initialCapacity an <code>int</code> value
      */

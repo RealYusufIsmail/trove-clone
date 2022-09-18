@@ -28,7 +28,7 @@ package gnu.trove.function;
  */
 public interface T#E#Function {
     /**
-     * Execute this function with <kbd>value</kbd>
+     * Execute this function with {@code value}
      *
      * @param value a <code>#e#</code> input
      * @return a <code>#e#</code> result

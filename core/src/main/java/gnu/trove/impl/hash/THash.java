@@ -107,7 +107,7 @@ abstract public class THash implements Externalizable {
 
     /**
      * Creates a new <code>THash</code> instance with a prime capacity at or near the minimum needed
-     * to hold <kbd>initialCapacity</kbd> elements with load factor <kbd>loadFactor</kbd> without
+     * to hold {@code initialCapacity} elements with load factor {@code loadFactor} without
      * triggering a rehash.
      *
      * @param initialCapacity a positive <code>int</code> value
@@ -178,7 +178,7 @@ abstract public class THash implements Externalizable {
 
 
     /**
-     * Ensure that this hashtable has sufficient capacity to hold <kbd>desiredCapacity</kbd>
+     * Ensure that this hashtable has sufficient capacity to hold {@code desiredCapacity}
      * <b>additional</b> elements without requiring a rehash. This is a tuning method you can call
      * before doing a large insert.
      *
@@ -198,14 +198,14 @@ abstract public class THash implements Externalizable {
 
     /**
      * Compresses the hashtable to the minimum prime size (as defined by PrimeFinder) that will hold
-     * all of the elements currently in the table. If you have done a lot of <kbd>remove</kbd>
+     * all of the elements currently in the table. If you have done a lot of {@code remove}
      * operations and plan to do a lot of queries or insertions or iteration, it is a good idea to
      * invoke this method. Doing so will accomplish two things: <br>
      * <ol>
      * <li>You'll free memory allocated to the table but no longer needed because of the
      * remove()s.</li>
      * <li>You'll get better query/insert/iterator performance because there won't be any
-     * <kbd>REMOVED</kbd> slots to skip over when probing for indices in the table.</li>
+     * {@code REMOVED} slots to skip over when probing for indices in the table.</li>
      * </ol>
      */
     public void compact() {
@@ -228,7 +228,7 @@ abstract public class THash implements Externalizable {
      * the previous compaction (or the initial capacity) multiplied by this factor. <br>
      * Setting this value to zero will disable auto-compaction.
      *
-     * @param factor a <kbd>float</kbd> that indicates the auto-compaction factor
+     * @param factor a {@code float} that indicates the auto-compaction factor
      */
     public void setAutoCompactionFactor(float factor) {
         if (factor < 0) {
@@ -242,7 +242,7 @@ abstract public class THash implements Externalizable {
     /**
      * @see #setAutoCompactionFactor
      *
-     * @return a <kbd>float</kbd> that represents the auto-compaction factor.
+     * @return a {@code float} that represents the auto-compaction factor.
      */
     public float getAutoCompactionFactor() {
         return _autoCompactionFactor;
@@ -252,7 +252,7 @@ abstract public class THash implements Externalizable {
     /**
      * This simply calls {@link #compact compact}. It is included for symmetry with other collection
      * classes. Note that the name of this method is somewhat misleading (which is why we prefer
-     * <kbd>compact</kbd>) as the load factor may require capacity above and beyond the size of this
+     * {@code compact}) as the load factor may require capacity above and beyond the size of this
      * collection.
      *
      * @see #compact
@@ -263,7 +263,7 @@ abstract public class THash implements Externalizable {
 
 
     /**
-     * Delete the record at <kbd>index</kbd>. Reduces the size of the collection by one.
+     * Delete the record at {@code index}. Reduces the size of the collection by one.
      *
      * @param index an <code>int</code> value
      */
@@ -291,8 +291,8 @@ abstract public class THash implements Externalizable {
 
 
     /**
-     * initializes the hashtable to a prime capacity which is at least <kbd>initialCapacity +
-     * 1</kbd>.
+     * initializes the hashtable to a prime capacity which is at least {@code initialCapacity +
+     * 1}.
      *
      * @param initialCapacity an <code>int</code> value
      * @return the actual capacity chosen
@@ -363,7 +363,7 @@ abstract public class THash implements Externalizable {
      * Computes the number of removes that need to happen before the next auto-compaction will
      * occur.
      *
-     * @param size an <kbd>int</kbd> that sets the auto-compaction limit.
+     * @param size an {@code int} that sets the auto-compaction limit.
      */
     protected void computeNextAutoCompactionAmount(int size) {
         if (_autoCompactionFactor != 0) {

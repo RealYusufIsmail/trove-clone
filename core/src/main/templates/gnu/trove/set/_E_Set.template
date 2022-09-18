@@ -34,7 +34,7 @@ import java.util.Set;
 import java.io.Serializable;
 
 /**
- * An implementation of the <kbd>Set</kbd> interface that uses an
+ * An implementation of the {@code Set} interface that uses an
  * open-addressed hash table to store its contents.
  *
  * Created: Sat Nov  3 10:38:17 2001
@@ -58,8 +58,8 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Returns the number of elements in this set (its cardinality).  If this
-     * set contains more than <kbd>Integer.MAX_VALUE</kbd> elements, returns
-     * <kbd>Integer.MAX_VALUE</kbd>.
+     * set contains more than {@code Integer.MAX_VALUE} elements, returns
+     * {@code Integer.MAX_VALUE}.
      *
      * @return the number of elements in this set (its cardinality)
      */
@@ -67,15 +67,15 @@ public interface T#E#Set extends T#E#Collection {
 
     
     /**
-     * Returns <kbd>true</kbd> if this set contains no elements.
+     * Returns {@code true} if this set contains no elements.
      *
-     * @return <kbd>true</kbd> if this set contains no elements
+     * @return {@code true} if this set contains no elements
      */
     boolean isEmpty();
 
 
     /**
-     * Returns <kbd>true</kbd> if this set contains the specified element.
+     * Returns {@code true} if this set contains the specified element.
      *
      * @param entry an <code>#e#</code> value
      * @return true if the set contains the specified element.
@@ -117,7 +117,7 @@ public interface T#E#Set extends T#E#Collection {
      * <p>If this set fits in the specified array with room to spare
      * (i.e., the array has more elements than this set), the element in
      * the array immediately following the end of the set is set to
-     * <kbd>{@link #getNoEntryValue()}</kbd>.  (This is useful in determining
+     * {@code {@link #getNoEntryValue()}}.  (This is useful in determining
      * the length of this set <i>only</i> if the caller knows that this
      * set does not contain any elements representing null.)
      *
@@ -131,7 +131,7 @@ public interface T#E#Set extends T#E#Collection {
      *
      * @param dest the array into which the elements of this set are to be
      *        stored.
-     * @return an <kbd>#e#[]</kbd> containing all the elements in this set
+     * @return an {@code #e#[]} containing all the elements in this set
      * @throws NullPointerException if the specified array is null
      */
     #e#[] toArray( #e#[] dest );
@@ -147,7 +147,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Removes <kbd>entry</kbd> from the set.
+     * Removes {@code entry} from the set.
      *
      * @param entry an <code>#e#</code> value
      * @return true if the set was modified by the remove operation.
@@ -157,7 +157,7 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Tests the set to determine if all of the elements in
-     * <kbd>collection</kbd> are present.
+     * {@code collection} are present.
      *
      * @param collection a <code>Collection</code> value
      * @return true if all elements were present in the set.
@@ -167,7 +167,7 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Tests the set to determine if all of the elements in
-     * <kbd>T#E#Collection</kbd> are present.
+     * {@code T#E#Collection} are present.
      *
      * @param collection a <code>T#E#Collection</code> value
      * @return true if all elements were present in the set.
@@ -177,7 +177,7 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Tests the set to determine if all of the elements in
-     * <kbd>array</kbd> are present.
+     * {@code array} are present.
      *
      * @param array as <code>array</code> of #e# primitives.
      * @return true if all elements were present in the set.
@@ -186,7 +186,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Adds all of the elements in <kbd>collection</kbd> to the set.
+     * Adds all of the elements in {@code collection} to the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the add all operation.
@@ -195,7 +195,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Adds all of the elements in the <kbd>T#E#Collection</kbd> to the set.
+     * Adds all of the elements in the {@code T#E#Collection} to the set.
      *
      * @param collection a <code>T#E#Collection</code> value
      * @return true if the set was modified by the add all operation.
@@ -204,7 +204,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Adds all of the elements in the <kbd>array</kbd> to the set.
+     * Adds all of the elements in the {@code array} to the set.
      *
      * @param array a <code>array</code> of #e# primitives.
      * @return true if the set was modified by the add all operation.
@@ -214,7 +214,7 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Removes any values in the set which are not contained in
-     * <kbd>collection</kbd>.
+     * {@code collection}.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the retain all operation
@@ -224,7 +224,7 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Removes any values in the set which are not contained in
-     * <kbd>T#E#Collection</kbd>.
+     * {@code T#E#Collection}.
      *
      * @param collection a <code>T#E#Collection</code> value
      * @return true if the set was modified by the retain all operation
@@ -234,7 +234,7 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Removes any values in the set which are not contained in
-     * <kbd>array</kbd>.
+     * {@code array}.
      *
      * @param array an <code>array</code> of #e# primitives.
      * @return true if the set was modified by the retain all operation
@@ -243,7 +243,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Removes all of the elements in <kbd>collection</kbd> from the set.
+     * Removes all of the elements in {@code collection} from the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the remove all operation.
@@ -252,7 +252,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Removes all of the elements in <kbd>T#E#Collection</kbd> from the set.
+     * Removes all of the elements in {@code T#E#Collection} from the set.
      *
      * @param collection a <code>T#E#Collection</code> value
      * @return true if the set was modified by the remove all operation.
@@ -261,7 +261,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Removes all of the elements in <kbd>array</kbd> from the set.
+     * Removes all of the elements in {@code array} from the set.
      *
      * @param array an <code>array</code> of #e# primitives.
      * @return true if the set was modified by the remove all operation.
@@ -276,7 +276,7 @@ public interface T#E#Set extends T#E#Collection {
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each element in the set.
+     * Executes {@code procedure} for each element in the set.
      *
      * @param procedure a <code>T#E#Procedure</code> value
      * @return false if the loop over the set terminated because
@@ -289,7 +289,7 @@ public interface T#E#Set extends T#E#Collection {
 
     /**
      * Compares the specified object with this set for equality.  Returns
-     * <kbd>true</kbd> if the specified object is also a set, the two sets
+     * {@code true} if the specified object is also a set, the two sets
      * have the same size, and every member of the specified set is
      * contained in this set (or equivalently, every member of this set is
      * contained in the specified set).  This definition ensures that the
@@ -297,7 +297,7 @@ public interface T#E#Set extends T#E#Collection {
      * set interface.
      *
      * @param o object to be compared for equality with this set
-     * @return <kbd>true</kbd> if the specified object is equal to this set
+     * @return {@code true} if the specified object is equal to this set
      */
     boolean equals( Object o );
 
@@ -305,9 +305,9 @@ public interface T#E#Set extends T#E#Collection {
     /**
      * Returns the hash code value for this set.  The hash code of a set is
      * defined to be the sum of the hash codes of the elements in the set.
-     * This ensures that <kbd>s1.equals(s2)</kbd> implies that
-     * <kbd>s1.hashCode()==s2.hashCode()</kbd> for any two sets <kbd>s1</kbd>
-     * and <kbd>s2</kbd>, as required by the general contract of
+     * This ensures that {@code s1.equals(s2)} implies that
+     * {@code s1.hashCode()==s2.hashCode()} for any two sets {@code s1}
+     * and {@code s2}, as required by the general contract of
      * {@link Object#hashCode}.
      *
      * @return the hash code value for this set

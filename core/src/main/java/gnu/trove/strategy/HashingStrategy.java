@@ -34,8 +34,7 @@ public interface HashingStrategy<T> extends Serializable {
 
     /**
      * Computes a hash code for the specified object. Implementers can use the object's own
-     * <kbd>hashCode</kbd> method, the Java runtime's <kbd>identityHashCode</kbd>, or a custom
-     * scheme.
+     * {@code hashCode} method, the Java runtime's {@code identityHashCode}, or a custom scheme.
      *
      * @param object for which the hashcode is to be computed
      * @return the hashCode

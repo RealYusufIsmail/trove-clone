@@ -57,8 +57,8 @@ public class TPrimitiveSetDecoratorTest {
             expectionThrown = true;
         }
 
-        assertTrue("Wrapping a null value should result in an expection being thrown.",
-                expectionThrown);
+        assertTrue(expectionThrown,
+                "Wrapping a null value should result in an expection being thrown.");
     }
 
 
@@ -68,16 +68,17 @@ public class TPrimitiveSetDecoratorTest {
         Set<Integer> set = TDecorators.wrap(raw_set);
         assertNotNull(set);
 
-        Integer[] ints = {1138, 42, 86, 99, 101};
         set.addAll(Arrays.asList(ints));
+        Integer[] ints = {1138, 42, 86, 99, 101};
 
         Set<Integer> copy = new HashSet<Integer>(set);
-        assertTrue("set not a copy: " + set + ", " + copy, set.equals(copy));
+        assertTrue(set.equals(copy), "set not a copy: " + set + ", " + copy);
+
 
         TIntSet raw_another = new TIntHashSet(20);
         Set<Integer> another = TDecorators.wrap(raw_another);
         another.addAll(Arrays.asList(ints));
-        assertTrue("set not equal: " + set + ", " + copy, set.equals(another));
+        assertTrue(set.equals(another), "set not equal: " + set + ", " + copy);
 
         raw_another = new TIntHashSet(2, 1.0f);
         another = TDecorators.wrap(raw_another);

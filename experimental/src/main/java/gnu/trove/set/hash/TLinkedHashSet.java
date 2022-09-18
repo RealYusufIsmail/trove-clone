@@ -45,7 +45,7 @@ public class TLinkedHashSet<E> extends THashSet<E> {
 
     /**
      * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
-     * <kbd>initialCapacity</kbd> and with the default load factor.
+     * {@code initialCapacity} and with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
      */
@@ -55,7 +55,7 @@ public class TLinkedHashSet<E> extends THashSet<E> {
 
     /**
      * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
-     * <kbd>initialCapacity</kbd> and with the specified load factor.
+     * {@code initialCapacity} and with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
      * @param loadFactor a <code>float</code> value
@@ -65,8 +65,7 @@ public class TLinkedHashSet<E> extends THashSet<E> {
     }
 
     /**
-     * Creates a new <code>THashSet</code> instance containing the elements of
-     * <kbd>collection</kbd>.
+     * Creates a new <code>THashSet</code> instance containing the elements of {@code collection}.
      *
      * @param es a <code>Collection</code> value
      */
@@ -308,7 +307,7 @@ public class TLinkedHashSet<E> extends THashSet<E> {
     }
 
     /**
-     * Executes <kbd>procedure</kbd> for each element in the set.
+     * Executes {@code procedure} for each element in the set.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the set terminated because the procedure returned false for

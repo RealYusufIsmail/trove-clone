@@ -18,8 +18,8 @@
 package gnu.trove.strategy;
 
 /**
- * A {@link gnu.trove.strategy.HashingStrategy} that does identity comparisons (<kbd>==</kbd>) and
- * uses {@link System#identityHashCode(Object)} for hashCode generation.
+ * A {@link gnu.trove.strategy.HashingStrategy} that does identity comparisons ({@code ==}) and uses
+ * {@link System#identityHashCode(Object)} for hashCode generation.
  */
 public class IdentityHashingStrategy<K> implements HashingStrategy<K> {
     static final long serialVersionUID = -5188534454583764904L;

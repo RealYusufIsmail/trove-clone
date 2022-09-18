@@ -215,7 +215,7 @@ public class T#E#ArrayStack implements T#E#Stack, Externalizable {
 
 
     /**
-     * Swap the values at offsets <kbd>i</kbd> and <kbd>j</kbd>.
+     * Swap the values at offsets {@code i} and {@code j}.
      *
      * @param dest the array of data
      * @param i an offset into the data array

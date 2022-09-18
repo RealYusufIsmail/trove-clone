@@ -35,13 +35,13 @@ public interface TMap<K, V> extends Map<K, V> {
      *
      * @param key an <code>Object</code> value
      * @param value an <code>Object</code> value
-     * @return the previous value associated with <kbd>key</kbd>, or {@code null} if none was found.
+     * @return the previous value associated with {@code key}, or {@code null} if none was found.
      */
     public V putIfAbsent(K key, V value);
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each key in the map.
+     * Executes {@code procedure} for each key in the map.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the keys terminated because the procedure returned false for
@@ -51,7 +51,7 @@ public interface TMap<K, V> extends Map<K, V> {
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each value in the map.
+     * Executes {@code procedure} for each value in the map.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the values terminated because the procedure returned false for
@@ -61,7 +61,7 @@ public interface TMap<K, V> extends Map<K, V> {
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each key/value entry in the map.
+     * Executes {@code procedure} for each key/value entry in the map.
      *
      * @param procedure a <code>TObjectObjectProcedure</code> value
      * @return false if the loop over the entries terminated because the procedure returned false
@@ -82,7 +82,7 @@ public interface TMap<K, V> extends Map<K, V> {
 
 
     /**
-     * Transform the values in this map using <kbd>function</kbd>.
+     * Transform the values in this map using {@code function}.
      *
      * @param function a <code>TObjectFunction</code> value
      */

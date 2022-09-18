@@ -37,7 +37,7 @@ import java.util.Arrays;
  * provides efficient means to choose prime capacities.
  *
  * <p>
- * Choosing a prime is <kbd>O(log 300)</kbd> (binary search in a list of 300 ints). Memory
+ * Choosing a prime is {@code O(log 300)} (binary search in a list of 300 ints). Memory
  * requirements: 1 KB static memory.
  *
  * @author wolfgang.hoschek@cern.ch
@@ -45,7 +45,7 @@ import java.util.Arrays;
  */
 public final class PrimeFinder {
     /**
-     * The largest prime this class can generate; currently equal to <kbd>2,004,663,929</kbd>.
+     * The largest prime this class can generate; currently equal to {@code 2,004,663,929}.
      *
      * While Integer.MAX_VALUE is in fact the largest representable prime in the integer space,
      * consumers of this class are intended to create arrays of size returned from

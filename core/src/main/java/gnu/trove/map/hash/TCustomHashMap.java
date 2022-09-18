@@ -64,7 +64,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
     /**
      * Creates a new <code>TCustomHashMap</code> instance with a prime capacity equal to or greater
-     * than <kbd>initialCapacity</kbd> and with the default load factor.
+     * than {@code initialCapacity} and with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
      */
@@ -75,7 +75,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
     /**
      * Creates a new <code>TCustomHashMap</code> instance with a prime capacity equal to or greater
-     * than <kbd>initialCapacity</kbd> and with the specified load factor.
+     * than {@code initialCapacity} and with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
      * @param loadFactor a <code>float</code> value
@@ -89,7 +89,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
     /**
      * Creates a new <code>TCustomHashMap</code> instance which contains the key/value pairs in
-     * <kbd>map</kbd>.
+     * {@code map}.
      *
      * @param map a <code>Map</code> value
      */
@@ -102,7 +102,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
     /**
      * Creates a new <code>TCustomHashMap</code> instance which contains the key/value pairs in
-     * <kbd>map</kbd>.
+     * {@code map}.
      *
      * @param map a <code>Map</code> value
      */
@@ -135,7 +135,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
      *
      * @param key an <code>Object</code> value
      * @param value an <code>Object</code> value
-     * @return the previous value associated with <kbd>key</kbd>, or {@code null} if none was found.
+     * @return the previous value associated with {@code key}, or {@code null} if none was found.
      */
     public V put(K key, V value) {
         int index = insertKey(key);
@@ -149,7 +149,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
      *
      * @param key an <code>Object</code> value
      * @param value an <code>Object</code> value
-     * @return the previous value associated with <kbd>key</kbd>, or {@code null} if none was found.
+     * @return the previous value associated with {@code key}, or {@code null} if none was found.
      */
     public V putIfAbsent(K key, V value) {
         int index = insertKey(key);
@@ -266,7 +266,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each key in the map.
+     * Executes {@code procedure} for each key in the map.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the keys terminated because the procedure returned false for
@@ -278,7 +278,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each value in the map.
+     * Executes {@code procedure} for each value in the map.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the values terminated because the procedure returned false for
@@ -297,7 +297,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each key/value entry in the map.
+     * Executes {@code procedure} for each key/value entry in the map.
      *
      * @param procedure a <code>TObjectObjectProcedure</code> value
      * @return false if the loop over the entries terminated because the procedure returned false
@@ -348,7 +348,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * Transform the values in this map using <kbd>function</kbd>.
+     * Transform the values in this map using {@code function}.
      *
      * @param function a <code>TObjectFunction</code> value
      */
@@ -396,10 +396,10 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * retrieves the value for <kbd>key</kbd>
+     * retrieves the value for {@code key}
      *
      * @param key an <code>Object</code> value
-     * @return the value of <kbd>key</kbd> or null if no such mapping exists.
+     * @return the value of {@code key} or null if no such mapping exists.
      */
     @SuppressWarnings({"unchecked"})
     public V get(Object key) {
@@ -443,7 +443,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * removes the mapping at <kbd>index</kbd> from the map.
+     * removes the mapping at {@code index} from the map.
      *
      * @param index an <code>int</code> value
      */
@@ -484,7 +484,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * checks for the presence of <kbd>val</kbd> in the values of the map.
+     * checks for the presence of {@code val} in the values of the map.
      *
      * @param val an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -514,7 +514,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * checks for the present of <kbd>key</kbd> in the keys of the map.
+     * checks for the present of {@code key} in the keys of the map.
      *
      * @param key an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -525,7 +525,7 @@ public class TCustomHashMap<K, V> extends TCustomObjectHash<K>
 
 
     /**
-     * copies the key/value mappings in <kbd>map</kbd> into this map.
+     * copies the key/value mappings in {@code map} into this map.
      *
      * @param map a <code>Map</code> value
      */

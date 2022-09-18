@@ -84,7 +84,7 @@ abstract public class T#K##V#Hash extends TPrimitiveHash {
 
     /**
      * Creates a new <code>T#E#Hash</code> instance whose capacity
-     * is the next highest prime above <kbd>initialCapacity + 1</kbd>
+     * is the next highest prime above {@code initialCapacity + 1}
      * unless that value is already prime.
      *
      * @param initialCapacity an <code>int</code> value
@@ -154,7 +154,7 @@ abstract public class T#K##V#Hash extends TPrimitiveHash {
 
     /**
      * initializes the hashtable to a prime capacity which is at least
-     * <kbd>initialCapacity + 1</kbd>.
+     * {@code initialCapacity + 1}.
      *
      * @param initialCapacity an <code>int</code> value
      * @return the actual capacity chosen
@@ -169,7 +169,7 @@ abstract public class T#K##V#Hash extends TPrimitiveHash {
 
 
     /**
-     * Searches the set for <kbd>val</kbd>
+     * Searches the set for {@code val}
      *
      * @param val an <code>#k#</code> value
      * @return a <code>boolean</code> value
@@ -180,7 +180,7 @@ abstract public class T#K##V#Hash extends TPrimitiveHash {
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each key in the map.
+     * Executes {@code procedure} for each key in the map.
      *
      * @param procedure a <code>T#K#Procedure</code> value
      * @return false if the loop over the set terminated because
@@ -199,7 +199,7 @@ abstract public class T#K##V#Hash extends TPrimitiveHash {
 
 
     /**
-     * Releases the element currently stored at <kbd>index</kbd>.
+     * Releases the element currently stored at {@code index}.
      *
      * @param index an <code>int</code> value
      */
@@ -210,10 +210,10 @@ abstract public class T#K##V#Hash extends TPrimitiveHash {
 
 
     /**
-     * Locates the index of <kbd>val</kbd>.
+     * Locates the index of {@code val}.
      *
      * @param key an <code>#k#</code> value
-     * @return the index of <kbd>val</kbd> or -1 if it isn't in the set.
+     * @return the index of {@code val} or -1 if it isn't in the set.
      */
     protected int index( #k# key ) {
         int hash, probe, index, length;
@@ -260,8 +260,8 @@ abstract public class T#K##V#Hash extends TPrimitiveHash {
 
 
     /**
-     * Locates the index at which <kbd>val</kbd> can be inserted.  if
-     * there is already a value equal()ing <kbd>val</kbd> in the set,
+     * Locates the index at which {@code val} can be inserted.  if
+     * there is already a value equal()ing {@code val} in the set,
      * returns that value as a negative integer.
      *
      * @param val an <code>#k#</code> value

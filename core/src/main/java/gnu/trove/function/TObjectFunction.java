@@ -28,7 +28,7 @@ package gnu.trove.function;
 public interface TObjectFunction<T, R> {
 
     /**
-     * Execute this function with <kbd>value</kbd>
+     * Execute this function with {@code value}
      *
      * @param value an <code>Object</code> input
      * @return an <code>Object</code> result

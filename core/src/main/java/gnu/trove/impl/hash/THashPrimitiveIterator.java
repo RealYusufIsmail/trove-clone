@@ -30,7 +30,7 @@ import java.util.NoSuchElementException;
  * objects).
  * </p>
  * <p>
- * Note that iteration is fastest if you forego the calls to <kbd>hasNext</kbd> in favor of checking
+ * Note that iteration is fastest if you forego the calls to {@code hasNext} in favor of checking
  * the size of the structure yourself and then call next() that many times:
  * </p>
  * 
@@ -58,9 +58,9 @@ public abstract class THashPrimitiveIterator implements TPrimitiveIterator {
 
 
     /**
-     * Creates a <kbd>TPrimitiveIterator</kbd> for the specified collection.
+     * Creates a {@code TPrimitiveIterator} for the specified collection.
      *
-     * @param hash the <kbd>TPrimitiveHash</kbd> we want to iterate over.
+     * @param hash the {@code TPrimitiveHash} we want to iterate over.
      */
     public THashPrimitiveIterator(TPrimitiveHash hash) {
         _hash = hash;
@@ -123,7 +123,7 @@ public abstract class THashPrimitiveIterator implements TPrimitiveIterator {
 
 
     /**
-     * Sets the internal <kbd>index</kbd> so that the `next' object can be returned.
+     * Sets the internal {@code index} so that the `next' object can be returned.
      */
     protected final void moveToNextIndex() {
         // doing the assignment && < 0 in one line shaves

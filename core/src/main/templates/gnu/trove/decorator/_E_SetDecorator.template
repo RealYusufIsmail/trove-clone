@@ -34,7 +34,7 @@ import java.util.*;
 
 /**
  * <p>
- * Wrapper class to make a T#E#Set conform to the <kbd>java.util.Set</kbd> API.
+ * Wrapper class to make a T#E#Set conform to the {@code java.util.Set} API.
  * This class simply decorates an underlying T#E#Set and translates the Object-based
  * APIs into their Trove primitive analogs.
  * </p>
@@ -67,7 +67,7 @@ public class T#E#SetDecorator extends AbstractSet<#ET#>
     /**
      * Creates a wrapper that decorates the specified primitive set.
      *
-     * @param set the <kbd>T#E#Set</kbd> to wrap.
+     * @param set the {@code T#E#Set} to wrap.
      */
     public T#E#SetDecorator( T#E#Set set ) {
         super();
@@ -79,7 +79,7 @@ public class T#E#SetDecorator extends AbstractSet<#ET#>
     /**
      * Returns a reference to the set wrapped by this decorator.
      *
-     * @return the wrapped <kbd>T#E#Set</kbd> instance.
+     * @return the wrapped {@code T#E#Set} instance.
      */
     public T#E#Set getSet() {
         return _set;

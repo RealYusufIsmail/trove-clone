@@ -66,7 +66,7 @@ abstract public class TObjectHash<T> extends THash {
 
     /**
      * Creates a new <code>TObjectHash</code> instance whose capacity is the next highest prime
-     * above <kbd>initialCapacity + 1</kbd> unless that value is already prime.
+     * above {@code initialCapacity + 1} unless that value is already prime.
      *
      * @param initialCapacity an <code>int</code> value
      */
@@ -115,7 +115,7 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each element in the set.
+     * Executes {@code procedure} for each element in the set.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the set terminated because the procedure returned false for
@@ -134,7 +134,7 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Searches the set for <kbd>obj</kbd>
+     * Searches the set for {@code obj}
      *
      * @param obj an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -146,10 +146,10 @@ abstract public class TObjectHash<T> extends THash {
 
 
     /**
-     * Locates the index of <kbd>obj</kbd>.
+     * Locates the index of {@code obj}.
      *
      * @param obj an <code>Object</code> value
-     * @return the index of <kbd>obj</kbd> or -1 if it isn't in the set.
+     * @return the index of {@code obj} or -1 if it isn't in the set.
      */
     protected int index(Object obj) {
         if (obj == null)
@@ -173,7 +173,7 @@ abstract public class TObjectHash<T> extends THash {
     }
 
     /**
-     * Locates the index of non-null <kbd>obj</kbd>.
+     * Locates the index of non-null {@code obj}.
      *
      * @param obj target key, know to be non-null
      * @param index we start from
@@ -209,7 +209,7 @@ abstract public class TObjectHash<T> extends THash {
     }
 
     /**
-     * Locates the index <kbd>null</kbd>.
+     * Locates the index {@code null}.
      * <p/>
      * null specific loop exploiting several properties to simplify the iteration logic - the null
      * value hashes to 0 we so we can iterate from the beginning. - the probe value is 1 for this
@@ -247,8 +247,8 @@ abstract public class TObjectHash<T> extends THash {
 
     /**
      * <p>
-     * Locates the index at which <kbd>key</kbd> can be inserted. if there is already a value
-     * equal()ing <kbd>key</kbd> in the set, returns that value's index as <kbd>-index - 1</kbd>.
+     * Locates the index at which {@code key} can be inserted. if there is already a value
+     * equal()ing {@code key} in the set, returns that value's index as {@code -index - 1}.
      * </p>
      * <p>
      * If a slot is found the value is inserted. When a FREE slot is used the consumeFreeSlot field

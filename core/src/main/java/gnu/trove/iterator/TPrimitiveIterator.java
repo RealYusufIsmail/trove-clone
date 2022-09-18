@@ -24,7 +24,7 @@ package gnu.trove.iterator;
  * objects).
  * </p>
  * <p>
- * Note that iteration is fastest if you forego the calls to <kbd>hasNext</kbd> in favor of checking
+ * Note that iteration is fastest if you forego the calls to {@code hasNext} in favor of checking
  * the size of the structure yourself and then call next() that many times:
  * </p>
  * 

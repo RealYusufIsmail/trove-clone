@@ -62,7 +62,7 @@ public class T#E#HashSet extends T#E#Hash implements T#E#Set, Externalizable {
 
     /**
      * Creates a new <code>T#E#HashSet</code> instance with a prime
-     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
+     * capacity equal to or greater than {@code initialCapacity} and
      * with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
@@ -87,7 +87,7 @@ public class T#E#HashSet extends T#E#Hash implements T#E#Set, Externalizable {
 
     /**
      * Creates a new <code>T#E#HashSet</code> instance with a prime
-     * capacity equal to or greater than <kbd>initial_capacity</kbd> and
+     * capacity equal to or greater than {@code initial_capacity} and
      * with the specified load factor.
      *
      * @param initial_capacity an <code>int</code> value
@@ -108,7 +108,7 @@ public class T#E#HashSet extends T#E#Hash implements T#E#Set, Externalizable {
       * Creates a new <code>T#E#HashSet</code> instance that is a copy
       * of the existing Collection.
       *
-      * @param collection a <kbd>Collection</kbd> that will be duplicated.
+      * @param collection a {@code Collection} that will be duplicated.
       */
      public T#E#HashSet( Collection<? extends #ET#> collection ) {
         this( Math.max( collection.size(), DEFAULT_CAPACITY ) );
@@ -120,7 +120,7 @@ public class T#E#HashSet extends T#E#Hash implements T#E#Set, Externalizable {
      * Creates a new <code>T#E#HashSet</code> instance that is a copy
      * of the existing set.
      *
-     * @param collection a <kbd>T#E#Set</kbd> that will be duplicated.
+     * @param collection a {@code T#E#Set} that will be duplicated.
      */
     public T#E#HashSet( T#E#Collection collection ) {
         this( Math.max( collection.size(), DEFAULT_CAPACITY ) );
@@ -140,7 +140,7 @@ public class T#E#HashSet extends T#E#Hash implements T#E#Set, Externalizable {
 
     /**
      * Creates a new <code>T#E#HashSet</code> instance containing the
-     * elements of <kbd>array</kbd>.
+     * elements of {@code array}.
      *
      * @param array an array of <code>#e#</code> primitives
      */

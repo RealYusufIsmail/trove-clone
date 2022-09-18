@@ -33,12 +33,12 @@ import java.util.NoSuchElementException;
 
 /**
  * <p>
- * A LinkedList implementation which holds instances of type <kbd>TLinkable</kbd>. Using this
+ * A LinkedList implementation which holds instances of type {@code TLinkable}. Using this
  * implementation allows you to get java.util.LinkedList behavior (a doubly linked list, with
  * Iterators that support insert and delete operations) without incurring the overhead of creating
- * <kbd>Node</kbd> wrapper objects for every element in your list. <br>
+ * {@code Node} wrapper objects for every element in your list. <br>
  * The requirement to achieve this time/space gain is that the Objects stored in the List implement
- * the <kbd>TLinkable</kbd> interface. <br>
+ * the {@code TLinkable} interface. <br>
  * The limitations are:
  * <ul>
  * <li>the same object cannot be put into more than one list at the same time.
@@ -78,11 +78,11 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
     /**
-     * Returns an iterator positioned at <kbd>index</kbd>. Assuming that the list has a value at
-     * that index, calling next() will retrieve and advance the iterator. Assuming that there is a
-     * value before <kbd>index</kbd> in the list, calling previous() will retrieve it (the value at
-     * index - 1) and move the iterator to that position. So, iterating from front to back starts at
-     * 0; iterating from back to front starts at <kbd>size()</kbd>.
+     * Returns an iterator positioned at {@code index}. Assuming that the list has a value at that
+     * index, calling next() will retrieve and advance the iterator. Assuming that there is a value
+     * before {@code index} in the list, calling previous() will retrieve it (the value at index -
+     * 1) and move the iterator to that position. So, iterating from front to back starts at 0;
+     * iterating from back to front starts at {@code size()}.
      *
      * @param index an <code>int</code> value
      * @return a <code>ListIterator</code> value
@@ -103,7 +103,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
     /**
-     * Inserts <kbd>linkable</kbd> at index <kbd>index</kbd> in the list. All values &gt; index are
+     * Inserts {@code linkable} at index {@code index} in the list. All values &gt; index are
      * shifted over one position to accommodate the new addition.
      *
      * @param index an <code>int</code> value
@@ -118,7 +118,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
     /**
-     * Appends <kbd>linkable</kbd> to the end of the list.
+     * Appends {@code linkable} to the end of the list.
      *
      * @param linkable an object of type TLinkable
      * @return always true
@@ -130,7 +130,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
     /**
-     * Inserts <kbd>linkable</kbd> at the head of the list.
+     * Inserts {@code linkable} at the head of the list.
      *
      * @param linkable an object of type TLinkable
      */
@@ -140,7 +140,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
     /**
-     * Adds <kbd>linkable</kbd> to the end of the list.
+     * Adds {@code linkable} to the end of the list.
      *
      * @param linkable an object of type TLinkable
      */
@@ -234,7 +234,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
     /**
-     * A linear search for <kbd>o</kbd> in the list.
+     * A linear search for {@code o} in the list.
      *
      * @param o an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -531,7 +531,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each entry in the list.
+     * Executes {@code procedure} for each entry in the list.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the values terminated because the procedure returned false for
@@ -594,7 +594,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
         /**
-         * Creates a new <code>Iterator</code> instance positioned at <kbd>index</kbd>.
+         * Creates a new <code>Iterator</code> instance positioned at {@code index}.
          *
          * @param position an <code>int</code> value
          */
@@ -624,7 +624,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
         /**
-         * Insert <kbd>linkable</kbd> at the current position of the iterator. Calling next() after
+         * Insert {@code linkable} at the current position of the iterator. Calling next() after
          * add() will return the added object.
          *
          * @param linkable an object of type TLinkable
@@ -747,7 +747,7 @@ public class TLinkedList<T extends TLinkable<T>> extends AbstractSequentialList<
 
 
         /**
-         * Replaces the current element in the list with <kbd>linkable</kbd>
+         * Replaces the current element in the list with {@code linkable}
          *
          * @param linkable an object of type TLinkable
          */

@@ -36,7 +36,7 @@ import java.util.Set;
 
 
 /**
- * An implementation of the <kbd>Set</kbd> interface that uses an open-addressed hash table to store
+ * An implementation of the {@code Set} interface that uses an open-addressed hash table to store
  * its contents.
  *
  * @author Rob Eden
@@ -61,7 +61,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
     /**
      * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
-     * <kbd>initialCapacity</kbd> and with the default load factor.
+     * {@code initialCapacity} and with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
      */
@@ -72,7 +72,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
     /**
      * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
-     * <kbd>initialCapacity</kbd> and with the specified load factor.
+     * {@code initialCapacity} and with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
      * @param loadFactor a <code>float</code> value
@@ -85,8 +85,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Creates a new <code>THashSet</code> instance containing the elements of
-     * <kbd>collection</kbd>.
+     * Creates a new <code>THashSet</code> instance containing the elements of {@code collection}.
      *
      * @param collection a <code>Collection</code> value
      */
@@ -228,7 +227,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Removes <kbd>obj</kbd> from the set.
+     * Removes {@code obj} from the set.
      *
      * @param obj an <code>Object</code> value
      * @return true if the set was modified by the remove operation.
@@ -256,7 +255,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Tests the set to determine if all of the elements in <kbd>collection</kbd> are present.
+     * Tests the set to determine if all of the elements in {@code collection} are present.
      *
      * @param collection a <code>Collection</code> value
      * @return true if all elements were present in the set.
@@ -273,7 +272,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Adds all of the elements in <kbd>collection</kbd> to the set.
+     * Adds all of the elements in {@code collection} to the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the add all operation.
@@ -294,7 +293,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Removes all of the elements in <kbd>collection</kbd> from the set.
+     * Removes all of the elements in {@code collection} from the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the remove all operation.
@@ -315,7 +314,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Removes any values in the set which are not contained in <kbd>collection</kbd>.
+     * Removes any values in the set which are not contained in {@code collection}.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the retain all operation

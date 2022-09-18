@@ -85,7 +85,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
     /**
      * Creates a new <code>TObject#E#HashMap</code> instance with a prime
-     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
+     * capacity equal to or greater than {@code initialCapacity} and
      * with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
@@ -101,7 +101,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
     /**
      * Creates a new <code>TObject#E#HashMap</code> instance with a prime
-     * capacity equal to or greater than <kbd>initialCapacity</kbd> and
+     * capacity equal to or greater than {@code initialCapacity} and
      * with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
@@ -142,7 +142,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
      * Creates a new <code>TObject#E#CustomHashMap</code> that contains the entries
      * in the map passed to it.
      *
-     * @param map the <kbd>TObject#E#Map</kbd> to be copied.
+     * @param map the {@code TObject#E#Map} to be copied.
      */
     public TObject#E#CustomHashMap( HashingStrategy<? super K> strategy,
 		TObject#E#Map<? extends K> map ) {
@@ -166,7 +166,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
     /**
      * initializes the hashtable to a prime capacity which is at least
-     * <kbd>initialCapacity + 1</kbd>.
+     * {@code initialCapacity + 1}.
      *
      * @param initialCapacity an <code>int</code> value
      * @return the actual capacity chosen
@@ -294,7 +294,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
 
     /**
-     * Removes the mapping at <kbd>index</kbd> from the map.
+     * Removes the mapping at {@code index} from the map.
      * This method is used internally and public mainly because
      * of packaging reasons.  Caveat Programmer.
      *
@@ -473,7 +473,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each key in the map.
+     * Executes {@code procedure} for each key in the map.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the keys terminated because
@@ -485,7 +485,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each value in the map.
+     * Executes {@code procedure} for each value in the map.
      *
      * @param procedure a <code>T#E#Procedure</code> value
      * @return false if the loop over the values terminated because
@@ -505,7 +505,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
 
     /**
-     * Executes <kbd>procedure</kbd> for each key/value entry in the
+     * Executes {@code procedure} for each key/value entry in the
      * map.
      *
      * @param procedure a <code>TOObject#E#Procedure</code> value
@@ -561,7 +561,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
 
 
     /**
-     * Transform the values in this map using <kbd>function</kbd>.
+     * Transform the values in this map using {@code function}.
      *
      * @param function a <code>T#E#Function</code> value
      */
@@ -1012,7 +1012,7 @@ public class TObject#E#CustomHashMap<K> extends TCustomObjectHash<K>
             }
 
             /**
-             * Sets the internal <kbd>index</kbd> so that the `next' object
+             * Sets the internal {@code index} so that the `next' object
              * can be returned.
              */
             protected final void moveToNextIndex() {

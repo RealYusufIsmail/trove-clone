@@ -40,7 +40,7 @@ public class Constants {
     public static final float DEFAULT_LOAD_FACTOR = 0.5f;
 
 
-    /** the default value that represents for <kbd>byte</kbd> types. */
+    /** the default value that represents for {@code byte} types. */
     public static final byte DEFAULT_BYTE_NO_ENTRY_VALUE;
     static {
         byte value;
@@ -68,7 +68,7 @@ public class Constants {
     }
 
 
-    /** the default value that represents for <kbd>short</kbd> types. */
+    /** the default value that represents for {@code short} types. */
     public static final short DEFAULT_SHORT_NO_ENTRY_VALUE;
     static {
         short value;
@@ -96,7 +96,7 @@ public class Constants {
     }
 
 
-    /** the default value that represents for <kbd>char</kbd> types. */
+    /** the default value that represents for {@code char} types. */
     public static final char DEFAULT_CHAR_NO_ENTRY_VALUE;
     static {
         char value;
@@ -124,7 +124,7 @@ public class Constants {
     }
 
 
-    /** the default value that represents for <kbd>int</kbd> types. */
+    /** the default value that represents for {@code int} types. */
     public static final int DEFAULT_INT_NO_ENTRY_VALUE;
     static {
         int value;
@@ -147,7 +147,7 @@ public class Constants {
     }
 
 
-    /** the default value that represents for <kbd>long</kbd> types. */
+    /** the default value that represents for {@code long} types. */
     public static final long DEFAULT_LONG_NO_ENTRY_VALUE;
     static {
         long value;
@@ -170,7 +170,7 @@ public class Constants {
     }
 
 
-    /** the default value that represents for <kbd>float</kbd> types. */
+    /** the default value that represents for {@code float} types. */
     public static final float DEFAULT_FLOAT_NO_ENTRY_VALUE;
     static {
         float value;
@@ -201,7 +201,7 @@ public class Constants {
     }
 
 
-    /** the default value that represents for <kbd>double</kbd> types. */
+    /** the default value that represents for {@code double} types. */
     public static final double DEFAULT_DOUBLE_NO_ENTRY_VALUE;
     static {
         double value;

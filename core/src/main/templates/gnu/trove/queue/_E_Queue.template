@@ -44,7 +44,7 @@ public interface T#E#Queue extends T#E#Collection {
 	 *
 	 * @param e		The element to add.
 	 *
-	 * @return	<kbd>true</kbd> if the element was added to this queue, else <kbd>false</kbd>
+	 * @return	{@code true} if the element was added to this queue, else {@code false}
 	 */
 	public boolean offer( #e# e );
 

@@ -71,8 +71,8 @@ abstract public class TPrimitiveHash extends THash {
 
     /**
      * Creates a new <code>TPrimitiveHash</code> instance with a prime capacity at or near the
-     * minimum needed to hold <kbd>initialCapacity</kbd> elements with load factor
-     * <kbd>loadFactor</kbd> without triggering a rehash.
+     * minimum needed to hold {@code initialCapacity} elements with load factor {@code loadFactor}
+     * without triggering a rehash.
      *
      * @param initialCapacity an <code>int</code> value
      * @param loadFactor a <code>float</code> value
@@ -94,7 +94,7 @@ abstract public class TPrimitiveHash extends THash {
 
 
     /**
-     * Delete the record at <kbd>index</kbd>.
+     * Delete the record at {@code index}.
      *
      * @param index an <code>int</code> value
      */
@@ -105,8 +105,8 @@ abstract public class TPrimitiveHash extends THash {
 
 
     /**
-     * initializes the hashtable to a prime capacity which is at least <kbd>initialCapacity +
-     * 1</kbd>.
+     * initializes the hashtable to a prime capacity which is at least {@code initialCapacity +
+     * 1}.
      *
      * @param initialCapacity an <code>int</code> value
      * @return the actual capacity chosen
