@@ -19,12 +19,16 @@ package gnu.trove.decorator;
 
 import gnu.trove.TDecorators;
 import gnu.trove.list.TIntList;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Jim Davies
  */
-public class TPimativeListDecoratorTest extends TestCase {
+public class TPimativeListDecoratorTest {
+
+    @Test
     public void testConstructorWithNull() {
         boolean expectionThrown = false;
         try {
@@ -33,7 +37,7 @@ public class TPimativeListDecoratorTest extends TestCase {
             expectionThrown = true;
         }
 
-        assertTrue("Wrapping a null value should result in an expection being thrown.",
-                expectionThrown);
+        assertTrue(expectionThrown,
+                "Wrapping a null value should result in an exception being thrown.");
     }
 }

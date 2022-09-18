@@ -22,7 +22,7 @@ import gnu.trove.map.TIntIntMap;
 import gnu.trove.map.TIntLongMap;
 import gnu.trove.map.hash.TIntIntHashMap;
 import gnu.trove.map.hash.TIntLongHashMap;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -30,6 +30,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -38,17 +39,14 @@ import java.util.*;
  * @author Eric D. Friedman
  * @author Robert D. Eden
  * @author Jeff Randall
+ * @author Yusuf A. Ismail
  */
-public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
+public class TPrimitivePrimitiveMapDecoratorTest {
 
     private final int KEY_ONE = 100;
     private final int KEY_TWO = 101;
 
-
-    public TPrimitivePrimitiveMapDecoratorTest(String name) {
-        super(name);
-    }
-
+    @Test
     public void testConstructorWithNull() {
         boolean expectionThrown = false;
         try {
@@ -57,11 +55,12 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
             expectionThrown = true;
         }
 
-        assertTrue("Wrapping a null value should result in an expection being thrown.",
-                expectionThrown);
+        assertTrue(expectionThrown,
+                "Wrapping a null value should result in an exception being thrown.");
     }
 
 
+    @Test
     public void testConstructors() {
 
         int[] keys = {1138, 42, 86, 99, 101};
@@ -147,6 +146,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testGet() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -178,7 +178,8 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
-    /** Be sure that size is large enough to force a resize or two. */
+
+    @Test /** Be sure that size is large enough to force a resize or two. */
     public void testRehash() {
         int size = 1000;
         int[] keys = new int[size];
@@ -197,11 +198,12 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         for (int i = 0; i < keys.length; i++) {
             Integer key = keys[i];
             Long val = vals[i];
-            assertEquals("got incorrect value for index " + i + ", map: " + map, val, map.get(key));
+            assertEquals(val, map.get(key), "got incorrect value for index " + i + ", map: " + map);
         }
     }
 
 
+    @Test
     public void testPutAll() {
         int[] keys = {1138, 42, 86, 99, 101};
         long[] vals = {1138, 42, 86, 99, 101};
@@ -237,8 +239,8 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertEquals(1, target.size());
 
         target.putAll(java_map);
-        assertEquals("map size is incorrect: " + keys.length + ", source: " + java_map
-                + ", target: " + target, keys.length + 1, target.size());
+        assertEquals(keys.length + 1, target.size(), "map size is incorrect: " + keys.length
+                + ", source: " + java_map + ", target: " + target);
         for (int i = 0; i < keys.length; i++) {
             assertEquals(vals[i] * 2, target.get(keys[i]));
         }
@@ -246,6 +248,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         int[] keys = {1138, 42, 86, 99, 101};
         long[] vals = {1138, 42, 86, 99, 101};
@@ -267,13 +270,14 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         Long[] vals = new Long[keys.length];
 
         TIntLongMap raw_map = new TIntLongHashMap();
         for (int i = 0; i < keys.length; i++) {
-            vals[i] = Long.valueOf(keys[i] * 2);
+            vals[i] = (long) (keys[i] * 2);
             raw_map.put(keys[i], vals[i]);
         }
         Map<Integer, Long> map = TDecorators.wrap(raw_map);
@@ -289,24 +293,24 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertNull(map.remove(11010110));
 
         assertNull(map.get(1138));
-        // noinspection SuspiciousMethodCalls
-        assertNull(map.get(Integer.valueOf(1138)));
+        assertNull(map.get(1138));
         assertNull(map.get(null));
 
-        Long null_value = Long.valueOf(2112);
+        Long null_value = 2112L;
         map.put(null, null_value);
         assertEquals(null_value.longValue(), raw_map.get(raw_map.getNoEntryKey()));
         assertTrue(map.containsKey(null));
         Long value = map.get(null);
-        assertEquals("value: " + value, null_value, value);
+        assertEquals(null_value, value, "value: " + value);
         assertEquals(null_value, map.remove(null));
         assertFalse(map.containsKey(null));
 
         // noinspection SuspiciousMethodCalls
-        assertNull(map.remove(Long.valueOf(1138)));
+        assertNull(map.remove(1138L));
     }
 
 
+    @Test
     public void testKeySetMisc() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -326,22 +330,20 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         Arrays.sort(sorted_keys);
         Integer[] setarray = set.toArray(new Integer[set.size()]);
         Arrays.sort(setarray);
-        assertTrue(
-                "expected: " + Arrays.toString(sorted_keys) + ", was: " + Arrays.toString(setarray),
-                Arrays.equals(sorted_keys, setarray));
+        assertArrayEquals(sorted_keys, setarray, "expected: " + Arrays.toString(sorted_keys)
+                + ", was: " + Arrays.toString(setarray));
 
         // noinspection ToArrayCallWithZeroLengthArrayArgument
         setarray = set.toArray(new Integer[0]);
         Arrays.sort(setarray);
-        assertTrue(
-                "expected: " + Arrays.toString(sorted_keys) + ", was: " + Arrays.toString(setarray),
-                Arrays.equals(sorted_keys, setarray));
+        assertArrayEquals(sorted_keys, setarray, "expected: " + Arrays.toString(sorted_keys)
+                + ", was: " + Arrays.toString(setarray));
 
-        assertFalse("remove of element not in set succeded: " + set, set.remove(1));
+        assertFalse(set.remove(1), "remove of element not in set succeeded: " + set);
         assertEquals(keys.length, set.size());
         assertEquals(keys.length, map.size());
 
-        assertTrue("remove of element in set failed: " + set, set.remove(42));
+        assertTrue(set.remove(42), "remove of element in set failed: " + set);
         assertEquals(keys.length - 1, set.size());
         assertEquals(keys.length - 1, map.size());
 
@@ -354,6 +356,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetContainsAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -370,20 +373,21 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertFalse(set.isEmpty());
 
         // test with a java.util.Map
-        Set<Number> java_set = new HashSet<Number>();
+        Set<Number> java_set = new HashSet<>();
         for (int key : keys) {
-            java_set.add(Integer.valueOf(key));
+            java_set.add(key);
         }
         assertTrue(set.containsAll(java_set));
-        java_set.add(Integer.valueOf(12));
+        java_set.add(12);
         assertFalse(set.containsAll(java_set));
-        java_set.remove(Integer.valueOf(12));
+        java_set.remove(12);
         assertTrue(set.containsAll(java_set));
-        java_set.add(Long.valueOf(12));
+        java_set.add(12L);
         assertFalse(set.containsAll(java_set));
     }
 
 
+    @Test
     public void testKeySetAddAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -402,7 +406,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         // test with a java.util.Map
         Set<Integer> java_set = new HashSet<Integer>();
         for (int key : keys) {
-            java_set.add(Integer.valueOf(key));
+            java_set.add(key);
         }
 
         try {
@@ -422,6 +426,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
 
 
 
+    @Test
     public void testKeySetRetainAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -440,7 +445,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         // test with a java.util.Map
         Set<Number> java_set = new HashSet<Number>();
         for (int key : keys) {
-            java_set.add(Integer.valueOf(key));
+            java_set.add(key);
         }
         assertFalse(set.retainAll(java_set));
         assertEquals(keys.length, set.size());
@@ -450,8 +455,8 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
             assertTrue(map.containsKey(key));
         }
         java_set.remove(42);
-        assertTrue("set should have been modified: " + set + ", java: " + java_set,
-                set.retainAll(java_set));
+        assertTrue(set.retainAll(java_set),
+                "set should have been modified: " + set + ", java: " + java_set);
         assertEquals(keys.length - 1, set.size());
         assertEquals(keys.length - 1, map.size());
 
@@ -468,6 +473,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRemoveAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -494,13 +500,13 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         }
 
         for (int key : keys) {
-            java_set.add(Integer.valueOf(key));
+            java_set.add(key);
         }
         java_set.remove(42);
-        assertTrue("set should have been modified: " + set + ", java: " + java_set,
-                set.removeAll(java_set));
-        assertEquals("set: " + set, 1, set.size());
-        assertEquals("set: " + set, 1, map.size());
+        assertTrue(set.removeAll(java_set),
+                "set should have been modified: " + set + ", java: " + java_set);
+        assertEquals(1, set.size(), "set: " + set);
+        assertEquals(1, map.size(), "set: " + set);
 
         // noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < keys.length; i++) {
@@ -515,6 +521,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetEquals() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         Integer[] integer_keys = new Integer[keys.length];
@@ -522,7 +529,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
 
         TIntLongMap raw_map = new TIntLongHashMap();
         for (int i = 0; i < keys.length; i++) {
-            integer_keys[i] = Integer.valueOf(keys[i]);
+            integer_keys[i] = keys[i];
             vals[i] = keys[i] * 2;
             raw_map.put(keys[i], vals[i]);
         }
@@ -532,25 +539,24 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertEquals(map.size(), set.size());
         assertFalse(set.isEmpty());
 
-        Set<Integer> other = new HashSet<Integer>();
-        other.addAll(Arrays.asList(integer_keys));
+        Set<Integer> other = new HashSet<>(Arrays.asList(integer_keys));
 
-        assertTrue("sets incorrectly not equal: " + set + ", " + other, set.equals(other));
+        assertEquals(set, other, "sets incorrectly not equal: " + set + ", " + other);
 
         Integer[] mismatched = {72, 49, 53, 1024, 999};
-        Set<Integer> unequal = new HashSet<Integer>();
-        unequal.addAll(Arrays.asList(mismatched));
+        Set<Integer> unequal = new HashSet<Integer>(Arrays.asList(mismatched));
 
-        assertFalse("sets incorrectly equal: " + set + ", " + unequal, set.equals(unequal));
+        assertNotEquals(set, unequal, "sets incorrectly equal: " + set + ", " + unequal);
 
         // Change length, different code branch
         unequal.add(1);
-        assertFalse("sets incorrectly equal: " + set + ", " + unequal, set.equals(unequal));
+        assertFalse(set.equals(unequal), "sets incorrectly equal: " + set + ", " + unequal);
 
-        assertFalse("set incorrectly equals a random object", set.equals(new Object()));
+        assertFalse(set.equals(new Object()), "set incorrectly equals a random object");
     }
 
 
+    @Test
     public void testKeySetHashCode() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         Integer[] integer_keys = new Integer[keys.length];
@@ -558,7 +564,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
 
         TIntLongMap raw_map = new TIntLongHashMap();
         for (int i = 0; i < keys.length; i++) {
-            integer_keys[i] = Integer.valueOf(keys[i]);
+            integer_keys[i] = keys[i];
             vals[i] = keys[i] * 2;
             raw_map.put(keys[i], vals[i]);
         }
@@ -569,14 +575,14 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertFalse(set.isEmpty());
 
 
-        Set<Integer> other = new HashSet<Integer>();
-        other.addAll(Arrays.asList(integer_keys));
+        Set<Integer> other = new HashSet<Integer>(Arrays.asList(integer_keys));
 
-        assertTrue("hashcodes incorrectly not equal: " + set + ", " + other,
-                set.hashCode() == other.hashCode());
+        assertEquals(set.hashCode(), other.hashCode(),
+                "hashcodes incorrectly not equal: " + set + ", " + other);
     }
 
 
+    @Test
     public void testKeySetIterator() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         Integer[] integer_keys = new Integer[keys.length];
@@ -584,7 +590,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
 
         TIntLongMap raw_map = new TIntLongHashMap();
         for (int i = 0; i < keys.length; i++) {
-            integer_keys[i] = Integer.valueOf(keys[i]);
+            integer_keys[i] = keys[i];
             vals[i] = keys[i] * 2;
             raw_map.put(keys[i], vals[i]);
         }
@@ -597,8 +603,8 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         Iterator<Integer> iter = set.iterator();
         while (iter.hasNext()) {
             int key = iter.next();
-            assertTrue("key set should only contain keys: " + key + ", set; " + set,
-                    list.contains(key));
+            assertTrue(list.contains(key),
+                    "key set should only contain keys: " + key + ", set; " + set);
         }
 
         assertFalse(iter.hasNext());
@@ -613,12 +619,12 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         iter = set.iterator();
         while (iter.hasNext()) {
             int key = iter.next();
-            assertTrue("key set should only contain keys: " + key + ", set; " + set,
-                    list.contains(key));
+            assertTrue(list.contains(key),
+                    "key set should only contain keys: " + key + ", set; " + set);
             if (key == keys[3]) {
                 iter.remove();
-                assertFalse("set contains removed element: " + key + ", set: " + set,
-                        set.contains(key));
+                assertFalse(set.contains(key),
+                        "set contains removed element: " + key + ", set: " + set);
             }
         }
         assertEquals(map.size(), set.size());
@@ -627,13 +633,15 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+
+    @Test
     @SuppressWarnings({"ToArrayCallWithZeroLengthArrayArgument"})
     public void testKeys() {
         TIntLongMap raw_map = new TIntLongHashMap();
         Map<Integer, Long> map = TDecorators.wrap(raw_map);
 
-        map.put(KEY_ONE, Long.valueOf(10));
-        map.put(KEY_TWO, Long.valueOf(20));
+        map.put(KEY_ONE, 10L);
+        map.put(KEY_TWO, 20L);
 
         assertEquals(2, map.size());
 
@@ -656,20 +664,21 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         raw_map = new TIntLongHashMap(element_count, 0.5f, Integer.MIN_VALUE, Long.MIN_VALUE);
         map = TDecorators.wrap(raw_map);
         for (int i = 0; i < element_count; i++) {
-            map.put(Integer.valueOf(i), Long.valueOf(i * i));
+            map.put(i, (long) (i * i));
         }
         assertEquals(element_count, map.size());
         keys = map.keySet().toArray(new Integer[0]);
         Arrays.sort(keys);
         assertEquals(element_count, keys.length);
         for (int i = 0; i < element_count; i++) {
-            assertEquals("expected: " + i + " got: " + keys[i] + ", i: " + i + ", keys: "
-                    + Arrays.toString(keys), Integer.valueOf(i), keys[i]);
+            assertEquals(Integer.valueOf(i), keys[i], "expected: " + i + " got: " + keys[i]
+                    + ", i: " + i + ", keys: " + Arrays.toString(keys));
             assertEquals(Long.valueOf(i * i), map.get(keys[i]));
         }
     }
 
 
+    @Test
     public void testValueCollectionMisc() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         Long[] vals = new Long[keys.length];
@@ -683,27 +692,25 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
 
         Collection<Long> values = map.values();
         Long[] sorted_values = new Long[keys.length];
-        for (int i = 0; i < keys.length; i++) {
-            sorted_values[i] = Long.valueOf(vals[i]);
-        }
+        System.arraycopy(vals, 0, sorted_values, 0, keys.length);
         Arrays.sort(sorted_values);
         Long[] setarray = values.toArray(new Long[values.size()]);
         Arrays.sort(setarray);
-        assertTrue("expected: " + Arrays.toString(sorted_values) + ", was: "
-                + Arrays.toString(setarray), Arrays.equals(sorted_values, setarray));
+        assertArrayEquals(sorted_values, setarray, "expected: " + Arrays.toString(sorted_values)
+                + ", was: " + Arrays.toString(setarray));
 
         setarray = values.toArray(new Long[values.size()]);
         Arrays.sort(setarray);
-        assertTrue("expected: " + Arrays.toString(sorted_values) + ", was: "
-                + Arrays.toString(setarray), Arrays.equals(sorted_values, setarray));
+        assertArrayEquals(sorted_values, setarray, "expected: " + Arrays.toString(sorted_values)
+                + ", was: " + Arrays.toString(setarray));
 
-        assertFalse("remove of element not in collection succeded: " + values,
-                values.remove(Long.valueOf(1)));
+        assertFalse(values.remove(Long.valueOf(1)),
+                "remove of element not in collection succeeded: " + values);
         assertEquals(keys.length, values.size());
         assertEquals(keys.length, map.size());
 
-        assertTrue("remove of element in collection failed: " + values,
-                values.remove(Long.valueOf(42 * 2)));
+        assertTrue(values.remove(Long.valueOf(42 * 2)),
+                "remove of element in collection failed: " + values);
         assertEquals(keys.length - 1, values.size());
         assertEquals(keys.length - 1, map.size());
 
@@ -715,7 +722,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         }
     }
 
-
+    @Test
     public void testValueCollectionContainsAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -737,15 +744,16 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
             java_set.add(Long.valueOf(val));
         }
         assertTrue(values.containsAll(java_set));
-        java_set.add(Integer.valueOf(12));
+        java_set.add(12);
         assertFalse(values.containsAll(java_set));
-        java_set.remove(Integer.valueOf(12));
+        java_set.remove(12);
         assertTrue(values.containsAll(java_set));
-        java_set.add(Long.valueOf(12));
+        java_set.add(12L);
         assertFalse(values.containsAll(java_set));
     }
 
 
+    @Test
     public void testValueCollectionAddAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -782,7 +790,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         }
     }
 
-
+    @Test
     public void testValueCollectionRetainAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -801,7 +809,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         // test with a java.util.Map
         Set<Number> java_set = new HashSet<Number>();
         for (long val : vals) {
-            java_set.add(Long.valueOf(val));
+            java_set.add(val);
         }
         assertFalse(values.retainAll(java_set));
         assertEquals(keys.length, values.size());
@@ -810,9 +818,9 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
             assertTrue(values.contains(vals[i]));
             assertTrue(map.containsValue(vals[i]));
         }
-        java_set.remove(Long.valueOf(42 * 2));
-        assertTrue("collection should have been modified: " + values + "\njava: " + java_set,
-                values.retainAll(java_set));
+        java_set.remove((long) (42 * 2));
+        assertTrue(values.retainAll(java_set),
+                "collection should have been modified: " + values + "\njava: " + java_set);
         assertEquals(keys.length - 1, values.size());
         assertEquals(keys.length - 1, map.size());
         for (int i = 0; i < keys.length; i++) {
@@ -827,6 +835,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -838,7 +847,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         }
         Map<Integer, Long> map = TDecorators.wrap(raw_map);
 
-        Collection values = map.values();
+        Collection<Long> values = map.values();
         assertEquals(map.size(), values.size());
         assertFalse(values.isEmpty());
 
@@ -853,13 +862,13 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         }
 
         for (long val : vals) {
-            java_set.add(Long.valueOf(val));
+            java_set.add(val);
         }
-        java_set.remove(Long.valueOf(42 * 2));
-        assertTrue("values should have been modified: " + values + ", java: " + java_set,
-                values.removeAll(java_set));
-        assertEquals("set: " + values, 1, values.size());
-        assertEquals("set: " + values, 1, map.size());
+        java_set.remove((long) (42 * 2));
+        assertTrue(values.removeAll(java_set),
+                "values should have been modified: " + values + ", java: " + java_set);
+        assertEquals(1, values.size(), "set: " + values);
+        assertEquals(1, map.size(), "set: " + values);
 
         // noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < vals.length; i++) {
@@ -874,13 +883,14 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionIterator() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         Long[] vals = new Long[keys.length];
 
         TIntLongMap raw_map = new TIntLongHashMap();
         for (int i = 0; i < keys.length; i++) {
-            vals[i] = Long.valueOf(keys[i] * 2);
+            vals[i] = (long) (keys[i] * 2);
             raw_map.put(keys[i], vals[i]);
         }
         Map<Integer, Long> map = TDecorators.wrap(raw_map);
@@ -892,8 +902,8 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         Iterator<Long> iter = set.iterator();
         while (iter.hasNext()) {
             long val = iter.next();
-            assertTrue("value collection should only contain values: " + val + ", set; " + set,
-                    list.contains(val));
+            assertTrue(list.contains(val),
+                    "value collection should only contain values: " + val + ", set; " + set);
         }
 
         assertFalse(iter.hasNext());
@@ -908,12 +918,12 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         iter = set.iterator();
         while (iter.hasNext()) {
             long val = iter.next();
-            assertTrue("value collection should only contain values: " + val + ", set; " + set,
-                    list.contains(val));
+            assertTrue(list.contains(val),
+                    "value collection should only contain values: " + val + ", set; " + set);
             if (val == vals[3]) {
                 iter.remove();
-                assertFalse("set contains removed element: " + val + ", set: " + set,
-                        set.contains(val));
+                assertFalse(set.contains(val),
+                        "set contains removed element: " + val + ", set: " + set);
             }
         }
         assertEquals(map.size(), set.size());
@@ -922,47 +932,49 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testValues() {
         TIntLongMap raw_map = new TIntLongHashMap();
         Map<Integer, Long> map = TDecorators.wrap(raw_map);
 
-        map.put(KEY_ONE, Long.valueOf(1));
-        map.put(KEY_TWO, Long.valueOf(2));
+        map.put(KEY_ONE, 1L);
+        map.put(KEY_TWO, 2L);
 
         assertEquals(2, map.size());
 
         Long[] values = map.values().toArray(new Long[map.size()]);
         assertEquals(2, values.length);
-        List values_list = Arrays.asList(values);
+        List<Long> values_list = Arrays.asList(values);
 
-        assertTrue(values_list.contains(Long.valueOf(1)));
-        assertTrue(values_list.contains(Long.valueOf(2)));
+        assertTrue(values_list.contains(1L));
+        assertTrue(values_list.contains(2L));
 
         Long[] values2 = map.values().toArray(new Long[map.size()]);
         assertEquals(2, values2.length);
         List<Long> keys_list2 = Arrays.asList(values2);
 
-        assertTrue(keys_list2.contains(Long.valueOf(1)));
-        assertTrue(keys_list2.contains(Long.valueOf(2)));
+        assertTrue(keys_list2.contains(1L));
+        assertTrue(keys_list2.contains(2L));
 
         int element_count = 20;
         raw_map = new TIntLongHashMap(20, 0.5f, Integer.MIN_VALUE, Long.MIN_VALUE);
         map = TDecorators.wrap(raw_map);
         for (int i = 0; i < element_count; i++) {
-            map.put(i, Long.valueOf(i * i));
+            map.put(i, (long) (i * i));
         }
         assertEquals(element_count, map.size());
         Long[] vals = map.values().toArray(new Long[map.size()]);
         Arrays.sort(vals);
         assertEquals(element_count, vals.length);
         for (int i = 0; i < element_count; i++) {
-            assertEquals("expected: " + i * i + " got: " + vals[i] + ", i: " + i + ", vals: "
-                    + Arrays.toString(vals), Long.valueOf(i * i), vals[i]);
+            assertEquals(Long.valueOf(i * i), vals[i], "expected: " + i * i + " got: " + vals[i]
+                    + ", i: " + i + ", vals: " + Arrays.toString(vals));
             assertEquals(Long.valueOf(i * i), map.get(i));
         }
     }
 
 
+    @Test
     public void testEntrySet() {
         int element_count = 20;
         Integer[] keys = new Integer[element_count];
@@ -973,8 +985,8 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         Map<Integer, Long> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
-            keys[i] = Integer.valueOf(i + 1);
-            vals[i] = Long.valueOf(i + 1);
+            keys[i] = i + 1;
+            vals[i] = (long) (i + 1);
             map.put(keys[i], vals[i]);
         }
         assertEquals(element_count, map.size());
@@ -992,11 +1004,11 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertEquals(array[0].hashCode(), array[0].hashCode());
         assertTrue(array[0].hashCode() != array[1].hashCode());
 
-        assertTrue(array[0].equals(array[0]));
-        assertFalse(array[0].equals(array[1]));
+        assertEquals(array[0], array[0]);
+        assertNotEquals(array[0], array[1]);
         Integer key = array[0].getKey();
         Long old_value = Long.valueOf(array[0].getValue());
-        assertEquals(Long.valueOf(old_value), array[0].setValue(Long.valueOf(old_value * 2)));
+        assertEquals(Long.valueOf(old_value), array[0].setValue(old_value * 2));
         assertEquals(Long.valueOf(old_value * 2), map.get(key));
         assertEquals(Long.valueOf(old_value * 2), array[0].getValue());
 
@@ -1048,6 +1060,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1065,22 +1078,23 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
             raw_int_map.put(keys[i], (int) vals[i]);
         }
         Map<Integer, Integer> int_map = TDecorators.wrap(raw_int_map);
-        assertFalse(map.equals(int_map));
+        assertNotEquals(map, int_map);
 
         // Change a value..
         TIntLongMap raw_unequal = new TIntLongHashMap(raw_map);
         Map<Integer, Long> unequal = TDecorators.wrap(raw_unequal);
         map.put(keys[3], vals[3] + 1);
-        assertFalse(map.equals(unequal));
+        assertNotEquals(map, unequal);
 
         // Change length
         raw_unequal = new TIntLongHashMap(raw_map);
         unequal = TDecorators.wrap(raw_unequal);
         map.put(13, Long.valueOf(26));
-        assertFalse(map.equals(unequal));
+        assertNotEquals(map, unequal);
     }
 
 
+    @Test
     public void testHashCode() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1095,16 +1109,16 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         TIntLongMap raw_other = new TIntLongHashMap();
         Map<Integer, Long> other = TDecorators.wrap(raw_other);
         other.putAll(map);
-        assertTrue("hashcodes incorrectly not equal: " + map + ", " + other,
-                map.hashCode() == other.hashCode());
+        assertEquals(map.hashCode(), other.hashCode(),
+                "hashcodes incorrectly not equal: " + map + ", " + other);
 
         TIntLongMap raw_unequal = new TIntLongHashMap();
         for (int key : keys) {
             raw_unequal.put(key, key);
         }
         Map<Integer, Long> unequal = TDecorators.wrap(raw_unequal);
-        assertFalse("hashcodes unlikely equal: " + map + ", " + unequal,
-                map.hashCode() == unequal.hashCode());
+        assertNotEquals(map.hashCode(), unequal.hashCode(),
+                "hashcodes unlikely equal: " + map + ", " + unequal);
 
         int[] raw_mismatched = {72, 49, 53, 1024, 999};
         TIntLongMap raw_mismatched_map = new TIntLongHashMap();
@@ -1112,12 +1126,13 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
             raw_mismatched_map.put(aRaw_mismatched, Long.valueOf(aRaw_mismatched * 37));
         }
         Map<Integer, Long> mismatched = TDecorators.wrap(raw_mismatched_map);
-        assertFalse("hashcodes unlikely equal: " + map + ", " + mismatched,
-                map.hashCode() == mismatched.hashCode());
+        assertFalse(map.hashCode() == mismatched.hashCode(),
+                "hashcodes unlikely equal: " + map + ", " + mismatched);
     }
 
 
 
+    @Test
     public void testToString() {
         TIntLongMap raw_map = new TIntLongHashMap();
         Map<Integer, Long> map = TDecorators.wrap(raw_map);
@@ -1125,10 +1140,11 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         map.put(22, Long.valueOf(2));
 
         String to_string = map.toString();
-        assertTrue(to_string, to_string.equals("{11=1, 22=2}") || to_string.equals("{22=2, 11=1}"));
+        assertTrue(to_string.equals("{11=1, 22=2}") || to_string.equals("{22=2, 11=1}"), to_string);
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1153,6 +1169,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertEquals(map, deserialized);
     }
 
+    @Test
     public void testBug3432212A() throws Exception {
         Map<Integer, Long> trove = new TIntLongMapDecorator(new TIntLongHashMap());
         trove.put(null, 1L);
@@ -1160,9 +1177,10 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertEquals(1, trove.size());
         assertEquals(1, trove.entrySet().size());
         assertEquals(1, trove.keySet().size());
-        assertEquals(null, trove.keySet().iterator().next());
+        assertNull(trove.keySet().iterator().next());
     }
 
+    @Test
     public void testBug3432212B() throws Exception {
         Map<Integer, Long> trove = new TIntLongMapDecorator(new TIntLongHashMap());
         trove.put(1, null);
@@ -1170,7 +1188,7 @@ public class TPrimitivePrimitiveMapDecoratorTest extends TestCase {
         assertEquals(1, trove.size());
         assertEquals(1, trove.entrySet().size());
         assertEquals(1, trove.keySet().size());
-        assertEquals(null, trove.get(1));
-        assertEquals(null, trove.values().iterator().next());
+        assertNull(trove.get(1));
+        assertNull(trove.values().iterator().next());
     }
 }
