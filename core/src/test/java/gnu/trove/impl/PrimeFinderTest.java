@@ -17,8 +17,6 @@
  */ 
 package gnu.trove.impl;
 
-import gnu.trove.impl.PrimeFinder;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

@@ -20,7 +20,10 @@ package gnu.trove.map.hash;
 import gnu.trove.strategy.HashingStrategy;
 import junit.framework.TestCase;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 

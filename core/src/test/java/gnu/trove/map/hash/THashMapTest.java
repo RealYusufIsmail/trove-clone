@@ -23,7 +23,6 @@ import gnu.trove.impl.hash.TByteByteHash;
 import gnu.trove.impl.hash.TObjectHash;
 import gnu.trove.procedure.TObjectObjectProcedure;
 import gnu.trove.procedure.TObjectProcedure;
-import gnu.trove.set.hash.THashSet;
 import gnu.trove.set.hash.THashSetTest;
 import junit.framework.TestCase;
 

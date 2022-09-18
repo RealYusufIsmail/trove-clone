@@ -18,21 +18,21 @@
 package gnu.trove.impl.hash;
 
 import gnu.trove.impl.PrimeFinder;
-import gnu.trove.set.hash.TByteHashSet;
-import gnu.trove.set.hash.THashSet;
+import gnu.trove.map.TIntLongMap;
+import gnu.trove.map.TIntObjectMap;
+import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.THashMap;
 import gnu.trove.map.hash.TIntLongHashMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
-import gnu.trove.map.TIntLongMap;
-import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.TObjectIntMap;
+import gnu.trove.set.hash.TByteHashSet;
+import gnu.trove.set.hash.THashSet;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 

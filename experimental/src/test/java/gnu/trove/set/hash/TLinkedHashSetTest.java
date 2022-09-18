@@ -18,7 +18,6 @@
 package gnu.trove.set.hash;
 
 import junit.framework.TestCase;
-import org.omg.CORBA.portable.Streamable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

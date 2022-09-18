@@ -17,8 +17,8 @@
  */ 
 package gnu.trove.iterator.hash;
 
-import gnu.trove.impl.hash.TObjectHash;
 import gnu.trove.impl.hash.THashIterator;
+import gnu.trove.impl.hash.TObjectHash;
 
 
 /**

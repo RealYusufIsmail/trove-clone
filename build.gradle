@@ -29,6 +29,11 @@ version = "3.1.0"
 subprojects {
     String pomName = "Trove (${project.name})"
 
+    ext {
+        // Make sure we have a default for initial configuration evaluation
+        isReleaseVersion = false
+    }
+
     apply plugin: 'java'
     apply plugin: 'com.diffplug.spotless'
 
@@ -108,6 +113,8 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
 
     task sourceJar(type: Jar) {
         classifier = "sources"
@@ -125,6 +132,10 @@ subprojects {
         archives jar
         archives sourceJar
         archives docJar
+    }
+
+    afterEvaluate { project ->
+        ext.isReleaseVersion = !version.endsWith("RELEASE")
     }
 
     publishing {
@@ -146,6 +157,8 @@ subprojects {
                         }
                     }
                     scm {
+                        connection = 'https://github.com/RealYusufIsmail/trove4j-clone.git'
+                        developerConnection = 'scm:git:ssh://git@github.com/RealYusufIsmail/trove4j-clone.git'
                         url = "https://github.com/RealYusufIsmail/trove4j-clone/master"
                     }
                     developers {
@@ -175,8 +188,30 @@ subprojects {
         }
         repositories {
             maven {
-                url = "$buildDir/release"
+                afterEvaluate { project ->
+                    def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                    url = (isReleaseVersion) ? releaseRepo : snapshotRepo
+
+                    //println "repos: " + version
+                    //println "repos: " + isReleaseVersion
+                    //println url
+
+                    credentials {
+                        username = project.hasProperty('ossrhUsername') ? ossrhUsername : "Unknown user"
+                        password = project.hasProperty('ossrhPassword') ? ossrhPassword : "Unknown password"
+                    }
+                }
             }
+        }
+    }
+
+    signing {
+        afterEvaluate { project ->
+            //println "sign: " + version
+            //println "sign: " + isReleaseVersion
+            required { isReleaseVersion && gradle.taskGraph.hasTask("publish") }
+            sign publishing.publications."${project.name}"
         }
     }
 }

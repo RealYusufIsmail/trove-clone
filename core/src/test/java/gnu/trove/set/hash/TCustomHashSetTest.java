@@ -17,8 +17,8 @@
  */ 
 package gnu.trove.set.hash;
 
-import gnu.trove.strategy.HashingStrategy;
 import gnu.trove.map.hash.ArrayHashingStrategy;
+import gnu.trove.strategy.HashingStrategy;
 import junit.framework.TestCase;
 
 import java.io.ByteArrayInputStream;

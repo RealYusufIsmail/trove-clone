@@ -19,7 +19,6 @@ package gnu.trove.list.linked;
 
 import gnu.trove.TIntCollection;
 import gnu.trove.function.TIntFunction;
-import gnu.trove.impl.Constants;
 import gnu.trove.iterator.TIntIterator;
 import gnu.trove.list.TIntList;
 import gnu.trove.procedure.TIntProcedure;

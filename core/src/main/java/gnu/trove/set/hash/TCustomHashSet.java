@@ -17,12 +17,12 @@
  */ 
 package gnu.trove.set.hash;
 
-import gnu.trove.strategy.HashingStrategy;
 import gnu.trove.impl.HashFunctions;
 import gnu.trove.impl.hash.TCustomObjectHash;
 import gnu.trove.iterator.hash.TObjectHashIterator;
 import gnu.trove.procedure.TObjectProcedure;
 import gnu.trove.procedure.array.ToObjectArrayProceedure;
+import gnu.trove.strategy.HashingStrategy;
 
 import java.io.Externalizable;
 import java.io.IOException;
