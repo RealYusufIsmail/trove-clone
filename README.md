@@ -1,38 +1,14 @@
 # GNU Trove: High performance collections for Java
 
-## Deprecated
+## Notice
 
-The Trove project is now deprecated. I don't have time to effectively
-run the project anymore and haven't had anyone volunteer to help, so
-I'm shutting it down. This might change if help steps up, but there are
-currently (2017-10-24) no plans for updates.
+I have decided to clone this project and continue development on it.
+The original project is no longer maintained and I have found it to be very useful.
+I will be adding new features and fixing bugs as I find them.
+I will also be adding support for Java 8 and 11 and removing support for Java 6 and 7.
+In addition i will be updating to the latest version of Gradle and the latest version of JUnit.
 
-There are many excellent primitive collections if you're looking for a
-replacement library, including:
-
-* [Eclipse Collections](http://www.eclipse.org/collections/)
-* [FastUtil](http://fastutil.di.unimi.it)
-* [HPPC](https://github.com/carrotsearch/hppc)
-* [Koloboke](https://koloboke.com)
-* [Neo4j Primitive Collections](https://github.com/neo4j/neo4j)
-
-(If I missed your library of choice, let me know.)
-
-If interested in taking over leadership of the project, contact me at 
-"rob -at- robeden dot com".
-
-Trove is quite stable and continues to be useable. However, technology 
-marches on and there's a lot that should be done to keep it 
-competitive in terms of speed and efficiency. It's difficult to know 
-what needs to be done and not have the time to do it. With this kind 
-of performance library, it's better to be somewhere that's keeping up.
-
-It's been a fun ride. It's been great to see Trove used in financial 
-trading, network packet analyisis, games, IDEs and many, many
-other places.
-
- ~ Rob
-
+Yusuf
 ---
 
 ## Objectives
@@ -90,7 +66,6 @@ System.out.println(foo.equals(bar) ? "equal" : "not equal");
     not equal
     not equal
 
-
 And so an entry stored in a java.util.HashMap with foo as a key could
 not be retrieved with bar, since there is no way to override
 hashCode() or equals() on language array objects.
@@ -131,7 +106,6 @@ class CharArrayStrategy implements HashingStrategy {
 }
 ```
 
-
 ## Iterators in primitive collections
 
 Trove's primitive mappings include access through Iterators as well
@@ -142,4 +116,4 @@ java.util.Iterator.
 
 _________________________________________________________________
 
-Last modified: Nov 9, 2017
+Last modified: Sep 18 2022
