@@ -62,7 +62,7 @@ public class TDecorators {
      * Wrap the given map in a decorator that uses the standard {@link java.util.Map Map}
      * interface.
      *
-     * @param map the <tt>T#K##V#ObjectMap</tt> to be wrapped
+     * @param map the {@code T#K##V#ObjectMap} to be wrapped
      * @return the wrapped map.
      */
     public static Map<#KT#,#VT#> wrap( T#K##V#Map map ) {
@@ -74,7 +74,7 @@ public class TDecorators {
      * Wrap the given map in a decorator that uses the standard {@link java.util.Map Map}
      * interface.
      *
-     * @param map the <tt>TObject#E#Map</tt> to be wrapped
+     * @param map the {@code TObject#E#Map} to be wrapped
      * @return the wrapped map.
      */
     public static <T> Map<T,#ET#> wrap( TObject#E#Map<T> map ) {
@@ -86,7 +86,7 @@ public class TDecorators {
      * Wrap the given map in a decorator that uses the standard {@link java.util.Map Map}
      * interface.
      *
-     * @param map the <tt>T#E#ObjectMap</tt> to be wrapped
+     * @param map the {@code T#E#ObjectMap} to be wrapped
      * @return the wrapped map.
      */
     public static <T> Map<#ET#,T> wrap( T#E#ObjectMap<T> map ) {
@@ -98,7 +98,7 @@ public class TDecorators {
      * Wrap the given set in a decorator that uses the standard {@link java.util.Set Set}
      * interface.
      *
-     * @param set the <tt>T#E#Set</tt> to be wrapped
+     * @param set the {@code T#E#Set} to be wrapped
      * @return the wrapped set.
      */
     public static Set<#ET#> wrap( T#E#Set set ) {
@@ -110,7 +110,7 @@ public class TDecorators {
      * Wrap the given list in a decorator that uses the standard {@link java.util.List List}
      * interface.
      *
-     * @param list	the <tt>T#E#List</tt> to be wrapped
+     * @param list	the {@code T#E#List} to be wrapped
      * @return the wrapped list.
      */
     public static List<#ET#> wrap( T#E#List list ) {

@@ -1,9 +1,27 @@
+/*
+ * Copyright (c) 2022, Rob Eden, RealYusufIsmail All Rights Reserved.
+ * 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */ 
 package gnu.trove.set.hash;
 
 import gnu.trove.iterator.TIntIterator;
 import gnu.trove.procedure.TIntProcedure;
 import gnu.trove.set.TIntSet;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,27 +29,27 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Test the primitive HashSet classes.
  */
-public class TPrimitiveHashSetTest extends TestCase {
+public class TPrimitiveHashSetTest {
 
-    public TPrimitiveHashSetTest(String name) {
-        super(name);
-    }
 
 
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
     }
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
     }
 
 
+    @Test
     public void testConstructors() throws Exception {
         TIntSet set = new TIntHashSet();
         assertNotNull(set);
@@ -55,6 +73,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIsEmpty() throws Exception {
         TIntSet s = new TIntHashSet();
         assertTrue("new set wasn't empty", s.isEmpty());
@@ -66,6 +85,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() throws Exception {
         TIntSet s = new TIntHashSet();
         int i = 100;
@@ -76,6 +96,7 @@ public class TPrimitiveHashSetTest extends TestCase {
 
 
     @SuppressWarnings({"ForLoopReplaceableByForEach"})
+    @Test
     public void testContainsAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99};
@@ -92,25 +113,19 @@ public class TPrimitiveHashSetTest extends TestCase {
         }
 
         for (int index = 0; index < ints.length; index++) {
-            assertTrue(Integer.valueOf(ints[index]).toString(),
-                    set.contains(ints[index]));
+            assertTrue(Integer.valueOf(ints[index]).toString(), set.contains(ints[index]));
         }
 
-        assertTrue("containsAll(Collection<?>) failed: " + set,
-                set.containsAll(ints_list));
+        assertTrue("containsAll(Collection<?>) failed: " + set, set.containsAll(ints_list));
         ints_list.remove(Integer.valueOf(42));
         ints_list.add(Long.valueOf(42));
-        assertFalse("containsAll(Collection<?>) failed: " + set,
-                set.containsAll(ints_list));
+        assertFalse("containsAll(Collection<?>) failed: " + set, set.containsAll(ints_list));
 
-        assertTrue("containsAll(TIntSet) failed (same set): " + set,
-                set.containsAll(set));
+        assertTrue("containsAll(TIntSet) failed (same set): " + set, set.containsAll(set));
 
-        assertTrue("containsAll(TIntSet) failed (other set): " + set,
-                set.containsAll(other));
+        assertTrue("containsAll(TIntSet) failed (other set): " + set, set.containsAll(other));
 
-        assertTrue("containsAll(int[]) failed: " + set,
-                set.containsAll(ints));
+        assertTrue("containsAll(int[]) failed: " + set, set.containsAll(ints));
 
 
         int[] failed = {42, 86, 99, 123456};
@@ -129,11 +144,11 @@ public class TPrimitiveHashSetTest extends TestCase {
         assertFalse("containsAll(TIntSet) failed (false positive): " + set,
                 set.containsAll(failed_set));
 
-        assertFalse("containsAll(int[]) failed (false positive): " + set,
-                set.containsAll(failed));
+        assertFalse("containsAll(int[]) failed (false positive): " + set, set.containsAll(failed));
     }
 
 
+    @Test
     public void testAddAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99, 101};
@@ -167,6 +182,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99, 101};
@@ -187,14 +203,12 @@ public class TPrimitiveHashSetTest extends TestCase {
             retain_list.add(element);
         }
 
-        assertFalse("retainAll(TIntSet) failed (same set): " + set,
-                set.retainAll(set));
+        assertFalse("retainAll(TIntSet) failed (same set): " + set, set.retainAll(set));
         // Contains all the original elements
         assertTrue(set.toString(), set.containsAll(ints));
         assertTrue(retain_set.toString(), retain_set.containsAll(to_retain));
 
-        assertTrue("retainAll(Collection<?>) failed: " + set,
-                set.retainAll(retain_list));
+        assertTrue("retainAll(Collection<?>) failed: " + set, set.retainAll(retain_list));
         // Contains just the expected elements
         assertFalse(set.toString(), set.containsAll(ints));
         assertTrue(set.toString(), set.containsAll(to_retain));
@@ -203,8 +217,7 @@ public class TPrimitiveHashSetTest extends TestCase {
         // reset the set.
         set = new TIntHashSet();
         set.addAll(ints);
-        assertTrue("retainAll(TIntSet) failed: " + set,
-                set.retainAll(retain_set));
+        assertTrue("retainAll(TIntSet) failed: " + set, set.retainAll(retain_set));
         // Contains just the expected elements
         assertFalse(set.toString(), set.containsAll(ints));
         assertTrue(set.toString(), set.containsAll(to_retain));
@@ -213,8 +226,7 @@ public class TPrimitiveHashSetTest extends TestCase {
         // reset the set.
         set = new TIntHashSet();
         set.addAll(ints);
-        assertTrue("retainAll(int[]) failed: " + set,
-                set.retainAll(to_retain));
+        assertTrue("retainAll(int[]) failed: " + set, set.retainAll(to_retain));
         // Contains just the expected elements
         assertFalse(set.toString(), set.containsAll(ints));
         assertTrue(set.toString(), set.containsAll(to_retain));
@@ -222,6 +234,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99, 101};
@@ -245,8 +258,7 @@ public class TPrimitiveHashSetTest extends TestCase {
         int[] remainder = {42, 101};
 
         try {
-            assertFalse("removeAll(TIntSet) failed (same set): " + set,
-                    set.removeAll(set));
+            assertFalse("removeAll(TIntSet) failed (same set): " + set, set.removeAll(set));
             fail("should have thrown ConcurrentModificationException");
         } catch (ConcurrentModificationException cme) {
             // expected exception thrown.
@@ -255,8 +267,7 @@ public class TPrimitiveHashSetTest extends TestCase {
         // reset the set.
         set = new TIntHashSet();
         set.addAll(ints);
-        assertTrue("removeAll(Collection<?>) failed: " + set,
-                set.removeAll(remove_list));
+        assertTrue("removeAll(Collection<?>) failed: " + set, set.removeAll(remove_list));
         // Contains just the expected elements
         assertTrue(set.toString(), set.containsAll(remainder));
         assertFalse(set.toString(), set.containsAll(to_remove));
@@ -265,8 +276,7 @@ public class TPrimitiveHashSetTest extends TestCase {
         // reset the set.
         set = new TIntHashSet();
         set.addAll(ints);
-        assertTrue("removeAll(TIntSet) failed: " + set,
-                set.removeAll(remove_set));
+        assertTrue("removeAll(TIntSet) failed: " + set, set.removeAll(remove_set));
         // Contains just the expected elements
         assertTrue(set.toString(), set.containsAll(remainder));
         assertFalse(set.toString(), set.containsAll(to_remove));
@@ -275,8 +285,7 @@ public class TPrimitiveHashSetTest extends TestCase {
         // reset the set.
         set = new TIntHashSet();
         set.addAll(ints);
-        assertTrue("removeAll(int[]) failed: " + set,
-                set.removeAll(to_remove));
+        assertTrue("removeAll(int[]) failed: " + set, set.removeAll(to_remove));
         // Contains just the expected elements
         assertTrue(set.toString(), set.containsAll(remainder));
         assertFalse(set.toString(), set.containsAll(to_remove));
@@ -284,6 +293,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testAdd() throws Exception {
         TIntSet set = new TIntHashSet();
         assertTrue("add failed", set.add(1));
@@ -291,6 +301,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() throws Exception {
         TIntSet set = new TIntHashSet();
         set.add(1);
@@ -302,6 +313,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveNonExistant() throws Exception {
         TIntSet set = new TIntHashSet();
         set.add(1);
@@ -314,6 +326,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testSize() throws Exception {
         TIntSet set = new TIntHashSet();
         assertEquals("initial size was not 0", 0, set.size());
@@ -325,15 +338,17 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() throws Exception {
         TIntSet set = new TIntHashSet();
-        set.addAll(new int[]{1, 2, 3});
+        set.addAll(new int[] {1, 2, 3});
         assertEquals("size was not 3", 3, set.size());
         set.clear();
         assertEquals("initial size was not 0", 0, set.size());
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         int[] ints = {1138, 42, 86, 99, 101};
 
@@ -352,6 +367,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArray() {
         TIntSet set = new TIntHashSet();
         int[] ints = {42, 1138, 13, 86, 99};
@@ -363,27 +379,29 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
-	// Test for issue #34 (https://bitbucket.org/robeden/trove/issue/34)
-	public void testToArraySmallerInput() {
+    // Test for issue #34 (https://bitbucket.org/robeden/trove/issue/34)
+    @Test
+    public void testToArraySmallerInput() {
         TIntSet set = new TIntHashSet();
         int[] ints = {42, 1138, 13, 86, 99};
         set.addAll(ints);
 
 
-		int[] input = new int[ 3 ];
-		int[] result = set.toArray( input );
+        int[] input = new int[3];
+        int[] result = set.toArray(input);
 
-		assertNotSame( input, result );
-		assertEquals( 5, result.length );
-		Arrays.sort( result );
-		assertEquals( result[ 0 ], 13 );
-		assertEquals( result[ 1 ], 42 );
-		assertEquals( result[ 2 ], 86 );
-		assertEquals( result[ 3 ], 99 );
-		assertEquals( result[ 4 ], 1138 );
-	}
+        assertNotSame(input, result);
+        assertEquals(5, result.length);
+        Arrays.sort(result);
+        assertEquals(result[0], 13);
+        assertEquals(result[1], 42);
+        assertEquals(result[2], 86);
+        assertEquals(result[3], 99);
+        assertEquals(result[4], 1138);
+    }
 
 
+    @Test
     public void testToArrayMatchesIteratorOrder() {
         TIntSet set = new TIntHashSet();
         int[] ints = {42, 1138, 13, 86, 99};
@@ -402,6 +420,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithParams() {
         int no_entry_value = Integer.MIN_VALUE;
         TIntSet set = new TIntHashSet(10, 0.5f, no_entry_value);
@@ -432,6 +451,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRehashing() throws Exception {
         int size = 10000;
         TIntSet set = new TIntHashSet(10);
@@ -442,6 +462,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
 
         TIntSet set = new TIntHashSet();
@@ -456,8 +477,7 @@ public class TPrimitiveHashSetTest extends TestCase {
         int last = -1;
         while (iter.hasNext()) {
             int next = iter.next();
-            assertTrue(Integer.valueOf(next).toString(),
-                    next >= 1 && next <= 4);
+            assertTrue(Integer.valueOf(next).toString(), next >= 1 && next <= 4);
             assertTrue(Integer.valueOf(next).toString(), next != last);
             last = next;
         }
@@ -472,6 +492,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemove() {
 
         TIntSet set = new TIntHashSet();
@@ -506,6 +527,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testForEach() {
         TIntSet set = new TIntHashSet(10, 0.5f);
         int[] ints = {1138, 42, 86, 99, 101};
@@ -537,6 +559,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int[] ints = {1138, 42, 86, 99, 101};
         TIntSet set = new TIntHashSet();
@@ -544,23 +567,21 @@ public class TPrimitiveHashSetTest extends TestCase {
         TIntSet other = new TIntHashSet();
         other.addAll(ints);
 
-        assertTrue("sets incorrectly not equal: " + set + ", " + other,
-                set.equals(other));
+        assertTrue("sets incorrectly not equal: " + set + ", " + other, set.equals(other));
 
         int[] mismatched = {72, 49, 53, 1024, 999};
         TIntSet unequal = new TIntHashSet();
         unequal.addAll(mismatched);
 
-        assertFalse("sets incorrectly equal: " + set + ", " + unequal,
-                set.equals(unequal));
+        assertFalse("sets incorrectly equal: " + set + ", " + unequal, set.equals(unequal));
 
         // Change length, different code branch
         unequal.add(1);
-        assertFalse("sets incorrectly equal: " + set + ", " + unequal,
-                set.equals(unequal));
+        assertFalse("sets incorrectly equal: " + set + ", " + unequal, set.equals(unequal));
     }
 
 
+    @Test
     public void testHashcode() {
         int[] ints = {1138, 42, 86, 99, 101};
         TIntSet set = new TIntHashSet();
@@ -579,11 +600,13 @@ public class TPrimitiveHashSetTest extends TestCase {
                 set.hashCode() == unequal.hashCode());
     }
 
+    @Test
     public void test3445639() throws Exception {
         // Retain all bug AIOBE
         TIntHashSet hs = new TIntHashSet(23, 1f);
-        hs.addAll(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22});
-        hs.retainAll(new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22});
-        hs.retainAll(new int[]{18});
+        hs.addAll(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                21, 22});
+        hs.retainAll(new int[] {11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22});
+        hs.retainAll(new int[] {18});
     }
 }

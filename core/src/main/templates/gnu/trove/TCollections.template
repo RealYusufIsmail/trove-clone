@@ -93,11 +93,11 @@ public class TCollections {
      * collections.  Query operations on the returned collection "read through"
      * to the specified collection, and attempts to modify the returned
      * collection, whether direct or via its iterator, result in an
-     * <tt>UnsupportedOperationException</tt>.<p>
+     * {@code UnsupportedOperationException}.<p>
      *
      * The returned collection does <i>not</i> pass the hashCode and equals
      * operations through to the backing collection, but relies on
-     * <tt>Object</tt>'s <tt>equals</tt> and <tt>hashCode</tt> methods.  This
+     * {@code Object}'s {@code equals} and {@code hashCode} methods.  This
      * is necessary to preserve the contracts of these operations in the case
      * that the backing collection is a set or a list.<p>
      *
@@ -119,7 +119,7 @@ public class TCollections {
      * modules to provide users with "read-only" access to internal sets.
      * Query operations on the returned set "read through" to the specified
      * set, and attempts to modify the returned set, whether direct or via its
-     * iterator, result in an <tt>UnsupportedOperationException</tt>.<p>
+     * iterator, result in an {@code UnsupportedOperationException}.<p>
      *
      * The returned set will be serializable if the specified set
      * is serializable.
@@ -138,7 +138,7 @@ public class TCollections {
      * lists.  Query operations on the returned list "read through" to the
      * specified list, and attempts to modify the returned list, whether
      * direct or via its iterator, result in an
-     * <tt>UnsupportedOperationException</tt>.<p>
+     * {@code UnsupportedOperationException}.<p>
      *
      * The returned list will be serializable if the specified list
      * is serializable. Similarly, the returned list will implement
@@ -160,7 +160,7 @@ public class TCollections {
      * maps.  Query operations on the returned map "read through"
      * to the specified map, and attempts to modify the returned
      * map, whether direct or via its collection views, result in an
-     * <tt>UnsupportedOperationException</tt>.<p>
+     * {@code UnsupportedOperationException}.<p>
      *
      * The returned map will be serializable if the specified map
      * is serializable.
@@ -179,7 +179,7 @@ public class TCollections {
      * maps.  Query operations on the returned map "read through"
      * to the specified map, and attempts to modify the returned
      * map, whether direct or via its collection views, result in an
-     * <tt>UnsupportedOperationException</tt>.<p>
+     * {@code UnsupportedOperationException}.<p>
      *
      * The returned map will be serializable if the specified map
      * is serializable.
@@ -198,7 +198,7 @@ public class TCollections {
      * maps.  Query operations on the returned map "read through"
      * to the specified map, and attempts to modify the returned
      * map, whether direct or via its collection views, result in an
-     * <tt>UnsupportedOperationException</tt>.<p>
+     * {@code UnsupportedOperationException}.<p>
      *
      * The returned map will be serializable if the specified map
      * is serializable.
@@ -230,9 +230,9 @@ public class TCollections {
      * </pre>
      * Failure to follow this advice may result in non-deterministic behavior.
      *
-     * <p>The returned collection does <i>not</i> pass the <tt>hashCode</tt>
-     * and <tt>equals</tt> operations through to the backing collection, but
-     * relies on <tt>Object</tt>'s equals and hashCode methods.  This is
+     * <p>The returned collection does <i>not</i> pass the {@code hashCode}
+     * and {@code equals} operations through to the backing collection, but
+     * relies on {@code Object}'s equals and hashCode methods.  This is
      * necessary to preserve the contracts of these operations in the case
      * that the backing collection is a set or a list.<p>
      *

@@ -1,31 +1,28 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2001, Eric D. Friedman All Rights Reserved.
-// Copyright (c) 2009, Rob Eden All Rights Reserved.
-// Copyright (c) 2009, Jeff Randall All Rights Reserved.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-///////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Copyright (c) 2022, Rob Eden, RealYusufIsmail All Rights Reserved.
+ * 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */ 
 package gnu.trove.set.hash;
 
-import gnu.trove.strategy.HashingStrategy;
 import gnu.trove.impl.HashFunctions;
 import gnu.trove.impl.hash.TCustomObjectHash;
 import gnu.trove.iterator.hash.TObjectHashIterator;
 import gnu.trove.procedure.TObjectProcedure;
 import gnu.trove.procedure.array.ToObjectArrayProceedure;
+import gnu.trove.strategy.HashingStrategy;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -39,68 +36,63 @@ import java.util.Set;
 
 
 /**
- * An implementation of the <tt>Set</tt> interface that uses an
- * open-addressed hash table to store its contents.
+ * An implementation of the {@code Set} interface that uses an open-addressed hash table to store
+ * its contents.
  *
  * @author Rob Eden
  */
 public class TCustomHashSet<E> extends TCustomObjectHash<E>
-	implements Set<E>, Iterable<E>, Externalizable {
+        implements Set<E>, Iterable<E>, Externalizable {
 
     static final long serialVersionUID = 1L;
 
 
-	/** FOR EXTERNALIZATION ONLY!!! */
-	public TCustomHashSet() {}
+    /** FOR EXTERNALIZATION ONLY!!! */
+    public TCustomHashSet() {}
 
 
     /**
-     * Creates a new <code>THashSet</code> instance with the default
-     * capacity and load factor.
+     * Creates a new <code>THashSet</code> instance with the default capacity and load factor.
      */
-    public TCustomHashSet( HashingStrategy<? super E> strategy ) {
-        super( strategy );
+    public TCustomHashSet(HashingStrategy<? super E> strategy) {
+        super(strategy);
     }
 
 
     /**
-     * Creates a new <code>THashSet</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
-     * with the default load factor.
+     * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
+     * {@code initialCapacity} and with the default load factor.
      *
      * @param initialCapacity an <code>int</code> value
      */
-    public TCustomHashSet( HashingStrategy<? super E> strategy, int initialCapacity ) {
-        super( strategy, initialCapacity );
+    public TCustomHashSet(HashingStrategy<? super E> strategy, int initialCapacity) {
+        super(strategy, initialCapacity);
     }
 
 
     /**
-     * Creates a new <code>THashSet</code> instance with a prime
-     * capacity equal to or greater than <tt>initialCapacity</tt> and
-     * with the specified load factor.
+     * Creates a new <code>THashSet</code> instance with a prime capacity equal to or greater than
+     * {@code initialCapacity} and with the specified load factor.
      *
      * @param initialCapacity an <code>int</code> value
-     * @param loadFactor      a <code>float</code> value
+     * @param loadFactor a <code>float</code> value
      */
-    public TCustomHashSet( HashingStrategy<? super E> strategy, int initialCapacity,
-	    float loadFactor ) {
+    public TCustomHashSet(HashingStrategy<? super E> strategy, int initialCapacity,
+            float loadFactor) {
 
-        super( strategy, initialCapacity, loadFactor );
+        super(strategy, initialCapacity, loadFactor);
     }
 
 
     /**
-     * Creates a new <code>THashSet</code> instance containing the
-     * elements of <tt>collection</tt>.
+     * Creates a new <code>THashSet</code> instance containing the elements of {@code collection}.
      *
      * @param collection a <code>Collection</code> value
      */
-    public TCustomHashSet( HashingStrategy<? super E> strategy,
-	    Collection<? extends E> collection ) {
+    public TCustomHashSet(HashingStrategy<? super E> strategy, Collection<? extends E> collection) {
 
-        this( strategy, collection.size() );
-        addAll( collection );
+        this(strategy, collection.size());
+        addAll(collection);
     }
 
 
@@ -110,34 +102,34 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
      * @param obj an <code>Object</code> value
      * @return true if the set was modified by the add operation
      */
-    public boolean add( E obj ) {
-        int index = insertKey( obj );
+    public boolean add(E obj) {
+        int index = insertKey(obj);
 
-        if ( index < 0 ) {
-            return false;       // already present in set, nothing to add
+        if (index < 0) {
+            return false; // already present in set, nothing to add
         }
 
-        postInsertHook( consumeFreeSlot );
-        return true;            // yes, we added something
+        postInsertHook(consumeFreeSlot);
+        return true; // yes, we added something
     }
 
 
     @SuppressWarnings({"SimplifiableIfStatement"})
-    public boolean equals( Object other ) {
-        if ( !( other instanceof Set ) ) {
+    public boolean equals(Object other) {
+        if (!(other instanceof Set)) {
             return false;
         }
         Set that = (Set) other;
-        if ( that.size() != this.size() ) {
+        if (that.size() != this.size()) {
             return false;
         }
-        return containsAll( that );
+        return containsAll(that);
     }
 
 
     public int hashCode() {
         HashProcedure p = new HashProcedure();
-        forEach( p );
+        forEach(p);
         return p.getHashCode();
     }
 
@@ -149,8 +141,8 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
             return h;
         }
 
-        public final boolean execute( E key ) {
-            h += HashFunctions.hash( key );
+        public final boolean execute(E key) {
+            h += HashFunctions.hash(key);
             return true;
         }
     }
@@ -162,20 +154,20 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
      * @param newCapacity an <code>int</code> value
      */
     @SuppressWarnings({"unchecked"})
-    protected void rehash( int newCapacity ) {
+    protected void rehash(int newCapacity) {
         int oldCapacity = _set.length;
         int oldSize = size();
         Object oldSet[] = _set;
 
         _set = new Object[newCapacity];
-        Arrays.fill( _set, FREE );
+        Arrays.fill(_set, FREE);
 
-        for ( int i = oldCapacity; i-- > 0; ) {
+        for (int i = oldCapacity; i-- > 0;) {
             E o = (E) oldSet[i];
-            if ( o != FREE && o != REMOVED ) {
-                int index = insertKey( o );
-                if ( index < 0 ) { // everyone pays for this because some people can't RTFM
-                    throwObjectContractViolation( _set[( -index - 1 )], o, size(), oldSize, oldSet);
+            if (o != FREE && o != REMOVED) {
+                int index = insertKey(o);
+                if (index < 0) { // everyone pays for this because some people can't RTFM
+                    throwObjectContractViolation(_set[(-index - 1)], o, size(), oldSize, oldSet);
                 }
             }
         }
@@ -190,7 +182,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
     @SuppressWarnings({"unchecked"})
     public Object[] toArray() {
         Object[] result = new Object[size()];
-        forEach( new ToObjectArrayProceedure( result ) );
+        forEach(new ToObjectArrayProceedure(result));
         return result;
     }
 
@@ -202,13 +194,13 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
      * @return an <code>Object[]</code> value
      */
     @SuppressWarnings({"unchecked"})
-    public <T> T[] toArray( T[] a ) {
+    public <T> T[] toArray(T[] a) {
         int size = size();
-        if ( a.length < size ) {
-            a = (T[]) Array.newInstance( a.getClass().getComponentType(), size );
+        if (a.length < size) {
+            a = (T[]) Array.newInstance(a.getClass().getComponentType(), size);
         }
 
-        forEach( new ToObjectArrayProceedure( a ) );
+        forEach(new ToObjectArrayProceedure(a));
 
         // If this collection fits in the specified array with room to
         // spare (i.e., the array has more elements than this
@@ -218,7 +210,7 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
         // caller knows that this collection does not contain any null
         // elements.)
 
-        if ( a.length > size ) {
+        if (a.length > size) {
             a[size] = null;
         }
 
@@ -230,21 +222,21 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
     public void clear() {
         super.clear();
 
-        Arrays.fill( _set, 0, _set.length, FREE );
+        Arrays.fill(_set, 0, _set.length, FREE);
     }
 
 
     /**
-     * Removes <tt>obj</tt> from the set.
+     * Removes {@code obj} from the set.
      *
      * @param obj an <code>Object</code> value
      * @return true if the set was modified by the remove operation.
      */
     @SuppressWarnings({"unchecked"})
-    public boolean remove( Object obj ) {
-        int index = index( obj );
-        if ( index >= 0 ) {
-            removeAt( index );
+    public boolean remove(Object obj) {
+        int index = index(obj);
+        if (index >= 0) {
+            removeAt(index);
             return true;
         }
         return false;
@@ -252,28 +244,26 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Creates an iterator over the values of the set.  The iterator
-     * supports element deletion.
+     * Creates an iterator over the values of the set. The iterator supports element deletion.
      *
      * @return an <code>Iterator</code> value
      */
     @SuppressWarnings({"unchecked"})
     public TObjectHashIterator<E> iterator() {
-        return new TObjectHashIterator<E>( this );
+        return new TObjectHashIterator<E>(this);
     }
 
 
     /**
-     * Tests the set to determine if all of the elements in
-     * <tt>collection</tt> are present.
+     * Tests the set to determine if all of the elements in {@code collection} are present.
      *
      * @param collection a <code>Collection</code> value
      * @return true if all elements were present in the set.
      */
     @SuppressWarnings("ForLoopReplaceableByForEach")
-    public boolean containsAll( Collection<?> collection ) {
-        for ( Iterator i = collection.iterator(); i.hasNext(); ) {
-            if ( !contains( i.next() ) ) {
+    public boolean containsAll(Collection<?> collection) {
+        for (Iterator i = collection.iterator(); i.hasNext();) {
+            if (!contains(i.next())) {
                 return false;
             }
         }
@@ -282,19 +272,19 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Adds all of the elements in <tt>collection</tt> to the set.
+     * Adds all of the elements in {@code collection} to the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the add all operation.
      */
-    public boolean addAll( Collection<? extends E> collection ) {
+    public boolean addAll(Collection<? extends E> collection) {
         boolean changed = false;
         int size = collection.size();
 
-        ensureCapacity( size );
+        ensureCapacity(size);
         Iterator<? extends E> it = collection.iterator();
-        while ( size-- > 0 ) {
-            if ( add( it.next() ) ) {
+        while (size-- > 0) {
+            if (add(it.next())) {
                 changed = true;
             }
         }
@@ -303,19 +293,19 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Removes all of the elements in <tt>collection</tt> from the set.
+     * Removes all of the elements in {@code collection} from the set.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the remove all operation.
      */
-    public boolean removeAll( Collection<?> collection ) {
+    public boolean removeAll(Collection<?> collection) {
         boolean changed = false;
         int size = collection.size();
         Iterator it;
 
         it = collection.iterator();
-        while ( size-- > 0 ) {
-            if ( remove( it.next() ) ) {
+        while (size-- > 0) {
+            if (remove(it.next())) {
                 changed = true;
             }
         }
@@ -324,19 +314,18 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     /**
-     * Removes any values in the set which are not contained in
-     * <tt>collection</tt>.
+     * Removes any values in the set which are not contained in {@code collection}.
      *
      * @param collection a <code>Collection</code> value
      * @return true if the set was modified by the retain all operation
      */
     @SuppressWarnings({"SuspiciousMethodCalls"})
-    public boolean retainAll( Collection<?> collection ) {
+    public boolean retainAll(Collection<?> collection) {
         boolean changed = false;
         int size = size();
         Iterator<E> it = iterator();
-        while ( size-- > 0 ) {
-            if ( !collection.contains( it.next() ) ) {
+        while (size-- > 0) {
+            if (!collection.contains(it.next())) {
                 it.remove();
                 changed = true;
             }
@@ -346,66 +335,65 @@ public class TCustomHashSet<E> extends TCustomObjectHash<E>
 
 
     public String toString() {
-        final StringBuilder buf = new StringBuilder( "{" );
-        forEach( new TObjectProcedure<E>() {
+        final StringBuilder buf = new StringBuilder("{");
+        forEach(new TObjectProcedure<E>() {
             private boolean first = true;
 
 
-            public boolean execute( Object value ) {
-                if ( first ) {
+            public boolean execute(Object value) {
+                if (first) {
                     first = false;
                 } else {
-                    buf.append( ", " );
+                    buf.append(", ");
                 }
 
-                buf.append( value );
+                buf.append(value);
                 return true;
             }
-        } );
-        buf.append( "}" );
+        });
+        buf.append("}");
         return buf.toString();
     }
 
 
-    public void writeExternal( ObjectOutput out ) throws IOException {
+    public void writeExternal(ObjectOutput out) throws IOException {
         // VERSION
-        out.writeByte( 1 );
+        out.writeByte(1);
 
         // NOTE: Super was not written in version 0
-        super.writeExternal( out );
+        super.writeExternal(out);
 
         // NUMBER OF ENTRIES
-        out.writeInt( _size );
+        out.writeInt(_size);
 
         // ENTRIES
-        for ( int i = _set.length; i-- > 0; ) {
-            if ( _set[i] != REMOVED && _set[i] != FREE ) {
-                out.writeObject( _set[i] );
+        for (int i = _set.length; i-- > 0;) {
+            if (_set[i] != REMOVED && _set[i] != FREE) {
+                out.writeObject(_set[i]);
             }
         }
     }
 
 
     @SuppressWarnings({"unchecked"})
-    public void readExternal( ObjectInput in )
-            throws IOException, ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 
         // VERSION
         byte version = in.readByte();
 
         // NOTE: super was not written in version 0
-        if ( version != 0 ) {
-            super.readExternal( in );
+        if (version != 0) {
+            super.readExternal(in);
         }
 
         // NUMBER OF ENTRIES
         int size = in.readInt();
-        setUp( size );
+        setUp(size);
 
         // ENTRIES
-        while ( size-- > 0 ) {
+        while (size-- > 0) {
             E val = (E) in.readObject();
-            add( val );
+            add(val);
         }
     }
 }

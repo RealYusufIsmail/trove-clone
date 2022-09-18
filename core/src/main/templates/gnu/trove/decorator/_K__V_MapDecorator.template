@@ -34,7 +34,7 @@ import java.util.*;
 
 /**
  * <p>
- * Wrapper class to make a T#K##V#Map conform to the <tt>java.util.Map</tt> API.
+ * Wrapper class to make a T#K##V#Map conform to the {@code java.util.Map} API.
  * This class simply decorates an underlying T#K##V#Map and translates the Object-based
  * APIs into their Trove primitive analogs.
  * </p>
@@ -69,7 +69,7 @@ public class T#K##V#MapDecorator extends AbstractMap<#KT#, #VT#>
     /**
      * Creates a wrapper that decorates the specified primitive map.
      *
-     * @param map the <tt>T#K##V#Map</tt> to wrap.
+     * @param map the {@code T#K##V#Map} to wrap.
      */
     public T#K##V#MapDecorator( T#K##V#Map map ) {
         super();
@@ -81,7 +81,7 @@ public class T#K##V#MapDecorator extends AbstractMap<#KT#, #VT#>
     /**
      * Returns a reference to the map wrapped by this decorator.
      *
-     * @return the wrapped <tt>T#K##V#Map</tt> instance.
+     * @return the wrapped {@code T#K##V#Map} instance.
      */
     public T#K##V#Map getMap() {
         return _map;
@@ -93,7 +93,7 @@ public class T#K##V#MapDecorator extends AbstractMap<#KT#, #VT#>
      *
      * @param key   an <code>Object</code> value
      * @param value an <code>Object</code> value
-     * @return the previous value associated with <tt>key</tt>,
+     * @return the previous value associated with {@code key},
      *         or #VT#(0) if none was found.
      */
     public #VT# put( #KT# key, #VT# value ) {
@@ -118,10 +118,10 @@ public class T#K##V#MapDecorator extends AbstractMap<#KT#, #VT#>
 
 
     /**
-     * Retrieves the value for <tt>key</tt>
+     * Retrieves the value for {@code key}
      *
      * @param key an <code>Object</code> value
-     * @return the value of <tt>key</tt> or null if no such mapping exists.
+     * @return the value of {@code key} or null if no such mapping exists.
      */
     public #VT# get( Object key ) {
         #k# k;
@@ -284,7 +284,7 @@ public class T#K##V#MapDecorator extends AbstractMap<#KT#, #VT#>
 
 
     /**
-     * Checks for the presence of <tt>val</tt> in the values of the map.
+     * Checks for the presence of {@code val} in the values of the map.
      *
      * @param val an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -295,7 +295,7 @@ public class T#K##V#MapDecorator extends AbstractMap<#KT#, #VT#>
 
 
     /**
-     * Checks for the present of <tt>key</tt> in the keys of the map.
+     * Checks for the present of {@code key} in the keys of the map.
      *
      * @param key an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -327,7 +327,7 @@ public class T#K##V#MapDecorator extends AbstractMap<#KT#, #VT#>
 
 
     /**
-     * Copies the key/value mappings in <tt>map</tt> into this map.
+     * Copies the key/value mappings in {@code map} into this map.
      * Note that this will be a <b>deep</b> copy, as storage is by
      * primitive value.
      *

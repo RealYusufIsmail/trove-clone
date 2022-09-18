@@ -1,29 +1,27 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2001, Eric D. Friedman All Rights Reserved.
-// Copyright (c) 2009, Rob Eden All Rights Reserved.
-// Copyright (c) 2009, Jeff Randall All Rights Reserved.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-///////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Copyright (c) 2022, Rob Eden, RealYusufIsmail All Rights Reserved.
+ * 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */ 
 package gnu.trove.list.array;
 
 import gnu.trove.TCollections;
 import gnu.trove.list.TIntList;
 import gnu.trove.list.TLongList;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -31,14 +29,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TArrayListTest extends TestCase {
+
+public class TArrayListTest {
 
     private TIntList list;
 
 
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
 
         list = new TIntArrayList(15, Integer.MIN_VALUE);
         list.add(1);
@@ -50,15 +50,16 @@ public class TArrayListTest extends TestCase {
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
     }
 
 
+    @Test
     public void testToArray() {
-        assertTrue(Arrays.equals(new int[]{1, 2, 3, 4, 5}, list.toArray()));
-        assertTrue(Arrays.equals(new int[]{1, 2, 3, 4}, list.toArray(0, 4)));
-        assertTrue(Arrays.equals(new int[]{2, 3, 4, 5}, list.toArray(1, 4)));
-        assertTrue(Arrays.equals(new int[]{2, 3, 4}, list.toArray(1, 3)));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, list.toArray());
+        assertArrayEquals(new int[] {1, 2, 3, 4}, list.toArray(0, 4));
+        assertArrayEquals(new int[] {2, 3, 4, 5}, list.toArray(1, 4));
+        assertArrayEquals(new int[] {2, 3, 4}, list.toArray(1, 3));
 
         int[] array_correct_size = new int[5];
         list.toArray(array_correct_size);
@@ -85,6 +86,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSubList() throws Exception {
         TIntList subList = list.subList(1, 4);
         assertEquals(3, subList.size());
@@ -93,6 +95,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSublist_Exceptions() {
         try {
             list.subList(1, 0);
@@ -114,6 +117,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testMax() {
         assertEquals(5, list.max());
         assertEquals(1, list.min());
@@ -129,14 +133,14 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialization() throws Exception {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         ObjectOutputStream oout = new ObjectOutputStream(bout);
         oout.writeObject(list);
         oout.close();
 
-        ObjectInputStream oin = new ObjectInputStream(
-                new ByteArrayInputStream(bout.toByteArray()));
+        ObjectInputStream oin = new ObjectInputStream(new ByteArrayInputStream(bout.toByteArray()));
 
         TIntArrayList new_list = (TIntArrayList) oin.readObject();
 
@@ -145,6 +149,7 @@ public class TArrayListTest extends TestCase {
 
 
     // From bug 3077245
+    @Test
     public void testInvalidStartRemoveZeroLength() {
         try {
             TIntArrayList bug = new TIntArrayList();
@@ -157,6 +162,7 @@ public class TArrayListTest extends TestCase {
 
 
     // From bug 3197201
+    @Test
     public void testListRemove() {
         // Remove by value
         TIntArrayList list = new TIntArrayList();
@@ -211,6 +217,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSum() {
         TIntList list = new TIntArrayList();
         assertEquals(0, list.sum());
@@ -228,6 +235,7 @@ public class TArrayListTest extends TestCase {
         assertEquals(0, list.sum());
     }
 
+    @Test
     public void testBinarySearch() {
         System.out.println("Java version: " + System.getProperty("java.version"));
         TIntList list;
@@ -258,9 +266,10 @@ public class TArrayListTest extends TestCase {
         assertEquals(-2, list.binarySearch(6));
     }
 
+    @Test
     public void testListWrapExpand() {
         // Remove by value
-        TIntArrayList list = TIntArrayList.wrap(new int[]{1, 0, 2});
+        TIntArrayList list = TIntArrayList.wrap(new int[] {1, 0, 2});
         try {
             list.add(0);
             fail();
@@ -269,9 +278,10 @@ public class TArrayListTest extends TestCase {
         }
     }
 
+    @Test
     public void testListWrap() {
         // Remove by value
-        TIntArrayList list = TIntArrayList.wrap(new int[]{1, 0, 2});
+        TIntArrayList list = TIntArrayList.wrap(new int[] {1, 0, 2});
 
         list.remove(1);
 
@@ -292,6 +302,7 @@ public class TArrayListTest extends TestCase {
         assertEquals(5, list.get(2));
     }
 
+    @Test
     public void test3448111() throws Exception {
         TIntArrayList i = new TIntArrayList();
         i.add(1);
@@ -299,57 +310,55 @@ public class TArrayListTest extends TestCase {
         i.add(3);
         i.add(4);
 
-        int[] a = new int[]{1, 2, 3};
+        int[] a = new int[] {1, 2, 3};
         i.retainAll(a);
     }
 
-	public void testIntUnmodifiableEquality() {
-		TIntList list1 = new TIntArrayList();
-		TIntList list2 = new TIntArrayList();
+    @Test
+    public void testIntUnmodifiableEquality() {
+        TIntList list1 = new TIntArrayList();
+        TIntList list2 = new TIntArrayList();
 
-		assertEquals( list1, list2 );
-		assertEquals( list1, TCollections.unmodifiableList( list2 ) );
-		assertEquals( TCollections.unmodifiableList( list1 ), list2 );
-		assertEquals( TCollections.unmodifiableList( list1 ),
-			TCollections.unmodifiableList( list2 ) );
+        assertEquals(list1, list2);
+        assertEquals(list1, TCollections.unmodifiableList(list2));
+        assertEquals(TCollections.unmodifiableList(list1), list2);
+        assertEquals(TCollections.unmodifiableList(list1), TCollections.unmodifiableList(list2));
 
-		list1.add( 1 );
-		list1.add( 2 );
-		list1.add( 3 );
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
 
-		list2.add( 1 );
-		list2.add( 2 );
-		list2.add( 3 );
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
 
-		assertEquals( list1, list2 );
-		assertEquals( list1, TCollections.unmodifiableList( list2 ) );
-		assertEquals( TCollections.unmodifiableList( list1 ), list2 );
-		assertEquals( TCollections.unmodifiableList( list1 ),
-			TCollections.unmodifiableList( list2 ) );
-	}
+        assertEquals(list1, list2);
+        assertEquals(list1, TCollections.unmodifiableList(list2));
+        assertEquals(TCollections.unmodifiableList(list1), list2);
+        assertEquals(TCollections.unmodifiableList(list1), TCollections.unmodifiableList(list2));
+    }
 
-	public void testLongUnmodifiableEquality() {
-		TLongList list1 = new TLongArrayList();
-		TLongList list2 = new TLongArrayList();
+    @Test
+    public void testLongUnmodifiableEquality() {
+        TLongList list1 = new TLongArrayList();
+        TLongList list2 = new TLongArrayList();
 
-		assertEquals( list1, list2 );
-		assertEquals( list1, TCollections.unmodifiableList( list2 ) );
-		assertEquals( TCollections.unmodifiableList( list1 ), list2 );
-		assertEquals( TCollections.unmodifiableList( list1 ),
-			TCollections.unmodifiableList( list2 ) );
+        assertEquals(list1, list2);
+        assertEquals(list1, TCollections.unmodifiableList(list2));
+        assertEquals(TCollections.unmodifiableList(list1), list2);
+        assertEquals(TCollections.unmodifiableList(list1), TCollections.unmodifiableList(list2));
 
-		list1.add( 1 );
-		list1.add( 2 );
-		list1.add( 3 );
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
 
-		list2.add( 1 );
-		list2.add( 2 );
-		list2.add( 3 );
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
 
-		assertEquals( list1, list2 );
-		assertEquals( list1, TCollections.unmodifiableList( list2 ) );
-		assertEquals( TCollections.unmodifiableList( list1 ), list2 );
-		assertEquals( TCollections.unmodifiableList( list1 ),
-			TCollections.unmodifiableList( list2 ) );
-	}
+        assertEquals(list1, list2);
+        assertEquals(list1, TCollections.unmodifiableList(list2));
+        assertEquals(TCollections.unmodifiableList(list1), list2);
+        assertEquals(TCollections.unmodifiableList(list1), TCollections.unmodifiableList(list2));
+    }
 }

@@ -1,44 +1,38 @@
-///////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2001, Eric D. Friedman All Rights Reserved.
-// Copyright (c) 2009, Rob Eden All Rights Reserved.
-// Copyright (c) 2009, Jeff Randall All Rights Reserved.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-///////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Copyright (c) 2022, Rob Eden, RealYusufIsmail All Rights Reserved.
+ * 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */ 
 package gnu.trove;
 
 /**
  * <p>
- * Simple class meant as a possible main class (via manifest) to report the
- * implementation version of the trove4j jar.
+ * Simple class meant as a possible main class (via manifest) to report the implementation version
+ * of the trove4j jar.
  * </p>
  * <p>
  * This may be useful to ask feedback WITH build version information
  * </p>
  * <p>
- * The Main-Class entry in the manifest.mf should be set during the build as well
- * as the Implementation-Version manifest attribute should be set as well.
+ * The Main-Class entry in the manifest.mf should be set during the build as well as the
+ * Implementation-Version manifest attribute should be set as well.
  * </p>
  * <p>
- * Created by IntelliJ IDEA.
- * <br>
- * User: Johan Parent
- * <br>
- * Date: 3/03/11
- * <br>
+ * Created by IntelliJ IDEA. <br>
+ * User: Johan Parent <br>
+ * Date: 3/03/11 <br>
  * Time: 22:10
  * </p>
  */
@@ -49,11 +43,11 @@ public class Version {
 
     /**
      * <p>
-     * Returns the implementation version of trove4j. Intended for applications
-     * wanting to return the version of trove4j they are using
+     * Returns the implementation version of trove4j. Intended for applications wanting to return
+     * the version of trove4j they are using
      * </p>
-     * NOTE: this method will only return a useful version when working
-     * with a trove4j jar as it requires a manifest file
+     * NOTE: this method will only return a useful version when working with a trove4j jar as it
+     * requires a manifest file
      *
      * @return
      */

@@ -55,8 +55,8 @@ public interface TObject#E#Map<K> {
 
     /**
      * Returns the number of key-value mappings in this map.  If the
-     * map contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
-     * <tt>Integer.MAX_VALUE</tt>.
+     * map contains more than {@code Integer.MAX_VALUE} elements, returns
+     * {@code Integer.MAX_VALUE}.
      *
      * @return the number of key-value mappings in this map
      */
@@ -64,29 +64,29 @@ public interface TObject#E#Map<K> {
 
 
     /**
-     * Returns <tt>true</tt> if this map contains no key-value mappings.
+     * Returns {@code true} if this map contains no key-value mappings.
      *
-     * @return <tt>true</tt> if this map contains no key-value mappings
+     * @return {@code true} if this map contains no key-value mappings
      */
     boolean isEmpty();
 
 
     /**
-     * Checks for the present of <tt>key</tt> in the keys of the map.
+     * Checks for the present of {@code key} in the keys of the map.
      */
     boolean containsKey( Object key );
 
 
     /**
-     * Checks for the presence of <tt>val</tt> in the values of the map.
+     * Checks for the presence of {@code val} in the values of the map.
      */
     boolean containsValue( #e# value );
 
 
     /**
-     * Retrieves the value for <tt>key</tt>.
+     * Retrieves the value for {@code key}.
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with {@code key}, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     #e# get( Object key );
@@ -97,7 +97,7 @@ public interface TObject#E#Map<K> {
     /**
      * Inserts a key/value pair into the map.
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with {@code key}, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     #e# put( K key, #e# value);
@@ -108,9 +108,9 @@ public interface TObject#E#Map<K> {
      * associated with a value.
      *
      * @param key key with which the specified value is to be associated
-     * @param value an <tt>#e#</tt> value to be associated with the specified key
+     * @param value an {@code #e#} value to be associated with the specified key
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with {@code key}, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     #e# putIfAbsent( K key, #e# value );
@@ -121,7 +121,7 @@ public interface TObject#E#Map<K> {
      *
      * @param key an <code>#k#</code> value
      *
-     * @return the previous value associated with <tt>key</tt>, or the "no entry" value
+     * @return the previous value associated with {@code key}, or the "no entry" value
      *         if none was found (see {@link #getNoEntryValue}).
      */
     #e# remove( Object key );
@@ -133,12 +133,12 @@ public interface TObject#E#Map<K> {
      * Copies all of the mappings from the specified map to this map
      * (optional operation).  The effect of this call is equivalent to that
      * of calling {@link #put(Object,#e#) put(k, v)} on this map once
-     * for each mapping from key <tt>k</tt> to value <tt>v</tt> in the
+     * for each mapping from key {@code k} to value {@code v} in the
      * specified map.  The behavior of this operation is undefined if the
      * specified map is modified while the operation is in progress.
      *
      * @param m mappings to be stored in this map
-     * @throws UnsupportedOperationException if the <tt>putAll</tt> operation
+     * @throws UnsupportedOperationException if the {@code putAll} operation
      *         is not supported by this map
      * @throws ClassCastException if the class of a key or value in the
      *         specified map prevents it from being stored in this map
@@ -163,7 +163,7 @@ public interface TObject#E#Map<K> {
      * Removes all of the mappings from this map (optional operation).
      * The map will be empty after this call returns.
      *
-     * @throws UnsupportedOperationException if the <tt>clear</tt> operation
+     * @throws UnsupportedOperationException if the {@code clear} operation
      *         is not supported by this map
      */
     void clear();
@@ -176,12 +176,12 @@ public interface TObject#E#Map<K> {
      * The set is backed by the map, so changes to the map are
      * reflected in the set, and vice-versa.  If the map is modified
      * while an iteration over the set is in progress (except through
-     * the iterator's own <tt>remove</tt> operation), the results of
+     * the iterator's own {@code remove} operation), the results of
      * the iteration are undefined.  The set supports element removal,
      * which removes the corresponding mapping from the map, via the
-     * <tt>Iterator.remove</tt>, <tt>Set.remove</tt>,
-     * <tt>removeAll</tt>, <tt>retainAll</tt>, and <tt>clear</tt>
-     * operations.  It does not support the <tt>add</tt> or <tt>addAll</tt>
+     * {@code Iterator.remove}, {@code Set.remove},
+     * {@code removeAll}, {@code retainAll}, and {@code clear}
+     * operations.  It does not support the {@code add} or {@code addAll}
      * operations.
      *
      * @return a set view of the keys contained in this map
@@ -218,13 +218,13 @@ public interface TObject#E#Map<K> {
      * The collection is backed by the map, so changes to the map are
      * reflected in the collection, and vice-versa.  If the map is
      * modified while an iteration over the collection is in progress
-     * (except through the iterator's own <tt>remove</tt> operation),
+     * (except through the iterator's own {@code remove} operation),
      * the results of the iteration are undefined.  The collection
      * supports element removal, which removes the corresponding
-     * mapping from the map, via the <tt>T#E#Iterator.remove</tt>,
-     * <tt>T#E#Collection.remove</tt>, <tt>removeAll</tt>,
-     * <tt>retainAll</tt> and <tt>clear</tt> operations.  It does not
-     * support the <tt>add</tt> or <tt>addAll</tt> operations.
+     * mapping from the map, via the {@code T#E#Iterator.remove},
+     * {@code T#E#Collection.remove}, {@code removeAll},
+     * {@code retainAll} and {@code clear} operations.  It does not
+     * support the {@code add} or {@code addAll} operations.
      *
      * @return a collection view of the values contained in this map
      */
@@ -232,11 +232,11 @@ public interface TObject#E#Map<K> {
 
 
     /**
-     * Returns the values of the map as an array of <tt>#e#</tt> values.
+     * Returns the values of the map as an array of {@code #e#} values.
      * Changes to the array of values will not be reflected in the map
      * nor vice-versa.
      *
-     * @return the values of the map as an array of <tt>#e#</tt> values.
+     * @return the values of the map as an array of {@code #e#} values.
      */
     #e#[] values();
 
@@ -249,15 +249,15 @@ public interface TObject#E#Map<K> {
      * @param array   the array into which the elements of the list are to be stored,
      *                if it is big enough; otherwise, a new array of the same type is
      *                allocated for this purpose.
-     * @return the values of the map as an array of <tt>#e#</tt> values.
+     * @return the values of the map as an array of {@code #e#} values.
      */
     #e#[] values( #e#[] array );
 
 
     /**
-     * Returns a <tt>TObject#E#Iterator</tt> with access to this map's keys and values.
+     * Returns a {@code TObject#E#Iterator} with access to this map's keys and values.
      *
-     * @return a <tt>TObject#E#Iterator</tt> with access to this map's keys and values.
+     * @return a {@code TObject#E#Iterator} with access to this map's keys and values.
      */
     public TObject#E#Iterator<K> iterator();
 
@@ -285,7 +285,7 @@ public interface TObject#E#Map<K> {
 
     /**
      * Adds an amount to the primitive value mapped to the key if the key is present in
-     * the map. Otherwise, the <tt>put_amount</tt> is put in the map.
+     * the map. Otherwise, the {@code put_amount} is put in the map.
      *
      * @param key the key of the value to increment
      * @param adjust_amount the amount to add to the value; may be positive, zero,
@@ -298,7 +298,7 @@ public interface TObject#E#Map<K> {
 
 
     /**
-     * Executes <tt>procedure</tt> for each key in the map.
+     * Executes {@code procedure} for each key in the map.
      *
      * @param procedure a <code>TObjectProcedure</code> value
      * @return false if the loop over the keys terminated because
@@ -308,7 +308,7 @@ public interface TObject#E#Map<K> {
 
 
     /**
-     * Executes <tt>procedure</tt> for each value in the map.
+     * Executes {@code procedure} for each value in the map.
      *
      * @param procedure a <code>T#E#Procedure</code> value
      * @return false if the loop over the values terminated because
@@ -318,7 +318,7 @@ public interface TObject#E#Map<K> {
 
 
     /**
-     * Executes <tt>procedure</tt> for each key/value entry in the
+     * Executes {@code procedure} for each key/value entry in the
      * map.
      *
      * @param procedure a <code>TOObject#E#Procedure</code> value
@@ -329,7 +329,7 @@ public interface TObject#E#Map<K> {
 
 
     /**
-     * Transform the values in this map using <tt>function</tt>.
+     * Transform the values in this map using {@code function}.
      *
      * @param function a <code>T#E#Function</code> value
      */
@@ -350,24 +350,24 @@ public interface TObject#E#Map<K> {
 
     /**
      * Compares the specified object with this map for equality.  Returns
-     * <tt>true</tt> if the given object is also a map and the two maps
-     * represent the same mappings.  More formally, two maps <tt>m1</tt> and
-     * <tt>m2</tt> represent the same mappings if
-     * <tt>m1.entrySet().equals(m2.entrySet())</tt>.  This ensures that the
-     * <tt>equals</tt> method works properly across different implementations
-     * of the <tt>Map</tt> interface.
+     * {@code true} if the given object is also a map and the two maps
+     * represent the same mappings.  More formally, two maps {@code m1} and
+     * {@code m2} represent the same mappings if
+     * {@code m1.entrySet().equals(m2.entrySet())}.  This ensures that the
+     * {@code equals} method works properly across different implementations
+     * of the {@code Map} interface.
      *
      * @param o object to be compared for equality with this map
-     * @return <tt>true</tt> if the specified object is equal to this map
+     * @return {@code true} if the specified object is equal to this map
      */
     boolean equals( Object o );
 
     /**
      * Returns the hash code value for this map.  The hash code of a map is
      * defined to be the sum of the hash codes of each entry in the map's
-     * <tt>entrySet()</tt> view.  This ensures that <tt>m1.equals(m2)</tt>
-     * implies that <tt>m1.hashCode()==m2.hashCode()</tt> for any two maps
-     * <tt>m1</tt> and <tt>m2</tt>, as required by the general contract of
+     * {@code entrySet()} view.  This ensures that {@code m1.equals(m2)}
+     * implies that {@code m1.hashCode()==m2.hashCode()} for any two maps
+     * {@code m1} and {@code m2}, as required by the general contract of
      * {@link Object#hashCode}.
      *
      * @return the hash code value for this map

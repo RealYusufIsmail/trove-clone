@@ -1,2 +1,5 @@
-include 'generator', 'core', 'experimental'
-enableFeaturePreview('STABLE_PUBLISHING')
+rootProject.name = 'trove4j-clone'
+
+include 'generator'
+include 'core'
+include 'experimental'

@@ -34,7 +34,7 @@ import java.util.*;
 
 /**
  * <p>
- * Wrapper class to make a T#E#ObjectMap conform to the <tt>java.util.Map</tt> API.
+ * Wrapper class to make a T#E#ObjectMap conform to the {@code java.util.Map} API.
  * This class simply decorates an underlying T#E#ObjectMap and translates the Object-based
  * APIs into their Trove primitive analogs.
  * </p>
@@ -67,7 +67,7 @@ public class T#E#ObjectMapDecorator<V> extends AbstractMap<#ET#, V>
     /**
      * Creates a wrapper that decorates the specified primitive map.
      *
-     * @param map the <tt>T#E#ObjectMap</tt> to wrap.
+     * @param map the {@code T#E#ObjectMap} to wrap.
      */
     public T#E#ObjectMapDecorator( T#E#ObjectMap<V> map ) {
         super();
@@ -79,7 +79,7 @@ public class T#E#ObjectMapDecorator<V> extends AbstractMap<#ET#, V>
     /**
      * Returns a reference to the map wrapped by this decorator.
      *
-     * @return the wrapped <tt>T#E#ObjectMap</tt> instance.
+     * @return the wrapped {@code T#E#ObjectMap} instance.
      */
     public T#E#ObjectMap<V> getMap() {
         return _map;
@@ -91,8 +91,8 @@ public class T#E#ObjectMapDecorator<V> extends AbstractMap<#ET#, V>
      *
      * @param key   an <code>#ET#</code> value
      * @param value an <code>Object</code> value
-     * @return the previous value associated with <tt>key</tt>,
-     *         or <tt>null</tt> if none was found.
+     * @return the previous value associated with {@code key},
+     *         or {@code null} if none was found.
      */
     public V put( #ET# key, V value ) {
         #e# k;
@@ -106,10 +106,10 @@ public class T#E#ObjectMapDecorator<V> extends AbstractMap<#ET#, V>
 
 
     /**
-     * Retrieves the value for <tt>key</tt>
+     * Retrieves the value for {@code key}
      *
      * @param key an <code>Object</code> value
-     * @return the value of <tt>key</tt> or null if no such mapping exists.
+     * @return the value of {@code key} or null if no such mapping exists.
      */
     public V get( Object key ) {
         #e# k;
@@ -255,7 +255,7 @@ public class T#E#ObjectMapDecorator<V> extends AbstractMap<#ET#, V>
 
 
     /**
-     * Checks for the presence of <tt>val</tt> in the values of the map.
+     * Checks for the presence of {@code val} in the values of the map.
      *
      * @param val an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -266,7 +266,7 @@ public class T#E#ObjectMapDecorator<V> extends AbstractMap<#ET#, V>
 
 
     /**
-     * Checks for the present of <tt>key</tt> in the keys of the map.
+     * Checks for the present of {@code key} in the keys of the map.
      *
      * @param key an <code>Object</code> value
      * @return a <code>boolean</code> value
@@ -298,7 +298,7 @@ public class T#E#ObjectMapDecorator<V> extends AbstractMap<#ET#, V>
 
 
     /**
-     * Copies the key/value mappings in <tt>map</tt> into this map.
+     * Copies the key/value mappings in {@code map} into this map.
      * Note that this will be a <b>deep</b> copy, as storage is by
      * primitive value.
      *
