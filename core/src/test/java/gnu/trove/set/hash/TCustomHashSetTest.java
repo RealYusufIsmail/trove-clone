@@ -19,24 +19,30 @@ package gnu.trove.set.hash;
 
 import gnu.trove.map.hash.ArrayHashingStrategy;
 import gnu.trove.strategy.HashingStrategy;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
  *
  */
-public class TCustomHashSetTest extends TestCase {
+public class TCustomHashSetTest {
+    @Test
     public void testArray() {
         char[] foo = new char[] {'a', 'b', 'c'};
         char[] bar = new char[] {'a', 'b', 'c'};
 
-        assertFalse(foo.hashCode() == bar.hashCode());
+        assertFalse(Arrays.hashCode(foo) == Arrays.hashCode(bar));
         // noinspection ArrayEquals
         assertFalse(foo.equals(bar));
 
@@ -55,6 +61,7 @@ public class TCustomHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialization() throws Exception {
         char[] foo = new char[] {'a', 'b', 'c'};
         char[] bar = new char[] {'a', 'b', 'c'};

@@ -17,6 +17,8 @@
  */ 
 package gnu.trove.impl;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -34,11 +36,13 @@ public class PrimeFinderTest {
         this.name = name;
     }
 
+    @Test
     public void testPrimeFinder() throws Exception {
         int r = PrimeFinder.nextPrime(999999);
         assertEquals(1070981, r);
     }
 
+    @Test
     public void testMaxValue() throws Exception {
         int r = PrimeFinder.nextPrime(Integer.MAX_VALUE);
         assertEquals(2004663929, r);

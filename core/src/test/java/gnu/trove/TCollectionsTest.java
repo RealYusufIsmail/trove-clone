@@ -23,13 +23,17 @@ import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
  *
  */
-public class TCollectionsTest extends TestCase {
+public class TCollectionsTest {
+
+    @Test
     public void testUnmodifiableList() {
         final TIntArrayList one = new TIntArrayList(new int[] {1, 2, 3, 4});
         final TIntArrayList two = new TIntArrayList(new int[] {1, 2, 3, 4});
@@ -38,10 +42,10 @@ public class TCollectionsTest extends TestCase {
 
         assertEquals(one, two);
         assertEquals(uOne, uTwo);
-
     }
 
 
+    @Test
     public void testUnmodifiableSet() {
         final TIntSet one = new TIntHashSet(new int[] {1, 2, 3, 4});
         final TIntSet two = new TIntHashSet(new int[] {1, 2, 3, 4});
@@ -53,6 +57,7 @@ public class TCollectionsTest extends TestCase {
     }
 
 
+    @Test
     public void testUnmodifiableMap() {
         final TIntObjectMap<Integer> one = new TIntObjectHashMap<Integer>();
         one.put(0, Integer.valueOf(0));

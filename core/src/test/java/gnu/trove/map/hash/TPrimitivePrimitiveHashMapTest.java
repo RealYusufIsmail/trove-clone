@@ -38,7 +38,8 @@ import gnu.trove.set.TIntSet;
 import gnu.trove.set.TLongSet;
 import gnu.trove.set.hash.TIntHashSet;
 import gnu.trove.set.hash.TLongHashSet;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -46,22 +47,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
  *
  */
-public class TPrimitivePrimitiveHashMapTest extends TestCase {
+public class TPrimitivePrimitiveHashMapTest {
 
     final int KEY_ONE = 100;
     final int KEY_TWO = 101;
 
-
-    public TPrimitivePrimitiveHashMapTest(String name) {
-        super(name);
-    }
-
-
+    @Test
     public void testConstructors() {
 
         int[] keys = {1138, 42, 86, 99, 101};
@@ -140,6 +137,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
 
 
     /** Be sure that size is large enough to force a resize or two. */
+    @Test
     public void testRehash() {
         int size = 1000;
         int[] keys = new int[size];
@@ -162,6 +160,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutAll() {
         int[] keys = {1138, 42, 86, 99, 101};
         long[] vals = {1138, 42, 86, 99, 101};
@@ -205,6 +204,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         int[] keys = {1138, 42, 86, 99, 101};
         long[] vals = {1138, 42, 86, 99, 101};
@@ -228,6 +228,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -250,6 +251,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetMisc() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -293,6 +295,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetContainsAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -333,13 +336,14 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetAddAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
 
         TIntLongMap map = new TIntLongHashMap();
         for (int i = 0; i < keys.length; i++) {
-            vals[i] = keys[i] * 2;
+            vals[i] = keys[i] * 2L;
             map.put(keys[i], vals[i]);
         }
 
@@ -349,8 +353,8 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
 
         // test with a java.util.Map
         Set<Integer> java_set = new HashSet<Integer>();
-        for (int i = 0; i < keys.length; i++) {
-            java_set.add(Integer.valueOf(keys[i]));
+        for (int key : keys) {
+            java_set.add(key);
         }
 
         try {
@@ -376,6 +380,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRetainAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -392,15 +397,15 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
 
         // test with a java.util.Map
         Set<Number> java_set = new HashSet<Number>();
-        for (int i = 0; i < keys.length; i++) {
-            java_set.add(Integer.valueOf(keys[i]));
+        for (int j : keys) {
+            java_set.add(Integer.valueOf(j));
         }
         assertFalse(set.retainAll(java_set));
         assertEquals(keys.length, set.size());
         assertEquals(keys.length, map.size());
-        for (int i = 0; i < keys.length; i++) {
-            assertTrue(set.contains(keys[i]));
-            assertTrue(map.containsKey(keys[i]));
+        for (int key : keys) {
+            assertTrue(set.contains(key));
+            assertTrue(map.containsKey(key));
         }
         java_set.remove(42);
         assertTrue("set should have been modified: " + set + ", java: " + java_set,
@@ -419,6 +424,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRetainAllTCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -448,6 +454,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRetainAllArray() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -483,6 +490,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRemoveAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -527,6 +535,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRemoveAllTCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -602,6 +611,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRemoveAllArray() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -634,6 +644,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetForEach() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -671,6 +682,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetEquals() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -704,6 +716,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetHashCode() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -734,6 +747,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetIterator() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -782,6 +796,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeys() {
         TIntLongMap map = new TIntLongHashMap();
 
@@ -821,6 +836,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionMisc() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -864,6 +880,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionContainsAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -904,6 +921,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionAddAll() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -947,6 +965,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -990,6 +1009,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllTCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1021,6 +1041,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllArray() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1056,6 +1077,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1100,6 +1122,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllTCollection() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1176,6 +1199,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
         }
     }
 
+    @Test
     public void testValueCollectionRemove() {
         final TLongLongHashMap map1 = new TLongLongHashMap();
         map1.put(2L, 10L);
@@ -1201,6 +1225,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
                 map.size());
     }
 
+    @Test
     public void testValueCollectionRemoveAllArray() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1233,6 +1258,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionForEach() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1270,6 +1296,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionEquals() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1330,6 +1357,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionHashCode() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1351,6 +1379,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
 
 
 
+    @Test
     public void testValueCollectionIterator() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1399,6 +1428,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValues() {
         TIntLongMap map = new TIntLongHashMap();
 
@@ -1438,6 +1468,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachKey() {
         int element_count = 20;
         TIntLongMap map = new TIntLongHashMap();
@@ -1493,6 +1524,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachValue() {
         int element_count = 20;
         TIntLongMap map = new TIntLongHashMap();
@@ -1548,6 +1580,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachEntry() {
         int element_count = 20;
         TIntLongMap map = new TIntLongHashMap();
@@ -1576,6 +1609,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testTransformValues() {
         int element_count = 20;
         TIntLongMap map = new TIntLongHashMap();
@@ -1597,6 +1631,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainEntries() {
         int element_count = 20;
         TIntLongMap map = new TIntLongHashMap();
@@ -1644,6 +1679,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIncrement() {
         int element_count = 20;
         TIntLongMap map = new TIntLongHashMap();
@@ -1667,6 +1703,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testDecorator() {
         // TByteIntHashMap map = new TByteIntHashMap();
         //
@@ -1693,6 +1730,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
         TIntLongMap map = new TIntLongHashMap();
 
@@ -1753,6 +1791,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testAdjustValue() {
         TIntLongHashMap map = new TIntLongHashMap();
 
@@ -1776,6 +1815,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testAdjustOrPutValue() {
         TIntLongMap map = new TIntLongHashMap();
 
@@ -1809,6 +1849,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
      * counted the same as keys in a map. Checks for doubles and floats.
      */
     // TODO: move to TPrimitiveObjectHashMap test.
+    @Test
     public void testFloatZeroHashing() {
         // TDoubleObjectHashMap<String> po_double_map = new TDoubleObjectHashMap<String>();
         // TDoubleIntHashMap pp_double_map = new TDoubleIntHashMap();
@@ -1890,6 +1931,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutIfAbsent() {
         TIntLongMap map = new TIntLongHashMap();
 
@@ -1904,6 +1946,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testBug2037709() {
         TIntLongMap m = new TIntLongHashMap();
         for (int i = 0; i < 10; i++) {
@@ -1930,6 +1973,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1959,6 +2003,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testHashCode() {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -1993,6 +2038,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
 
 
 
+    @Test
     public void testToString() {
         TIntLongMap m = new TIntLongHashMap();
         m.put(11, 1);
@@ -2003,6 +2049,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         int[] keys = {1138, 42, 86, 99, 101, 727, 117};
         long[] vals = new long[keys.length];
@@ -2026,6 +2073,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testTIntLongMapEquals() {
         assertEquals(MIL(0, 0), MIL(0, 0));
         assertNotEquals(MIL(0, 1), MIL(0, 0));
@@ -2048,6 +2096,7 @@ public class TPrimitivePrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIssue3() {
         // initialize the int maps
         TIntIntMap intMap1 = new TIntIntHashMap();

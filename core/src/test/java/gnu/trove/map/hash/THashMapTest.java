@@ -24,7 +24,8 @@ import gnu.trove.impl.hash.TObjectHash;
 import gnu.trove.procedure.TObjectObjectProcedure;
 import gnu.trove.procedure.TObjectProcedure;
 import gnu.trove.set.hash.THashSetTest;
-import junit.framework.TestCase;
+
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -32,6 +33,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -40,23 +42,18 @@ import java.util.*;
  * @author Eric D. Friedman
  * @author Rob Eden
  * @author Jeff Randall
+ * @author RealYusufIsmail
  * @version $Id: THashMapTest.java,v 1.1.2.7 2010/03/02 04:09:50 robeden Exp $
  */
-
-public class THashMapTest extends TestCase {
+public class THashMapTest {
 
     protected THashMap<String, String> ss_map;
     protected THashMap<String, Integer> si_map;
     protected int count;
 
 
-    public THashMapTest(String name) {
-        super(name);
-    }
-
-
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
         ss_map = new THashMap<String, String>();
         si_map = new THashMap<String, Integer>();
         count = 0;
@@ -64,13 +61,14 @@ public class THashMapTest extends TestCase {
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
         ss_map = null;
         si_map = null;
         count = 0;
     }
 
 
+    @Test
     public void testConstructors() {
         String[] keys = {"Key1", "Key2", "Key3", "Key4", "Key5"};
         String[] values = {"Val1", "Val2", "Val3", "Val4", "Val5"};
@@ -82,38 +80,39 @@ public class THashMapTest extends TestCase {
         for (int i = 0; i < keys.length; i++) {
             sized.put(keys[i], values[i]);
         }
-        assertTrue("maps should be a copy of each other", ss_map.equals(sized));
+        assertEquals(ss_map, sized, "maps should be a copy of each other");
 
 
         THashMap<String, String> factor = new THashMap<String, String>(100, 1.0f);
         for (int i = 0; i < keys.length; i++) {
             factor.put(keys[i], values[i]);
         }
-        assertTrue("maps should be a copy of each other", ss_map.equals(factor));
+        assertEquals(ss_map, factor, "maps should be a copy of each other");
 
 
         THashMap<String, String> copy = new THashMap<String, String>(ss_map);
-        assertTrue("maps should be a copy of each other", ss_map.equals(copy));
+        assertEquals(ss_map, copy, "maps should be a copy of each other");
 
         for (int i = 0; i < keys.length; i++) {
             assertEquals(values[i], copy.get(keys[i]));
         }
 
-        Map<String, String> java_hashmap = new HashMap<String, String>();
+        Map<String, String> java_hashmap = new HashMap<>();
         for (int i = 0; i < keys.length; i++) {
             java_hashmap.put(keys[i], values[i]);
         }
         THashMap<String, String> java_hashmap_copy = new THashMap<String, String>(java_hashmap);
-        assertTrue("maps should be a copy of each other", ss_map.equals(java_hashmap_copy));
+        assertTrue(ss_map.equals(java_hashmap_copy), "maps should be a copy of each other");
 
     }
 
     // x'd out because we don't usually run tests with > 4gb heaps
     public void xxtestLargeCapacity() throws Exception {
         TByteByteHash large = new TByteByteHashMap(Integer.MAX_VALUE);
-        assertTrue("capacity was not respected", large.capacity() > 3);
+        assertTrue(large.capacity() > 3, "capacity was not respected");
     }
 
+    @Test
     public void testEquals() {
         String[] keys = {"Key1", "Key2", "Key3", "Key4", "Key5"};
         String[] values = {"Val1", "Val2", "Val3", "Val4", "Val5"};
@@ -121,17 +120,18 @@ public class THashMapTest extends TestCase {
             ss_map.put(keys[i], values[i]);
         }
 
-        assertFalse("should not equal random Object", ss_map.equals(new Object()));
+        assertFalse(ss_map.equals(new Object()), "should not equal random Object");
 
         THashMap<String, String> copy = new THashMap<String, String>(ss_map);
-        assertTrue("maps should be a copy of each other", ss_map.equals(copy));
+        assertTrue(ss_map.equals(copy), "maps should be a copy of each other");
 
         // Change the Length.
         copy.put("Key6", "Val6");
-        assertFalse("maps should no longer be a copy of each other", ss_map.equals(copy));
+        assertFalse(ss_map.equals(copy), "maps should no longer be a copy of each other");
     }
 
 
+    @Test
     public void testPut() throws Exception {
         assertEquals("put succeeded", null, ss_map.put("One", "two"));
         assertEquals("size did not reflect put", 1, ss_map.size());
@@ -140,6 +140,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutIfAbsent() throws Exception {
         assertEquals("putIfAbsent succeeded", null, ss_map.putIfAbsent("One", "two"));
         assertEquals("size did not reflect putIfAbsent", 1, ss_map.size());
@@ -153,6 +154,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() throws Exception {
         assertEquals("initial size was not zero", 0, ss_map.size());
         assertEquals("put succeeded", null, ss_map.put("One", "two"));
@@ -162,35 +164,39 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() throws Exception {
         String key = "hi";
-        assertTrue("should not contain key initially", !si_map.contains(key));
-        assertEquals("put succeeded", null, si_map.put(key, Integer.valueOf(1)));
-        assertTrue("key not found after put", si_map.contains(key));
-        assertFalse("non-existant key found", si_map.contains("bye"));
+        assertFalse(si_map.contains(key), "should not contain key initially");
+        assertNull(si_map.put(key, 1), "put succeeded");
+        assertTrue(si_map.contains(key), "key not found after put");
+        assertFalse(si_map.contains("bye"), "non-existant key found");
     }
 
 
+    @Test
     public void testContainsKey() throws Exception {
         String key = "hi";
-        assertTrue("should not contain key initially", !si_map.containsKey(key));
-        assertEquals("put succeeded", null, si_map.put(key, Integer.valueOf(1)));
-        assertTrue("key not found after put", si_map.containsKey(key));
-        assertFalse("non-existant key found", si_map.containsKey("bye"));
+        assertFalse(si_map.containsKey(key), "should not contain key initially");
+        assertNull(si_map.put(key, 1), "put succeeded");
+        assertTrue(si_map.containsKey(key), "key not found after put");
+        assertFalse(si_map.containsKey("bye"), "non-existant key found");
     }
 
 
+    @Test
     public void testContainsValue() throws Exception {
         String key = "hi";
         String value = "bye";
-        assertTrue("should not contain key initially", !ss_map.containsValue(value));
+        assertFalse(ss_map.containsValue(value), "should not contain key initially");
         assertEquals("put succeeded", null, ss_map.put(key, value));
-        assertTrue("key not found after put", ss_map.containsValue(value));
-        assertFalse("non-existant key found", ss_map.containsValue("whee"));
+        assertTrue(ss_map.containsValue(value), "key not found after put");
+        assertFalse(ss_map.containsValue("whee"), "non-existant key found");
     }
 
 
     @SuppressWarnings({"SuspiciousMethodCalls"})
+    @Test
     public void testGet() throws Exception {
         String key = "hi", val = "one", val2 = "two";
 
@@ -204,6 +210,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValues() throws Exception {
         String k1 = "1", k2 = "2", k3 = "3", k4 = "4", k5 = "5";
         String v1 = "x", v2 = "y", v3 = "z";
@@ -213,19 +220,20 @@ public class THashMapTest extends TestCase {
         ss_map.put(k3, v2);
         ss_map.put(k4, v3);
         ss_map.put(k5, v2);
-        Collection vals = ss_map.values();
-        assertEquals("size was not 5", 5, vals.size());
+        Collection<String> vals = ss_map.values();
+        assertEquals(vals.size(), 5, "size was not 5");
         vals.remove("z");
-        assertEquals("size was not 4", 4, vals.size());
+        assertEquals(4, vals.size(), "size was not 4");
         vals.remove("y");
-        assertEquals("size was not 3", 3, vals.size());
+        assertEquals(3, vals.size(), "size was not 3");
         vals.remove("y");
-        assertEquals("size was not 2", 2, vals.size());
-        assertEquals("map did not diminish to 2 entries", 2, ss_map.size());
+        assertEquals(2, vals.size(), "size was not 2");
+        assertEquals(2, ss_map.size(), "map did not diminish to 2 entries");
     }
 
 
     @SuppressWarnings({"WhileLoopReplaceableByForEach"})
+    @Test
     public void testKeySet() throws Exception {
         String key1 = "hi", key2 = "bye", key3 = "whatever";
         String val = "x";
@@ -234,9 +242,9 @@ public class THashMapTest extends TestCase {
         ss_map.put(key2, val);
         ss_map.put(key3, val);
 
-        Set keys = ss_map.keySet();
-        assertTrue("keyset did not match expected set",
-                keys.containsAll(Arrays.asList(key1, key2, key3)));
+        Set<String> keys = ss_map.keySet();
+        assertTrue(keys.containsAll(Arrays.asList(key1, key2, key3)),
+                "keyset did not match expected set");
         assertEquals(3, ss_map.size());
 
         int count = 0;
@@ -253,15 +261,16 @@ public class THashMapTest extends TestCase {
                 i.remove();
             }
         }
-        assertTrue("keyset did not match expected set",
-                keys.containsAll(Arrays.asList(key1, key3)));
+        assertTrue(keys.containsAll(Arrays.asList(key1, key3)),
+                "keyset did not match expected set");
     }
 
 
+    @Test
     public void testForEachKey() throws Exception {
         THashMap<Integer, String> map = new THashMap<Integer, String>();
         String[] vals = {"one", "two", "three", "four"};
-        Integer[] keys = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] keys = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             map.put(keys[i], vals[i]);
         }
@@ -272,15 +281,16 @@ public class THashMapTest extends TestCase {
                 return true;
             }
         };
-        assertTrue("should complete successfully", map.forEachKey(proc));
+        assertTrue(map.forEachKey(proc), "should complete successfully");
         assertEquals(10, count);
     }
 
 
+    @Test
     public void testForEachKeyFalse() throws Exception {
         THashMap<Integer, String> map = new THashMap<Integer, String>();
         String[] vals = {"one", "two", "three", "four"};
-        Integer[] keys = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] keys = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             map.put(keys[i], vals[i]);
         }
@@ -291,14 +301,15 @@ public class THashMapTest extends TestCase {
                 return false;
             }
         };
-        assertFalse("should Break after first iteration", map.forEachKey(proc));
+        assertFalse(map.forEachKey(proc), "should Break after first iteration");
         assertEquals(1, count);
     }
 
 
+    @Test
     public void testForEachValue() throws Exception {
         String[] keys = {"one", "two", "three", "four"};
-        Integer[] vals = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] vals = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             si_map.put(keys[i], vals[i]);
         }
@@ -314,9 +325,10 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachValueFalse() throws Exception {
         String[] keys = {"one", "two", "three", "four"};
-        Integer[] vals = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] vals = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             si_map.put(keys[i], vals[i]);
         }
@@ -327,14 +339,15 @@ public class THashMapTest extends TestCase {
                 return false;
             }
         };
-        assertFalse("should Break after first iteration", si_map.forEachValue(proc));
+        assertFalse(si_map.forEachValue(proc), "should Break after first iteration");
         assertEquals(1, count);
     }
 
 
+    @Test
     public void testForEachEntry() throws Exception {
         String[] keys = {"one", "two", "three", "four"};
-        Integer[] vals = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] vals = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             si_map.put(keys[i], vals[i]);
         }
@@ -351,9 +364,10 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachEntryInterrupt() throws Exception {
         String[] keys = {"one", "two", "three", "four"};
-        Integer[] vals = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] vals = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             si_map.put(keys[i], vals[i]);
         }
@@ -370,30 +384,32 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testTransformValues() throws Exception {
         String[] keys = {"one", "two", "three", "four"};
-        Integer[] vals = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] vals = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             si_map.put(keys[i], vals[i]);
         }
 
         TObjectFunction<Integer, Integer> func = new TObjectFunction<Integer, Integer>() {
             public Integer execute(Integer value) {
-                return new Integer(value << 1);
+                return value << 1;
             }
         };
         si_map.transformValues(func);
-        assertEquals(new Integer(2), si_map.get("one"));
-        assertEquals(new Integer(4), si_map.get("two"));
-        assertEquals(new Integer(6), si_map.get("three"));
-        assertEquals(new Integer(8), si_map.get("four"));
+        assertEquals(Integer.valueOf(2), si_map.get("one"));
+        assertEquals(Integer.valueOf(4), si_map.get("two"));
+        assertEquals(Integer.valueOf(6), si_map.get("three"));
+        assertEquals(Integer.valueOf(8), si_map.get("four"));
     }
 
 
     @SuppressWarnings({"ForLoopReplaceableByForEach"})
+    @Test
     public void testKeyIterator() throws Exception {
         String[] keys = {"one", "two", "three", "four"};
-        Integer[] vals = {new Integer(1), new Integer(2), new Integer(3), new Integer(4)};
+        Integer[] vals = {1, 2, 3, 4};
         for (int i = 0; i < keys.length; i++) {
             si_map.put(keys[i], vals[i]);
         }
@@ -407,12 +423,14 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsNullValue() throws Exception {
         si_map.put("a", null);
         assertTrue(si_map.containsValue(null));
     }
 
 
+    @Test
     public void testEntrySetContainsEntryWithNullValue() throws Exception {
         si_map.put("0", null);
         Map.Entry<String, Integer> ee = si_map.entrySet().iterator().next();
@@ -420,23 +438,26 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueSetRemoveNullValue() throws Exception {
         si_map.put("0", null);
         assertTrue(si_map.values().remove(null));
     }
 
 
+    @Test
     public void testSizeAfterEntrySetRemove() throws Exception {
         si_map.put("0", null);
         Map.Entry<String, Integer> ee = si_map.entrySet().iterator().next();
         assertTrue(ee.getKey().equals("0"));
         assertNull(ee.getValue());
-        assertTrue("remove on entrySet() returned false", si_map.entrySet().remove(ee));
+        assertTrue(si_map.entrySet().remove(ee), "remove on entrySet() returned false");
         assertEquals(0, si_map.size());
     }
 
 
     @SuppressWarnings({"SuspiciousMethodCalls"})
+    @Test
     public void testEntrySetRemoveSameKeyDifferentValues() throws Exception {
         ss_map.put("0", "abc");
         si_map.put("0", Integer.valueOf(123));
@@ -447,6 +468,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testSizeAfterMultipleReplacingPuts() throws Exception {
         ss_map.put("key", "a");
         assertEquals(1, ss_map.size());
@@ -456,9 +478,10 @@ public class THashMapTest extends TestCase {
 
 
     @SuppressWarnings({"unchecked"})
+    @Test
     public void testSerializable() throws Exception {
         // Use a non-standard load factor to more fully test serialization
-        THashMap<String, String> map = new THashMap<String, String>(100, 0.75f);
+        THashMap<String, String> map = new THashMap<>(100, 0.75f);
         map.put("a", "b");
         map.put("b", "c");
 
@@ -475,16 +498,13 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainEntries() throws Exception {
         ss_map.put("a", "b");
         ss_map.put("c", "b");
         ss_map.put("d", "b");
 
-        ss_map.retainEntries(new TObjectObjectProcedure<String, String>() {
-            public boolean execute(String key, String val) {
-                return key.equals("c");
-            }
-        });
+        ss_map.retainEntries((key, val) -> key.equals("c"));
 
         assertEquals(1, ss_map.size());
         assertTrue(ss_map.containsKey("c"));
@@ -492,8 +512,9 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutAll() throws Exception {
-        HashMap<String, String> map = new HashMap<String, String>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("one", "two");
         map.put("two", "four");
         map.put("three", "six");
@@ -502,6 +523,7 @@ public class THashMapTest extends TestCase {
 
 
     @SuppressWarnings({"RedundantStringConstructorCall"})
+    @Test
     public void testHashCode() throws Exception {
         THashMap<String, String> ss_map2 = new THashMap<String, String>();
         ss_map.put(new String("foo"), new String("bar"));
@@ -515,6 +537,7 @@ public class THashMapTest extends TestCase {
 
 
     @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection"})
+    @Test
     public void testBadlyWrittenKey() {
         THashMap<THashSetTest.Crap, Integer> map = new THashMap<THashSetTest.Crap, Integer>();
         boolean didThrow = false;
@@ -525,10 +548,11 @@ public class THashMapTest extends TestCase {
         } catch (IllegalArgumentException e) {
             didThrow = true;
         }
-        assertTrue("expected THashMap to throw an IllegalArgumentException", didThrow);
+        assertTrue(didThrow, "expected THashMap to throw an IllegalArgumentException");
     }
 
 
+    @Test
     public void testKeySetEqualsEquivalentSet() {
         Set<String> set = new HashSet<String>();
         set.add("foo");
@@ -544,6 +568,7 @@ public class THashMapTest extends TestCase {
 
 
     @SuppressWarnings({"unchecked"})
+    @Test
     public void testNullValue() {
         ss_map.put("foo", null);
         ss_map.put("bar", null);
@@ -553,6 +578,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testNullValueSize() {
         ss_map.put("narf", null);
         ss_map.put("narf", null);
@@ -560,9 +586,10 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testNullKey() {
         ss_map.put(null, "null");
-        assertEquals(null, ss_map.keySet().iterator().next());
+        assertNull(ss_map.keySet().iterator().next());
 
         ss_map.put("one", "1");
         ss_map.put("two", "2");
@@ -579,12 +606,13 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainEntrySet() {
         ss_map.put("one", "frodo");
         ss_map.put("two", "bilbo");
         ss_map.put("three", "samwise");
 
-        Map<String, String> subset = new HashMap<String, String>();
+        Map<String, String> subset = new HashMap<>();
         subset.put("two", "bilbo");
 
         assertTrue(ss_map.entrySet().retainAll(subset.entrySet()));
@@ -594,6 +622,7 @@ public class THashMapTest extends TestCase {
 
 
     @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection"})
+    @Test
     public void testMapEntrySetHashCode() {
         ss_map.put("one", "foo");
         Map<String, String> m2 = new THashMap<String, String>();
@@ -607,6 +636,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testEqualsAndHashCode() {
         THashMap<String, String> map1 = new THashMap<String, String>();
         map1.put("Key1", null);
@@ -614,8 +644,8 @@ public class THashMapTest extends TestCase {
         THashMap<String, String> map2 = new THashMap<String, String>();
         map2.put("Key2", "Value2");
 
-        assertFalse("map1.equals( map2 )", map1.equals(map2));
-        assertFalse("map2.equals( map1 )", map2.equals(map1));
+        assertFalse(map1.equals(map2), "map1.equals( map2 )");
+        assertFalse(map2.equals(map1), "map2.equals( map1 )");
 
         THashMap<String, String> clone_map1 = new THashMap<String, String>(map1);
         THashMap<String, String> clone_map2 = new THashMap<String, String>(map2);
@@ -631,6 +661,7 @@ public class THashMapTest extends TestCase {
      * Test case for bug #1428614.
      * http://sourceforge.net/tracker/index.php?func=detail&aid=1428614&group_id=39235&atid=424682
      */
+    @Test
     public void testRemoveValue() {
         ss_map.put("one", "a");
         ss_map.put("two", "a");
@@ -653,6 +684,7 @@ public class THashMapTest extends TestCase {
      * wiggy, but since the case was useful once, I figure I'll leave it in. - RDE
      */
     @SuppressWarnings({"ForLoopReplaceableByForEach", "MismatchedQueryAndUpdateOfCollection"})
+    @Test
     public void testProblematicRemove() {
         int[] to_add = new int[] {9707851, 1432929, 7941420, 8698105, 9178562, 14368620, 2165498,
                 5759024, 4160722, 1835074, 5570057, 15866937, 1774305, 7645103, 11340758, 14962053,
@@ -786,6 +818,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIterable() {
         Map<String, Integer> m = new THashMap<String, Integer>();
         m.put("One", Integer.valueOf(1));
@@ -801,6 +834,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeysFunctions() {
         int element_count = 10;
         String[] keys = new String[element_count];
@@ -813,18 +847,19 @@ public class THashMapTest extends TestCase {
         assertEquals(element_count, ss_map.size());
 
         Collection<String> keys_set = ss_map.keySet();
-        assertTrue("should contain " + keys[5] + ", " + ss_map, keys_set.contains(keys[5]));
+        assertTrue(keys_set.contains(keys[5]), "should contain " + keys[5] + ", " + ss_map);
 
-        assertFalse("invalid remove succeeded " + keys_set, keys_set.remove("non-existant"));
-        assertTrue("remove failed: " + keys_set, keys_set.remove(keys[5]));
-        assertFalse("key set contains removed item", keys_set.contains(keys[5]));
-        assertFalse("map contains removed item" + ss_map, ss_map.contains(keys[5]));
-        assertFalse("map contains removed item" + ss_map, ss_map.containsKey(keys[5]));
+        assertFalse(keys_set.remove("non-existant"), "invalid remove succeeded " + keys_set);
+        assertTrue(keys_set.remove(keys[5]), "remove failed: " + keys_set);
+        assertFalse(keys_set.contains(keys[5]), "key set contains removed item");
+        assertFalse(ss_map.contains(keys[5]), "map contains removed item" + ss_map);
+        assertFalse(ss_map.containsKey(keys[5]), "map contains removed item" + ss_map);
 
-        assertFalse("cannot remove item not in set", keys_set.remove("non-existant"));
+        assertFalse(keys_set.remove("non-existant"), "cannot remove item not in set");
     }
 
 
+    @Test
     public void testValuesFunctions() {
         int element_count = 10;
         String[] vals = new String[element_count];
@@ -835,19 +870,19 @@ public class THashMapTest extends TestCase {
         assertEquals(element_count, ss_map.size());
 
         Collection<String> values_set = ss_map.values();
-        assertTrue("should contain " + vals[5] + ", " + ss_map, values_set.contains(vals[5]));
+        assertTrue(values_set.contains(vals[5]), "should contain " + vals[5] + ", " + ss_map);
 
         Set<String> set = new HashSet<String>();
         for (int i = 0; i < element_count; i++) {
             vals[i] = "Val" + i;
             set.add(vals[i]);
         }
-        assertTrue("should contain all: " + values_set + ", " + set, values_set.containsAll(set));
+        assertTrue(values_set.containsAll(set), "should contain all: " + values_set + ", " + set);
         set.add("cause failure");
-        assertFalse("shouldn't contain all: " + values_set, values_set.containsAll(set));
+        assertFalse(values_set.containsAll(set), "shouldn't contain all: " + values_set);
 
         values_set.clear();
-        assertEquals("values set size should be 0", 0, values_set.size());
+        assertEquals(0, values_set.size(), "values set size should be 0");
         assertEquals("map size should be 0", 0, ss_map.size());
         assertTrue(values_set.isEmpty());
 
@@ -868,6 +903,7 @@ public class THashMapTest extends TestCase {
 
 
     @SuppressWarnings({"ToArrayCallWithZeroLengthArrayArgument"})
+    @Test
     public void testValuesToArray() {
         int element_count = 10;
         String[] vals = new String[element_count];
@@ -894,6 +930,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorFunctions() throws Exception {
         int element_count = 10;
         String[] keys = new String[element_count];
@@ -915,13 +952,14 @@ public class THashMapTest extends TestCase {
         iter = ss_map.entrySet().iterator();
         assertTrue(iter.hasNext());
         Map.Entry<String, String> ee = iter.next();
-        assertTrue("remove on entrySet() returned false", ss_map.entrySet().remove(ee));
+        assertTrue(ss_map.entrySet().remove(ee), "remove on entrySet() returned false");
 
         assertEquals(element_count - 1, ss_map.size());
     }
 
 
     @SuppressWarnings({"unchecked"})
+    @Test
     public void testEntrySetFunctions() {
         int element_count = 10;
         String[] keys = new String[element_count];
@@ -950,100 +988,110 @@ public class THashMapTest extends TestCase {
         assertTrue(ss_map.values().contains(new_value));
         assertTrue(ss_map.containsValue(new_value));
 
-        assertFalse("equal vs. random object incorrect", ee.equals(new Object()));
+        assertFalse(ee.equals(new Object()), "equal vs. random object incorrect");
 
     }
 
-    // public void testGetOverRemovedObjectBug() {
-    // Map<BadHashInteger,String> m = new THashMap<BadHashInteger,String>(
-    // new TObjectHashingStrategy<BadHashInteger>() {
-    // public int computeHashCode(BadHashInteger object) {
-    // return object.hashCode();
-    // }
-    //
-    // public boolean equals(BadHashInteger o1, BadHashInteger o2) {
-    // return o1.value == o2.value;
-    // }
-    // } );
-    //
-    //
-    // m.put( new BadHashInteger( 1 ), "one" );
-    // m.put( new BadHashInteger( 2 ), "two" );
-    //
-    // m.remove( new BadHashInteger( 1 ) );
-    //
-    // assertEquals( 1, m.size() );
-    //
-    // // Blow up here?
-    // assertEquals( "two", m.get( new BadHashInteger( 2 ) ) );
-    // }
-    //
-    // public void testReaddBug() {
-    // Map<Integer,String> m = new THashMap<Integer,String>(
-    // new TObjectHashingStrategy<Integer>() {
-    // public int computeHashCode(Integer object) {
-    // return object.intValue();
-    // }
-    //
-    // public boolean equals(Integer o1, Integer o2) {
-    // return o1.intValue() == o2.intValue();
-    // }
-    // } );
-    //
-    // m.put( new Integer( 1 ), "one" );
-    // assertEquals(1, m.size());
-    //
-    // m.remove( new Integer( 1 ) );
-    // assertEquals(0, m.size());
-    //
-    // m.put( new Integer( 1 ), "one" );
-    // assertEquals(1, m.size());
-    // }
+    // @Test
+    public void testGetOverRemovedObjectBug() {
+
+        // Map<BadHashInteger,String> m = new THashMap<BadHashInteger,String>(
+        // new TObjectHashingStrategy<BadHashInteger>() {
+        // public int computeHashCode(BadHashInteger object) {
+        // return object.hashCode();
+        // }
+        //
+        // public boolean equals(BadHashInteger o1, BadHashInteger o2) {
+        // return o1.value == o2.value;
+        // }
+        // } );
+        //
+        //
+        // m.put( new BadHashInteger( 1 ), "one" );
+        // m.put( new BadHashInteger( 2 ), "two" );
+        //
+        // m.remove( new BadHashInteger( 1 ) );
+        //
+        // assertEquals( 1, m.size() );
+        //
+        // // Blow up here?
+        // assertEquals( "two", m.get( new BadHashInteger( 2 ) ) );
+        // }
+        //
+    }
+
+    @Test
+    public void testReaddBug() {
+        // Map<Integer,String> m = new THashMap<Integer,String>(
+        // new TObjectHashingStrategy<Integer>() {
+        // public int computeHashCode(Integer object) {
+        // return object.intValue();
+        // }
+        //
+        // public boolean equals(Integer o1, Integer o2) {
+        // return o1.intValue() == o2.intValue();
+        // }
+        // } );
+        //
+        // m.put( new Integer( 1 ), "one" );
+        // assertEquals(1, m.size());
+        //
+        // m.remove( new Integer( 1 ) );
+        // assertEquals(0, m.size());
+        //
+        // m.put( new Integer( 1 ), "one" );
+        // assertEquals(1, m.size());
+        // }
+    }
 
 
+    @Test
     public void testToString() {
         ss_map.put("One", "1");
         ss_map.put("Two", "2");
 
         String to_string = ss_map.toString();
-        assertTrue(to_string,
-                to_string.equals("{One=1, Two=2}") || to_string.equals("{Two=2, One=1}"));
+        assertTrue(to_string.equals("{One=1, Two=2}") || to_string.equals("{Two=2, One=1}"),
+                to_string);
     }
 
 
+    @Test
     public void testEntrySetToString() {
         Map<String, String> map = new THashMap<String, String>();
         map.put("One", "1");
         map.put("Two", "2");
 
         String to_string = map.entrySet().toString();
-        assertTrue(to_string,
-                to_string.equals("{One=1, Two=2}") || to_string.equals("{Two=2, One=1}"));
+        assertTrue(to_string.equals("{One=1, Two=2}") || to_string.equals("{Two=2, One=1}"),
+                to_string);
     }
 
+    @Test
     public void testKeySetToString() {
         Map<String, String> map = new THashMap<String, String>();
         map.put("One", "1");
         map.put("Two", "2");
 
         String to_string = map.keySet().toString();
-        assertTrue(to_string, to_string.equals("{One, Two}") || to_string.equals("{Two, One}"));
+        assertTrue(to_string.equals("{One, Two}") || to_string.equals("{Two, One}"), to_string);
     }
 
+    @Test
     public void testValuesToString() {
         Map<String, String> map = new THashMap<String, String>();
         map.put("One", "1");
         map.put("Two", "2");
 
         String to_string = map.values().toString();
-        assertTrue(to_string, to_string.equals("{1, 2}") || to_string.equals("{2, 1}"));
+        assertTrue(to_string.equals("{1, 2}") || to_string.equals("{2, 1}"), to_string);
     }
-
 
 
     /**
      * Make sure that REMOVED entries are pruned when doing compaction.
      */
+    @Test
     public void testRemovedSlotPruning() {
         THashMap<String, String> map = new THashMap<String, String>();
         map.put("ONE", "1");
@@ -1084,6 +1132,7 @@ public class THashMapTest extends TestCase {
     /**
      * Make sure that REMOVED entries are pruned when doing compaction.
      */
+    @Test
     public void testFreeSlotCounterConsistency() {
         THashMap<String, String> map = new THashMap<String, String>();
         HashTestKit.checkFreeSlotCount(map, map._set, TObjectHash.FREE);
@@ -1108,6 +1157,7 @@ public class THashMapTest extends TestCase {
 
 
     // Test for issue 3159432
+    @Test
     public void testEntrySetRemove() {
         THashMap<String, String> map = new THashMap<String, String>();
         map.put("ONE", "1");
@@ -1122,6 +1172,7 @@ public class THashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testNullKeyHandling() {
         THashMap<String, String> map = new THashMap<String, String>();
         map.put(null, "My null key");
@@ -1145,6 +1196,5 @@ public class THashMapTest extends TestCase {
             assertEquals(String.valueOf(i), map.get(String.valueOf(i)));
         }
     }
-
 
 } // THashMapTests

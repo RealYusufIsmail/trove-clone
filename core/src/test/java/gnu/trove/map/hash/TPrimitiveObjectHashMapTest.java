@@ -30,7 +30,8 @@ import gnu.trove.procedure.TIntProcedure;
 import gnu.trove.procedure.TObjectProcedure;
 import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -38,28 +39,27 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
  *
  */
-public class TPrimitiveObjectHashMapTest extends TestCase {
-
-    public TPrimitiveObjectHashMapTest(String name) {
-        super(name);
-    }
+public class TPrimitiveObjectHashMapTest {
 
 
+    @Test
     public void testBug2975214() {
         TIntObjectHashMap<Integer> map = new TIntObjectHashMap<Integer>(5);
         for (int i = 0; i < 9; i++) {
             System.out.println("Pass: " + i);
-            map.put(i, new Integer(i));
+            map.put(i, i);
             map.remove(i);
         }
     }
 
 
+    @Test
     public void testConstructors() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -96,6 +96,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsKey() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -118,6 +119,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsValue() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -150,6 +152,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutIfAbsent() {
         TIntObjectMap<String> map = new TIntObjectHashMap<String>();
 
@@ -164,6 +167,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -195,6 +199,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutAllMap() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -219,6 +224,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutAll() throws Exception {
         TIntObjectMap<String> t = new TIntObjectHashMap<String>();
         TIntObjectMap<String> m = new TIntObjectHashMap<String>();
@@ -235,6 +241,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -256,6 +263,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySet() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -329,6 +337,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetAdds() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -383,6 +392,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetContainsAllCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -418,6 +428,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetContainsAllTCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -454,6 +465,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetContainsAllArray() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -485,6 +497,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRetainAllCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -538,6 +551,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRetainAllTCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -574,6 +588,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRetainAllArray() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -610,6 +625,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRemoveAllCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -650,6 +666,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRemoveAllTCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -698,6 +715,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetRemoveAllArray() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -749,6 +767,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetEqual() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -788,6 +807,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetHashCode() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -815,6 +835,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeys() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -864,6 +885,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
 
 
     @SuppressWarnings({"ToArrayCallWithZeroLengthArrayArgument"})
+    @Test
     public void testValueCollectionToArray() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -937,6 +959,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionAdds() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -973,7 +996,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
         }
 
         try {
-            Collection<String> test = new ArrayList<String>();
+            Collection<String> test = new ArrayList<>();
             test.add("1138");
             collection.addAll(test);
             fail("Expected UnsupportedOperationException");
@@ -990,6 +1013,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionContainsAll() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1009,7 +1033,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
         }
         assertFalse(collection.isEmpty());
 
-        List<String> java_list = new ArrayList<String>();
+        List<String> java_list = new ArrayList<>();
         java_list.addAll(Arrays.asList(vals));
         assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
                 collection.containsAll(java_list));
@@ -1037,6 +1061,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1056,7 +1081,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
         }
         assertFalse(collection.isEmpty());
 
-        List<String> java_list = new ArrayList<String>();
+        List<String> java_list = new ArrayList<>();
         java_list.addAll(Arrays.asList(vals));
         assertFalse("collection: " + collection + ", should contain all in list: " + java_list,
                 collection.retainAll(java_list));
@@ -1072,6 +1097,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllTCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1109,6 +1135,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1128,7 +1155,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
         }
         assertFalse(collection.isEmpty());
 
-        List<String> java_list = new ArrayList<String>();
+        List<String> java_list = new ArrayList<>();
         assertFalse("collection: " + collection + ", should contain all in list: " + java_list,
                 collection.removeAll(java_list));
 
@@ -1139,7 +1166,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
         assertFalse(map.containsKey(keys[5]));
         assertFalse(map.containsValue(vals[5]));
 
-        java_list = new ArrayList<String>();
+        java_list = new ArrayList<>();
         java_list.addAll(Arrays.asList(vals));
         assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
                 collection.removeAll(java_list));
@@ -1147,6 +1174,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllTCollection() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1166,7 +1194,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
         }
         assertFalse(collection.isEmpty());
 
-        Collection<String> other = new ArrayList<String>();
+        Collection<String> other = new ArrayList<>();
         assertFalse("collection: " + collection + ", should be unmodified.",
                 collection.removeAll(other));
 
@@ -1196,6 +1224,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValues() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1244,6 +1273,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
         TIntObjectHashMap<String> map = new TIntObjectHashMap<String>();
 
@@ -1290,6 +1320,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemoval() {
         TIntObjectHashMap<String> map = new TIntObjectHashMap<String>();
 
@@ -1342,6 +1373,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemoval2() {
         int element_count = 10000;
         int remaining = element_count / 2;
@@ -1364,6 +1396,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachKey() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1430,6 +1463,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachValue() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1446,7 +1480,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
 
         class ForEach implements TObjectProcedure<String> {
 
-            List<String> built = new ArrayList<String>();
+            List<String> built = new ArrayList<>();
 
 
             public boolean execute(String value) {
@@ -1473,7 +1507,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
 
         class ForEachFalse implements TObjectProcedure<String> {
 
-            List<String> built = new ArrayList<String>();
+            List<String> built = new ArrayList<>();
 
 
             public boolean execute(String value) {
@@ -1496,6 +1530,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachEntry() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1557,6 +1592,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRetain() {
         TIntObjectHashMap<String> map = new TIntObjectHashMap<String>();
 
@@ -1640,6 +1676,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testTransformValues() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1667,6 +1704,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1710,6 +1748,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testHashCode() {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1776,6 +1815,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
 
 
     @SuppressWarnings({"unchecked"})
+    @Test
     public void testSerialize() throws Exception {
         int element_count = 20;
         int[] keys = new int[element_count];
@@ -1801,6 +1841,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testToString() {
         TIntObjectHashMap<String> m = new TIntObjectHashMap<String>();
         m.put(11, "One");
@@ -1816,6 +1857,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
      * Test for tracking issue #1204014. +0.0 and -0.0 have different bit patterns, but should be
      * counted the same as keys in a map. Checks for doubles and floats.
      */
+    @Test
     public void testFloatZeroHashing() {
         TDoubleObjectHashMap<String> po_double_map = new TDoubleObjectHashMap<String>();
         TDoubleIntHashMap pp_double_map = new TDoubleIntHashMap();
@@ -1897,6 +1939,7 @@ public class TPrimitiveObjectHashMapTest extends TestCase {
 
     // Testing issue from:
     // https://sourceforge.net/projects/trove4j/forums/forum/121845/topic/4969032
+    @Test
     public void testForumIssue_20120124() {
         TIntObjectHashMap<String> string_map = new TIntObjectHashMap<String>();
         string_map.put(1, "one");

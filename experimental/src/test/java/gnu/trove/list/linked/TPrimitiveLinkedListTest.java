@@ -24,7 +24,7 @@ import gnu.trove.list.TIntList;
 import gnu.trove.procedure.TIntProcedure;
 import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
-import junit.framework.TestCase;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -36,7 +36,7 @@ import java.util.*;
  * Created by IntelliJ IDEA. User: jparent Date: 24/03/11 Time: 12:27 To change this template use
  * File | Settings | File Templates.
  */
-public class TPrimitiveLinkedListTest extends TestCase {
+public class TPrimitiveLinkedListTest {
 
     private TIntList list;
 
@@ -58,6 +58,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testGet() {
 
         assertEquals(4, list.get(3));
@@ -90,6 +91,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() {
         int element_count = 10;
 
@@ -108,6 +110,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testInsert() {
         int element_count = 10;
 
@@ -136,6 +139,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testInsertArray() {
         int element_count = 10;
         int[] ints = {1138, 42, 86, 99, 101};
@@ -159,6 +163,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testInsertAtEnd() {
         int element_count = 10;
 
@@ -181,6 +186,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testInsertArrayAtEnd() {
         int element_count = 10;
         int[] ints = {1138, 42, 86, 99, 101};
@@ -203,6 +209,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSetArray() {
         int element_count = 10;
         int[] ints = {1138, 42, 86, 99, 101};
@@ -232,6 +239,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSet() {
         int element_count = 10;
 
@@ -268,6 +276,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testReplace() {
         int element_count = 10;
 
@@ -304,6 +313,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() {
         int element_count = 10;
 
@@ -376,6 +386,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveMultiple() {
         int element_count = 20;
 
@@ -400,6 +411,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveChunk() {
         int element_count = 20;
 
@@ -438,6 +450,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -473,6 +486,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsAllTCollection() {
         int element_count = 20;
         TIntLinkedList list = new TIntLinkedList(element_count * 2);
@@ -509,6 +523,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsAllArray() {
         int element_count = 20;
         int[] ints = new int[element_count];
@@ -527,6 +542,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -556,6 +572,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAllTCollection() {
         int element_count = 20;
         TIntLinkedList source = new TIntLinkedList();
@@ -585,6 +602,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAllArray() {
         int element_count = 20;
         int[] ints = new int[element_count];
@@ -611,6 +629,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -648,6 +667,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAllTCollection() {
         int element_count = 20;
         TIntList other = new TIntLinkedList();
@@ -686,6 +706,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAllArray() {
         int element_count = 20;
         int ints[] = new int[element_count];
@@ -724,6 +745,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -770,6 +792,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAllTCollection() {
         int element_count = 20;
         TIntList other = new TIntLinkedList();
@@ -824,6 +847,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAllArray() {
         int element_count = 20;
         int ints[] = new int[element_count];
@@ -867,6 +891,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testShuffle() {
         int element_count = 20;
         TIntList list = new TIntLinkedList(20);
@@ -895,6 +920,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
         int element_count = 20;
         TIntList list = new TIntLinkedList();
@@ -931,6 +957,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorAbuseNext() {
         int element_count = 20;
         TIntList list = new TIntLinkedList();
@@ -957,8 +984,8 @@ public class TPrimitiveLinkedListTest extends TestCase {
 
     /*
      * Disable since not clear how iterator implementation can detect concurrent modification and
-     * throw CME public void testIteratorAbuseRemove() { int element_count = 20; TIntList list = new
-     * TIntLinkedList(); for ( int i = 0; i < element_count; i++ ) { list.add( i ); }
+     * throw CME@Test public void testIteratorAbuseRemove() { int element_count = 20; TIntList list
+     * = new TIntLinkedList(); for ( int i = 0; i < element_count; i++ ) { list.add( i ); }
      * 
      * TIntIterator iter = list.iterator(); while ( iter.hasNext() ) { iter.next(); } assertFalse(
      * iter.hasNext() );
@@ -971,7 +998,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
 
 
     /*
-     * public void testEnsureCapacity() { int size = 1000; TIntLinkedList array_list = new
+     * @Test public void testEnsureCapacity() { int size = 1000; TIntLinkedList array_list = new
      * TIntLinkedList(); int initial_length = array_list._data.length; assertEquals(
      * Constants.DEFAULT_CAPACITY, initial_length );
      * 
@@ -979,7 +1006,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
      * "not large enough: " + max_length + " should be >= " + size, max_length >= size ); }
      * 
      * 
-     * public void testTrimToSize() { int initial_size = 1000; int element_count = 100;
+     * @Test public void testTrimToSize() { int initial_size = 1000; int element_count = 100;
      * 
      * TIntLinkedList array_list = new TIntLinkedList( initial_size ); int initial_length =
      * array_list._data.length; assertEquals( initial_size, initial_length ); assertTrue(
@@ -992,6 +1019,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
      */
 
 
+    @Test
     public void testToArray() {
         assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, list.toArray()));
         assertTrue(Arrays.equals(new int[] {1, 2, 3, 4}, list.toArray(0, 4)));
@@ -1007,6 +1035,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithDest() {
         int[] dest = new int[5];
         assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, list.toArray(dest)));
@@ -1026,6 +1055,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithDestTarget() {
         int[] dest = new int[5];
         assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, list.toArray(dest)));
@@ -1048,6 +1078,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSubList() throws Exception {
         TIntList subList = list.subList(1, 4);
         assertEquals(3, subList.size());
@@ -1056,6 +1087,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSublist_Exceptions() {
         try {
             list.subList(1, 0);
@@ -1077,6 +1109,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIndexOf() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1106,6 +1139,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testBinarySearch() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1151,6 +1185,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testFill() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1165,6 +1200,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testFillOffsets() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1197,6 +1233,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testGrep() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1217,6 +1254,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testInverseGrep() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1237,6 +1275,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testMax() {
         assertEquals(5, list.max());
         assertEquals(1, list.min());
@@ -1269,6 +1308,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEach() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1297,6 +1337,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachFalse() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1326,6 +1367,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachDescending() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1355,6 +1397,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachDescendingFalse() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1385,6 +1428,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testTransform() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1406,6 +1450,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testReverse() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1423,6 +1468,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testReversePartial() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1446,6 +1492,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSortPartial() {
         int element_count = 20;
         TIntList a = new TIntLinkedList();
@@ -1470,6 +1517,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int element_count = 20;
         TIntList list = new TIntLinkedList();
@@ -1497,6 +1545,7 @@ public class TPrimitiveLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialization() throws Exception {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         ObjectOutputStream oout = new ObjectOutputStream(bout);

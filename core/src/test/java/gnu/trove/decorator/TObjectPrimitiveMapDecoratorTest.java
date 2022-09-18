@@ -20,7 +20,8 @@ package gnu.trove.decorator;
 import gnu.trove.TDecorators;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -28,6 +29,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -37,13 +39,11 @@ import java.util.*;
  * @author Robert D. Eden
  * @author Jeff Randall
  * @author Jim Davies
+ * @author Yusuf A. Ismail
  */
-public class TObjectPrimitiveMapDecoratorTest extends TestCase {
+public class TObjectPrimitiveMapDecoratorTest {
 
-    public TObjectPrimitiveMapDecoratorTest(String name) {
-        super(name);
-    }
-
+    @Test
     public void testConstructorWithNull() {
         boolean expectionThrown = false;
         try {
@@ -52,16 +52,17 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
             expectionThrown = true;
         }
 
-        assertTrue("Wrapping a null value should result in an expection being thrown.",
-                expectionThrown);
+        assertTrue(expectionThrown,
+                "Wrapping a null value should result in an expection being thrown.");
     }
 
+    @Test
     public void testConstructors() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
             vals[i] = i + 1;
@@ -69,7 +70,7 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         }
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
-        TObjectIntHashMap<String> raw_capacity = new TObjectIntHashMap<String>(20);
+        TObjectIntHashMap<String> raw_capacity = new TObjectIntHashMap<>(20);
         for (int i = 0; i < element_count; i++) {
             raw_capacity.put(keys[i], vals[i]);
         }
@@ -77,7 +78,7 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         assertEquals(raw_map, raw_capacity);
         assertEquals(map, capacity);
 
-        TObjectIntHashMap<String> raw_cap_and_factor = new TObjectIntHashMap<String>(20, 0.75f);
+        TObjectIntHashMap<String> raw_cap_and_factor = new TObjectIntHashMap<>(20, 0.75f);
         for (int i = 0; i < element_count; i++) {
             raw_cap_and_factor.put(keys[i], vals[i]);
         }
@@ -86,7 +87,7 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         assertEquals(map, cap_and_factor);
 
         TObjectIntHashMap<String> raw_fully_specified =
-                new TObjectIntHashMap<String>(20, 0.75f, Integer.MIN_VALUE);
+                new TObjectIntHashMap<>(20, 0.75f, Integer.MIN_VALUE);
         Map<String, Integer> fully_specified = TDecorators.wrap(raw_fully_specified);
 
         for (int i = 0; i < element_count; i++) {
@@ -94,19 +95,20 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         }
         assertEquals(map, fully_specified);
 
-        TObjectIntHashMap<String> raw_copy = new TObjectIntHashMap<String>(raw_map);
+        TObjectIntHashMap<String> raw_copy = new TObjectIntHashMap<>(raw_map);
         Map<String, Integer> copy = TDecorators.wrap(raw_copy);
         assertEquals(raw_map, raw_copy);
         assertEquals(map, copy);
     }
 
 
+    @Test
     public void testGetMap() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
             vals[i] = i + 1;
@@ -120,12 +122,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
 
 
 
+    @Test
     public void testContainsKey() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> map = new TObjectIntHashMap<>();
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
             vals[i] = i + 1;
@@ -133,24 +136,25 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         }
 
         for (int i = 0; i < element_count; i++) {
-            assertTrue("Key should be present: " + keys[i] + ", map: " + map,
-                    map.containsKey(keys[i]));
+            assertTrue(map.containsKey(keys[i]),
+                    "Key should be present: " + keys[i] + ", map: " + map);
         }
 
         String key = "1138";
-        assertFalse("Key should not be present: " + key + ", map: " + map, map.containsKey(key));
+        assertFalse(map.containsKey(key), "Key should not be present: " + key + ", map: " + map);
 
-        assertFalse("Random object should not be present in map: " + map,
-                map.containsKey(new Object()));
+        assertFalse(map.containsKey(new Object()),
+                "Random object should not be present in map: " + map);
     }
 
 
+    @Test
     public void testContainsValue() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> map = new TObjectIntHashMap<>();
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
             vals[i] = i + 1;
@@ -158,17 +162,18 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         }
 
         for (int i = 0; i < element_count; i++) {
-            assertTrue("Value should be present: " + vals[i] + ", map: " + map,
-                    map.containsValue(vals[i]));
+            assertTrue(map.containsValue(vals[i]),
+                    "Value should be present: " + vals[i] + ", map: " + map);
         }
 
         int val = 1138;
-        assertFalse("Key should not be present: " + val + ", map: " + map, map.containsValue(val));
+        assertFalse(map.containsValue(val), "Key should not be present: " + val + ", map: " + map);
     }
 
 
+    @Test
     public void testPutIfAbsent() {
-        TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
+        TObjectIntHashMap<String> map = new TObjectIntHashMap<>();
 
         map.put("One", 1);
         map.put("Two", 2);
@@ -181,12 +186,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() {
         int element_count = 20;
         String[] keys = new String[element_count];
         Integer[] vals = new Integer[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
@@ -196,18 +202,18 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
 
         for (int i = 0; i < element_count; i++) {
             if (i % 2 == 1) {
-                assertEquals("Remove should have modified map: " + keys[i] + ", map: " + map,
-                        vals[i], map.remove(keys[i]));
+                assertEquals(vals[i], map.remove(keys[i]),
+                        "Remove should have modified map: " + keys[i] + ", map: " + map);
             }
         }
 
         for (int i = 0; i < element_count; i++) {
             if (i % 2 == 1) {
-                assertNull("Removed key still in map: " + keys[i] + ", map: " + map,
-                        map.get(keys[i]));
+                assertNull(map.get(keys[i]),
+                        "Removed key still in map: " + keys[i] + ", map: " + map);
             } else {
-                assertEquals("Key should still be in map: " + keys[i] + ", map: " + map, vals[i],
-                        map.get(keys[i]));
+                assertEquals(vals[i], map.get(keys[i]),
+                        "Key should still be in map: " + keys[i] + ", map: " + map);
             }
         }
 
@@ -220,24 +226,25 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         assertEquals(raw_map.getNoEntryValue(), raw_map.get("null-value"));
         assertTrue(map.containsKey("null-value"));
         Integer value = map.get("null-value");
-        assertNull("value: " + value, value);
+        assertNull(value, "value: " + value);
         assertNull(map.remove("null-value"));
     }
 
 
+    @Test
     public void testPutAllMap() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> control = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> control = new TObjectIntHashMap<>();
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
             vals[i] = i + 1;
             control.put(keys[i], vals[i]);
         }
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         Map<String, Integer> source = new HashMap<String, Integer>();
@@ -251,12 +258,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
@@ -275,12 +283,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySet() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
@@ -349,12 +358,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetAdds() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
         for (int i = 0; i < element_count; i++) {
             keys[i] = Integer.toString(i + 1);
@@ -387,12 +397,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testKeys() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -438,13 +449,14 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionToArray() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
         TObjectIntMap<String> raw_map =
-                new TObjectIntHashMap<String>(element_count, 0.5f, Integer.MIN_VALUE);
+                new TObjectIntHashMap<>(element_count, 0.5f, Integer.MIN_VALUE);
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -515,12 +527,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionAdds() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -574,12 +587,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionContainsAll() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -599,38 +613,39 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         for (int value : vals) {
             java_list.add(value);
         }
-        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
-                collection.containsAll(java_list));
-        java_list.add(Integer.valueOf(1138));
-        assertFalse("collection: " + collection + ", should not contain all in list: " + java_list,
-                collection.containsAll(java_list));
+        assertTrue(collection.containsAll(java_list),
+                "collection: " + collection + ", should contain all in list: " + java_list);
+        java_list.add(1138);
+        assertFalse(collection.containsAll(java_list),
+                "collection: " + collection + ", should not contain all in list: " + java_list);
 
         List<Number> number_list = new ArrayList<Number>();
         for (int value : vals) {
             if (value == 5) {
-                number_list.add(Long.valueOf(value));
+                number_list.add((long) value);
             } else {
-                number_list.add(Integer.valueOf(value));
+                number_list.add(value);
             }
         }
-        assertFalse("collection: " + collection + ", should not contain all in list: " + java_list,
-                collection.containsAll(number_list));
+        assertFalse(collection.containsAll(number_list),
+                "collection: " + collection + ", should not contain all in list: " + java_list);
 
         Collection<Integer> other = new ArrayList<Integer>(collection);
-        assertTrue("collection: " + collection + ", should contain all in other: " + other,
-                collection.containsAll(other));
+        assertTrue(collection.containsAll(other),
+                "collection: " + collection + ", should contain all in other: " + other);
         other.add(1138);
-        assertFalse("collection: " + collection + ", should not contain all in other: " + other,
-                collection.containsAll(other));
+        assertFalse(collection.containsAll(other),
+                "collection: " + collection + ", should not contain all in other: " + other);
     }
 
 
+    @Test
     public void testValueCollectionRetainAllCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -650,26 +665,27 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         for (int value : vals) {
             java_list.add(value);
         }
-        assertFalse("collection: " + collection + ", should contain all in list: " + java_list,
-                collection.retainAll(java_list));
+        assertFalse(collection.retainAll(java_list),
+                "collection: " + collection + ", should contain all in list: " + java_list);
 
         java_list.remove(5);
-        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
-                collection.retainAll(java_list));
+        assertTrue(collection.retainAll(java_list),
+                "collection: " + collection + ", should contain all in list: " + java_list);
         assertFalse(collection.contains(vals[5]));
         assertFalse(map.containsKey(keys[5]));
         assertFalse(map.containsValue(vals[5]));
-        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
-                collection.containsAll(java_list));
+        assertTrue(collection.containsAll(java_list),
+                "collection: " + collection + ", should contain all in list: " + java_list);
     }
 
 
+    @Test
     public void testValueCollectionRetainAllTCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -685,30 +701,31 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         }
         assertFalse(collection.isEmpty());
 
-        assertFalse("collection: " + collection + ", should be unmodified.",
-                collection.retainAll(collection));
+        assertFalse(collection.retainAll(collection),
+                "collection: " + collection + ", should be unmodified.");
 
         Collection<Integer> other = new ArrayList<Integer>(collection);
-        assertFalse("collection: " + collection + ", should be unmodified. other: " + other,
-                collection.retainAll(other));
+        assertFalse(collection.retainAll(other),
+                "collection: " + collection + ", should be unmodified. other: " + other);
 
         other.remove(vals[5]);
-        assertTrue("collection: " + collection + ", should be modified. other: " + other,
-                collection.retainAll(other));
+        assertTrue(collection.retainAll(other),
+                "collection: " + collection + ", should be modified. other: " + other);
         assertFalse(collection.contains(vals[5]));
         assertFalse(map.containsKey(keys[5]));
         assertFalse(map.containsValue(vals[5]));
-        assertTrue("collection: " + collection + ", should contain all in other: " + other,
-                collection.containsAll(other));
+        assertTrue(collection.containsAll(other),
+                "collection: " + collection + ", should contain all in other: " + other);
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -725,12 +742,12 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         assertFalse(collection.isEmpty());
 
         List<Integer> java_list = new ArrayList<Integer>();
-        assertFalse("collection: " + collection + ", should contain all in list: " + java_list,
-                collection.removeAll(java_list));
+        assertFalse(collection.removeAll(java_list),
+                "collection: " + collection + ", should contain all in list: " + java_list);
 
         java_list.add(vals[5]);
-        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
-                collection.removeAll(java_list));
+        assertTrue(collection.removeAll(java_list),
+                "collection: " + collection + ", should contain all in list: " + java_list);
         assertFalse(collection.contains(vals[5]));
         assertFalse(map.containsKey(keys[5]));
         assertFalse(map.containsValue(vals[5]));
@@ -739,18 +756,19 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         for (int value : vals) {
             java_list.add(value);
         }
-        assertTrue("collection: " + collection + ", should contain all in list: " + java_list,
-                collection.removeAll(java_list));
+        assertTrue(collection.removeAll(java_list),
+                "collection: " + collection + ", should contain all in list: " + java_list);
         assertTrue(collection.isEmpty());
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllTCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -767,13 +785,13 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         assertFalse(collection.isEmpty());
 
         Collection<Integer> other = new ArrayList<Integer>();
-        assertFalse("collection: " + collection + ", should be unmodified.",
-                collection.removeAll(other));
+        assertFalse(collection.removeAll(other),
+                "collection: " + collection + ", should be unmodified.");
 
         other = new ArrayList<Integer>(collection);
         other.remove(vals[5]);
-        assertTrue("collection: " + collection + ", should be modified. other: " + other,
-                collection.removeAll(other));
+        assertTrue(collection.removeAll(other),
+                "collection: " + collection + ", should be modified. other: " + other);
         assertEquals(1, collection.size());
         for (int i = 0; i < element_count; i++) {
             if (i == 5) {
@@ -787,24 +805,25 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
             }
         }
 
-        assertFalse("collection: " + collection + ", should be unmodified. other: " + other,
-                collection.removeAll(other));
+        assertFalse(collection.removeAll(other),
+                "collection: " + collection + ", should be unmodified. other: " + other);
 
-        assertTrue("collection: " + collection + ", should be modified. other: " + other,
-                collection.removeAll(collection));
+        assertTrue(collection.removeAll(collection),
+                "collection: " + collection + ", should be modified. other: " + other);
         assertTrue(collection.isEmpty());
     }
 
 
+    @Test
     public void testValueCollectionHashCode() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
-        TObjectIntMap<String> raw_map2 = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map2 = new TObjectIntHashMap<>();
         Map<String, Integer> map2 = TDecorators.wrap(raw_map2);
 
         for (int i = 0; i < element_count; i++) {
@@ -826,13 +845,14 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testValues() {
         int element_count = 20;
         String[] keys = new String[element_count];
         Integer[] vals = new Integer[element_count];
 
         TObjectIntMap<String> raw_map =
-                new TObjectIntHashMap<String>(element_count, 0.5f, Integer.MIN_VALUE);
+                new TObjectIntHashMap<>(element_count, 0.5f, Integer.MIN_VALUE);
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -852,13 +872,14 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testEntrySet() {
         int element_count = 20;
         String[] keys = new String[element_count];
         Integer[] vals = new Integer[element_count];
 
         TObjectIntMap<String> raw_map =
-                new TObjectIntHashMap<String>(element_count, 0.5f, Integer.MIN_VALUE);
+                new TObjectIntHashMap<>(element_count, 0.5f, Integer.MIN_VALUE);
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -937,13 +958,14 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int element_count = 20;
         String[] keys = new String[element_count];
         int[] vals = new int[element_count];
 
         TObjectIntMap<String> raw_map =
-                new TObjectIntHashMap<String>(element_count, 0.5f, Integer.MIN_VALUE);
+                new TObjectIntHashMap<>(element_count, 0.5f, Integer.MIN_VALUE);
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < element_count; i++) {
@@ -954,7 +976,7 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         assertEquals(element_count, map.size());
 
         TObjectIntHashMap<String> raw_fully_specified =
-                new TObjectIntHashMap<String>(20, 0.75f, Integer.MIN_VALUE);
+                new TObjectIntHashMap<>(20, 0.75f, Integer.MIN_VALUE);
         Map<String, Integer> fully_specified = TDecorators.wrap(raw_fully_specified);
 
         for (int i = 0; i < element_count; i++) {
@@ -962,18 +984,19 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
         }
         assertEquals(map, fully_specified);
 
-        assertFalse("shouldn't equal random object", map.equals(new Object()));
+        assertFalse(map.equals(new Object()), "shouldn't equal random object");
         // noinspection ObjectEqualsNull
-        assertFalse("shouldn't equal null", map.equals(null));
+        assertFalse(map.equals(null), "shouldn't equal null");
     }
 
 
     @SuppressWarnings({"unchecked"})
+    @Test
     public void testSerialize() throws Exception {
         Integer[] vals = {1138, 42, 86, 99, 101, 727, 117};
         String[] keys = new String[vals.length];
 
-        TObjectIntMap<String> raw_map = new TObjectIntHashMap<String>();
+        TObjectIntMap<String> raw_map = new TObjectIntHashMap<>();
         Map<String, Integer> map = TDecorators.wrap(raw_map);
 
         for (int i = 0; i < keys.length; i++) {
@@ -994,14 +1017,15 @@ public class TObjectPrimitiveMapDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testToString() {
-        TObjectIntHashMap<String> m = new TObjectIntHashMap<String>();
+        TObjectIntHashMap<String> m = new TObjectIntHashMap<>();
         m.put("One", 11);
         m.put("Two", 22);
 
         String to_string = m.toString();
-        assertTrue(to_string,
-                to_string.equals("{One=11,Two=22}") || to_string.equals("{Two=22,One=11}"));
+        assertTrue(to_string.equals("{One=11,Two=22}") || to_string.equals("{Two=22,One=11}"),
+                to_string);
     }
 
 }

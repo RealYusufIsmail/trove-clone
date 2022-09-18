@@ -25,7 +25,8 @@ import gnu.trove.list.TIntList;
 import gnu.trove.procedure.TIntProcedure;
 import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -33,15 +34,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
-public class TPrimitiveArrayListTest extends TestCase {
+public class TPrimitiveArrayListTest {
 
     private TIntList list;
 
 
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
 
         list = new TIntArrayList();
         list.add(1);
@@ -53,10 +55,11 @@ public class TPrimitiveArrayListTest extends TestCase {
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
     }
 
 
+    @Test
     public void testGet() {
 
         assertEquals(4, list.get(3));
@@ -89,6 +92,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() {
         int element_count = 10;
 
@@ -100,13 +104,14 @@ public class TPrimitiveArrayListTest extends TestCase {
         }
 
         for (int i = 1; i <= element_count; i++) {
-            assertTrue("element " + i + " not found in " + a, a.contains(i));
+            assertTrue(a.contains(i), "element " + i + " not found in " + a);
         }
 
-        assertFalse("list doesn't hold MAX_VALUE: " + a, a.contains(Integer.MAX_VALUE));
+        assertFalse(a.contains(Integer.MAX_VALUE), "list doesn't hold MAX_VALUE: " + a);
     }
 
 
+    @Test
     public void testInsert() {
         int element_count = 10;
 
@@ -123,18 +128,19 @@ public class TPrimitiveArrayListTest extends TestCase {
         for (int i = 0; i < 5; i++) {
             int result = a.get(i);
             int expected = i + 1;
-            assertTrue("element " + result + " should be " + expected, result == expected);
+            assertTrue(result == expected, "element " + result + " should be " + expected);
         }
 
         assertEquals(testval, a.get(5));
 
         for (int i = 6; i < a.size(); i++) {
             int result = a.get(i);
-            assertTrue("element " + result + " should be " + i, result == i);
+            assertTrue(result == i, "element " + result + " should be " + i);
         }
     }
 
 
+    @Test
     public void testInsertArray() {
         int element_count = 10;
         int[] ints = {1138, 42, 86, 99, 101};
@@ -158,6 +164,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testInsertAtEnd() {
         int element_count = 10;
 
@@ -180,6 +187,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testInsertArrayAtEnd() {
         int element_count = 10;
         int[] ints = {1138, 42, 86, 99, 101};
@@ -202,6 +210,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSetArray() {
         int element_count = 10;
         int[] ints = {1138, 42, 86, 99, 101};
@@ -231,6 +240,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSet() {
         int element_count = 10;
 
@@ -247,7 +257,7 @@ public class TPrimitiveArrayListTest extends TestCase {
         for (int i = 0; i < 5; i++) {
             int result = a.get(i);
             int expected = i + 1;
-            assertTrue("element " + result + " should be " + expected, result == expected);
+            assertTrue(result == expected, "element " + result + " should be " + expected);
         }
 
         assertEquals(testval, a.get(5));
@@ -255,7 +265,7 @@ public class TPrimitiveArrayListTest extends TestCase {
         for (int i = 6; i < a.size(); i++) {
             int result = a.get(i);
             int expected = i + 1;
-            assertTrue("element " + result + " should be " + expected, result == expected);
+            assertTrue(result == expected, "element " + result + " should be " + expected);
         }
 
         try {
@@ -267,6 +277,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSetQuick() {
         int element_count = 10;
 
@@ -283,7 +294,7 @@ public class TPrimitiveArrayListTest extends TestCase {
         for (int i = 0; i < 5; i++) {
             int result = a.get(i);
             int expected = i + 1;
-            assertTrue("element " + result + " should be " + expected, result == expected);
+            assertTrue(result == expected, "element " + result + " should be " + expected);
         }
 
         assertEquals(testval, a.get(5));
@@ -291,7 +302,7 @@ public class TPrimitiveArrayListTest extends TestCase {
         for (int i = 6; i < a.size(); i++) {
             int result = a.get(i);
             int expected = i + 1;
-            assertTrue("element " + result + " should be " + expected, result == expected);
+            assertTrue(result == expected, "element " + result + " should be " + expected);
         }
 
         try {
@@ -303,6 +314,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testReplace() {
         int element_count = 10;
 
@@ -319,7 +331,7 @@ public class TPrimitiveArrayListTest extends TestCase {
         for (int i = 0; i < 5; i++) {
             int result = a.get(i);
             int expected = i + 1;
-            assertTrue("element " + result + " should be " + expected, result == expected);
+            assertTrue(result == expected, "element " + result + " should be " + expected);
         }
 
         assertEquals(testval, a.get(5));
@@ -327,7 +339,7 @@ public class TPrimitiveArrayListTest extends TestCase {
         for (int i = 6; i < a.size(); i++) {
             int result = a.get(i);
             int expected = i + 1;
-            assertTrue("element " + result + " should be " + expected, result == expected);
+            assertTrue(result == expected, "element " + result + " should be " + expected);
         }
 
         try {
@@ -339,6 +351,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() {
         int element_count = 10;
 
@@ -353,11 +366,11 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertTrue(a.remove(5));
         for (int i = 0; i < 4; i++) {
             int expected = i + 1;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
         for (int i = 4; i < a.size(); i++) {
             int expected = i + 2;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
 
         // Can't remove again from THIS list because it's not present.
@@ -366,11 +379,11 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertEquals(6, a.removeAt(4));
         for (int i = 0; i < 4; i++) {
             int expected = i + 1;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
         for (int i = 4; i < a.size(); i++) {
             int expected = i + 3;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
         a.insert(4, 6);
 
@@ -386,12 +399,12 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertTrue(a.add(5));
         for (int i = 0; i < 5; i++) {
             int expected = i + 1;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
         for (int i = 5; i < a.size() - 1; i++) {
             int expected = i + 1;
-            assertTrue("index " + i + " expected " + expected + ", list: " + a,
-                    a.get(i) == expected);
+            assertTrue(a.get(i) == expected,
+                    "index " + i + " expected " + expected + ", list: " + a);
         }
         assertEquals(5, a.get(a.size() - 1));
 
@@ -399,11 +412,11 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertEquals(element_count, a.size());
         for (int i = 0; i < 4; i++) {
             int expected = i + 1;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
         for (int i = 4; i < a.size() - 1; i++) {
             int expected = i + 2;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
         assertEquals(5, a.get(a.size() - 1));
 
@@ -411,6 +424,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveMultiple() {
         int element_count = 20;
 
@@ -430,11 +444,12 @@ public class TPrimitiveArrayListTest extends TestCase {
 
         for (int i = 0; i < a.size(); i++) {
             int expected = i * 2 + 1;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
     }
 
 
+    @Test
     public void testRemoveChunk() {
         int element_count = 20;
 
@@ -449,12 +464,12 @@ public class TPrimitiveArrayListTest extends TestCase {
 
         for (int i = 0; i < 5; i++) {
             int expected = i + 1;
-            assertTrue("index " + i + " expected " + expected, a.get(i) == expected);
+            assertTrue(a.get(i) == expected, "index " + i + " expected " + expected);
         }
         for (int i = 5; i < a.size(); i++) {
             int expected = i + 11;
-            assertTrue("index " + i + " expected " + expected + " but got " + a.get(i),
-                    a.get(i) == expected);
+            assertTrue(a.get(i) == expected,
+                    "index " + i + " expected " + expected + " but got " + a.get(i));
         }
 
         try {
@@ -473,6 +488,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -485,14 +501,14 @@ public class TPrimitiveArrayListTest extends TestCase {
             list.add(i);
         }
 
-        assertTrue("list: " + list + " should contain all of set: " + set, list.containsAll(set));
+        assertTrue(list.containsAll(set), "list: " + list + " should contain all of set: " + set);
 
         set.remove(element_count);
-        assertTrue("list: " + list + " should contain all of set: " + set, list.containsAll(set));
+        assertTrue(list.containsAll(set), "list: " + list + " should contain all of set: " + set);
 
         list.remove(5);
-        assertFalse("list: " + list + " should not contain all of set: " + set,
-                list.containsAll(set));
+        assertFalse(list.containsAll(set),
+                "list: " + list + " should not contain all of set: " + set);
         list.add(5);
 
         // Test when not all objects are Integers..
@@ -504,10 +520,11 @@ public class TPrimitiveArrayListTest extends TestCase {
                 obj_set.add(Long.valueOf((long) i));
             }
         }
-        assertFalse("list should not contain all of obj_set", list.containsAll(obj_set));
+        assertFalse(list.containsAll(obj_set), "list should not contain all of obj_set");
     }
 
 
+    @Test
     public void testContainsAllTCollection() {
         int element_count = 20;
         TIntArrayList list = new TIntArrayList(element_count * 2);
@@ -520,30 +537,31 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertEquals(element_count, other.size());
         assertEquals(list, other);
 
-        assertTrue("list should contain all of itself: " + list, list.containsAll(list));
-        assertTrue("list should contain all of equal list " + list + ", " + other,
-                list.containsAll(other));
+        assertTrue(list.containsAll(list), "list should contain all of itself: " + list);
+        assertTrue(list.containsAll(other),
+                "list should contain all of equal list " + list + ", " + other);
         for (int i = 0; i < other.size(); i++) {
             if (i % 2 == 0) {
                 other.removeAt(i);
             }
         }
-        assertTrue("list: " + list + " should contain all of other: " + other,
-                list.containsAll(other));
+        assertTrue(list.containsAll(other),
+                "list: " + list + " should contain all of other: " + other);
 
         other.add(1138);
-        assertFalse("list: " + list + " should not contain all of other: " + other,
-                list.containsAll(other));
+        assertFalse(list.containsAll(other),
+                "list: " + list + " should not contain all of other: " + other);
 
         TIntSet set = new TIntHashSet(list);
-        assertTrue("list: " + list + " should contain all of set: " + set, list.containsAll(set));
+        assertTrue(list.containsAll(set), "list: " + list + " should contain all of set: " + set);
 
         set.add(1138);
-        assertFalse("list: " + list + " should not contain all of set: " + set,
-                list.containsAll(set));
+        assertFalse(list.containsAll(set),
+                "list: " + list + " should not contain all of set: " + set);
     }
 
 
+    @Test
     public void testContainsAllArray() {
         int element_count = 20;
         int[] ints = new int[element_count];
@@ -553,15 +571,16 @@ public class TPrimitiveArrayListTest extends TestCase {
             list.add(i);
         }
 
-        assertTrue("list: " + list + " should contain all of array: " + Arrays.toString(ints),
-                list.containsAll(ints));
+        assertTrue(list.containsAll(ints),
+                "list: " + list + " should contain all of array: " + Arrays.toString(ints));
 
         ints[5] = 1138;
-        assertFalse("list: " + list + " should cnot ontain all of array: " + Arrays.toString(ints),
-                list.containsAll(ints));
+        assertFalse(list.containsAll(ints),
+                "list: " + list + " should cnot ontain all of array: " + Arrays.toString(ints));
     }
 
 
+    @Test
     public void testAddAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -591,6 +610,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAllTCollection() {
         int element_count = 20;
         TIntArrayList source = new TIntArrayList();
@@ -620,6 +640,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAllArray() {
         int element_count = 20;
         int[] ints = new int[element_count];
@@ -640,12 +661,13 @@ public class TPrimitiveArrayListTest extends TestCase {
             } else {
                 expected = i - element_count;
             }
-            assertEquals("expected: " + expected + ", got: " + list.get(i) + ", list: " + list
-                    + ", array: " + Arrays.toString(ints), expected, list.get(i));
+            assertEquals(expected, list.get(i), "expected: " + expected + ", got: " + list.get(i)
+                    + ", list: " + list + ", array: " + Arrays.toString(ints));
         }
     }
 
 
+    @Test
     public void testRetainAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -673,16 +695,17 @@ public class TPrimitiveArrayListTest extends TestCase {
         set.remove(15);
         assertTrue(list.retainAll(set));
         int expected = element_count - 4;
-        assertEquals("expected: " + expected + ", was: " + list.size() + ", list: " + list,
-                expected, list.size());
+        assertEquals(expected, list.size(),
+                "expected: " + expected + ", was: " + list.size() + ", list: " + list);
         for (int i = 0; i < list.size(); i++) {
             expected = (int) Math.floor(i / 4) + i + 1;
-            assertEquals("expected: " + expected + ", was: " + list.get(i) + ", list: " + list,
-                    expected, list.get(i));
+            assertEquals(expected, list.get(i),
+                    "expected: " + expected + ", was: " + list.get(i) + ", list: " + list);
         }
     }
 
 
+    @Test
     public void testRetainAllTCollection() {
         int element_count = 20;
         TIntList other = new TIntArrayList();
@@ -715,12 +738,13 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertEquals(expected, list.size());
         for (int i = 0; i < list.size(); i++) {
             expected = (int) Math.floor(i / 4) + i + 1;
-            assertEquals("expected: " + expected + ", was: " + list.get(i) + ", list: " + list,
-                    expected, list.get(i));
+            assertEquals(expected, list.get(i),
+                    "expected: " + expected + ", was: " + list.get(i) + ", list: " + list);
         }
     }
 
 
+    @Test
     public void testRetainAllArray() {
         int element_count = 20;
         int ints[] = new int[element_count];
@@ -753,12 +777,13 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertEquals(expected, list.size());
         for (int i = 0; i < list.size(); i++) {
             expected = (int) Math.floor(i / 4) + i + 1;
-            assertEquals("expected: " + expected + ", was: " + list.get(i) + ", list: " + list,
-                    expected, list.get(i));
+            assertEquals(expected, list.get(i),
+                    "expected: " + expected + ", was: " + list.get(i) + ", list: " + list);
         }
     }
 
 
+    @Test
     public void testRemoveAllCollection() {
         int element_count = 20;
         SortedSet<Integer> set = new TreeSet<Integer>();
@@ -795,16 +820,17 @@ public class TPrimitiveArrayListTest extends TestCase {
         set.remove(15);
         assertTrue(list.removeAll(set));
         int expected = 4;
-        assertEquals("expected: " + expected + ", was: " + list.size() + ", list: " + list,
-                expected, list.size());
+        assertEquals(expected, list.size(),
+                "expected: " + expected + ", was: " + list.size() + ", list: " + list);
         for (int i = 0; i < list.size(); i++) {
             expected = i * 5;
-            assertEquals("expected: " + expected + ", was: " + list.get(i) + ", list: " + list,
-                    expected, list.get(i));
+            assertEquals(expected, list.get(i),
+                    "expected: " + expected + ", was: " + list.get(i) + ", list: " + list);
         }
     }
 
 
+    @Test
     public void testRemoveAllTCollection() {
         int element_count = 20;
         TIntList other = new TIntArrayList();
@@ -849,16 +875,17 @@ public class TPrimitiveArrayListTest extends TestCase {
         other.remove(15);
         assertTrue(list.removeAll(other));
         int expected = 4;
-        assertEquals("expected: " + expected + ", was: " + list.size() + ", list: " + list,
-                expected, list.size());
+        assertEquals(expected, list.size(),
+                "expected: " + expected + ", was: " + list.size() + ", list: " + list);
         for (int i = 0; i < list.size(); i++) {
             expected = i * 5;
-            assertEquals("expected: " + expected + ", was: " + list.get(i) + ", list: " + list,
-                    expected, list.get(i));
+            assertEquals(expected, list.get(i),
+                    "expected: " + expected + ", was: " + list.get(i) + ", list: " + list);
         }
     }
 
 
+    @Test
     public void testRemoveAllArray() {
         int element_count = 20;
         int ints[] = new int[element_count];
@@ -896,12 +923,13 @@ public class TPrimitiveArrayListTest extends TestCase {
         assertEquals(expected, list.size());
         for (int i = 0; i < list.size(); i++) {
             expected = i * 5;
-            assertEquals("expected: " + expected + ", was: " + list.get(i) + ", list: " + list,
-                    expected, list.get(i));
+            assertEquals(expected, list.get(i),
+                    "expected: " + expected + ", was: " + list.get(i) + ", list: " + list);
         }
     }
 
 
+    @Test
     public void testShuffle() {
         int element_count = 20;
         TIntList list = new TIntArrayList(20);
@@ -916,6 +944,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
         int element_count = 20;
         TIntList list = new TIntArrayList();
@@ -924,7 +953,7 @@ public class TPrimitiveArrayListTest extends TestCase {
         }
 
         TIntIterator iter = list.iterator();
-        assertTrue("iter should have next: " + list.size(), iter.hasNext());
+        assertTrue(iter.hasNext(), "iter should have next: " + list.size());
 
         int j = 0;
         while (iter.hasNext()) {
@@ -952,6 +981,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorAbuseNext() {
         int element_count = 20;
         TIntList list = new TIntArrayList();
@@ -976,6 +1006,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorAbuseRemove() {
         int element_count = 20;
         TIntList list = new TIntArrayList();
@@ -1001,6 +1032,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testEnsureCapacity() {
         int size = 1000;
         TIntArrayList array_list = new TIntArrayList();
@@ -1009,10 +1041,11 @@ public class TPrimitiveArrayListTest extends TestCase {
 
         array_list.ensureCapacity(size);
         int max_length = array_list._data.length;
-        assertTrue("not large enough: " + max_length + " should be >= " + size, max_length >= size);
+        assertTrue(max_length >= size, "not large enough: " + max_length + " should be >= " + size);
     }
 
 
+    @Test
     public void testTrimToSize() {
         int initial_size = 1000;
         int element_count = 100;
@@ -1028,16 +1061,17 @@ public class TPrimitiveArrayListTest extends TestCase {
         array_list.trimToSize();
 
         int trimmed_length = array_list._data.length;
-        assertTrue("not trimmed: " + trimmed_length + " should be == " + element_count,
-                trimmed_length == element_count);
+        assertTrue(trimmed_length == element_count,
+                "not trimmed: " + trimmed_length + " should be == " + element_count);
     }
 
 
+    @Test
     public void testToArray() {
-        assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, list.toArray()));
-        assertTrue(Arrays.equals(new int[] {1, 2, 3, 4}, list.toArray(0, 4)));
-        assertTrue(Arrays.equals(new int[] {2, 3, 4, 5}, list.toArray(1, 4)));
-        assertTrue(Arrays.equals(new int[] {2, 3, 4}, list.toArray(1, 3)));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, list.toArray());
+        assertArrayEquals(new int[] {1, 2, 3, 4}, list.toArray(0, 4));
+        assertArrayEquals(new int[] {2, 3, 4, 5}, list.toArray(1, 4));
+        assertArrayEquals(new int[] {2, 3, 4}, list.toArray(1, 3));
 
         try {
             list.toArray(-1, 5);
@@ -1048,6 +1082,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithDest() {
         int[] dest = new int[5];
         assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, list.toArray(dest)));
@@ -1067,6 +1102,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithDestTarget() {
         int[] dest = new int[5];
         assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, list.toArray(dest)));
@@ -1089,6 +1125,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSubList() throws Exception {
         TIntList subList = list.subList(1, 4);
         assertEquals(3, subList.size());
@@ -1097,6 +1134,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSublist_Exceptions() {
         try {
             list.subList(1, 0);
@@ -1118,6 +1156,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testIndexOf() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1147,6 +1186,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testBinarySearch() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1170,11 +1210,11 @@ public class TPrimitiveArrayListTest extends TestCase {
         a.sort();
 
         index = a.indexOf(5);
-        assertTrue("index: " + index, index >= 8 && index <= 9);
+        assertTrue(index >= 8 && index <= 9, "index: " + index);
 
         // Not in this range.
         index = a.binarySearch(5, 15, 30);
-        assertTrue("index: " + index, index < 0);
+        assertTrue(index < 0, "index: " + index);
 
         try {
             a.binarySearch(5, 10, 55);
@@ -1192,6 +1232,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testFill() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1206,6 +1247,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testFillOffsets() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1238,6 +1280,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         int element_count = 20;
         TIntArrayList a = new TIntArrayList(20, Integer.MIN_VALUE);
@@ -1251,11 +1294,12 @@ public class TPrimitiveArrayListTest extends TestCase {
 
         for (int i = 0; i < element_count; i++) {
             int expected = a.getQuick(i);
-            assertTrue("index " + i + " is " + expected, a.getNoEntryValue() == expected);
+            assertTrue(a.getNoEntryValue() == expected, "index " + i + " is " + expected);
         }
     }
 
 
+    @Test
     public void testGrep() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1276,6 +1320,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testInverseGrep() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1296,6 +1341,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testMax() {
         assertEquals(5, list.max());
         assertEquals(1, list.min());
@@ -1328,6 +1374,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEach() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1356,6 +1403,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachFalse() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1385,6 +1433,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachDescending() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1414,6 +1463,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachDescendingFalse() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1444,6 +1494,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testTransform() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1465,6 +1516,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testReverse() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1480,6 +1532,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testReversePartial() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1503,6 +1556,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSortPartial() {
         int element_count = 20;
         TIntList a = new TIntArrayList();
@@ -1527,6 +1581,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int element_count = 20;
         TIntList list = new TIntArrayList();
@@ -1554,6 +1609,7 @@ public class TPrimitiveArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialization() throws Exception {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         ObjectOutputStream oout = new ObjectOutputStream(bout);

@@ -28,7 +28,8 @@ import gnu.trove.map.TObjectIntMap;
 import gnu.trove.procedure.TIntProcedure;
 import gnu.trove.procedure.TObjectIntProcedure;
 import gnu.trove.procedure.TObjectProcedure;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -36,18 +37,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
  *
  */
-public class TObjectPrimitiveHashMapTest extends TestCase {
+public class TObjectPrimitiveHashMapTest {
 
-    public TObjectPrimitiveHashMapTest(String name) {
-        super(name);
-    }
-
-
+    @Test
     public void testConstructors() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -84,6 +82,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsKey() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -109,6 +108,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testContainsValue() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -131,6 +131,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutIfAbsent() {
         TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
 
@@ -145,6 +146,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -176,6 +178,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutAllMap() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -200,6 +203,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testPutAll() throws Exception {
         TObjectIntHashMap<String> t = new TObjectIntHashMap<String>();
         TObjectIntHashMap<String> m = new TObjectIntHashMap<String>();
@@ -216,6 +220,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -238,6 +243,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
 
 
     @SuppressWarnings({"ToArrayCallWithZeroLengthArrayArgument"})
+    @Test
     public void testKeySet() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -312,6 +318,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeySetAdds() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -349,6 +356,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testKeys() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -397,6 +405,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionToArray() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -471,6 +480,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionAdds() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -524,6 +534,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionContainsAll() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -580,6 +591,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -617,6 +629,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllTCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -654,6 +667,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRetainAllArray() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -690,6 +704,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -730,6 +745,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllTCollection() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -779,6 +795,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValueCollectionRemoveAllArray() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -828,6 +845,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testValues() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -877,6 +895,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
         TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
 
@@ -924,6 +943,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemoval() {
         TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
 
@@ -976,6 +996,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemoval2() {
         int element_count = 10000;
         int remaining = element_count / 2;
@@ -998,6 +1019,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testIncrement() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -1018,6 +1040,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testAdjustValue() {
         TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
 
@@ -1041,6 +1064,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testAdjustOrPutValue() {
         TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
 
@@ -1069,6 +1093,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachKey() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -1085,7 +1110,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
 
         class ForEach implements TObjectProcedure<String> {
 
-            List<String> built = new ArrayList<String>();
+            List<String> built = new ArrayList<>();
 
 
             public boolean execute(String value) {
@@ -1112,7 +1137,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
 
         class ForEachFalse implements TObjectProcedure<String> {
 
-            List<String> built = new ArrayList<String>();
+            List<String> built = new ArrayList<>();
 
 
             public boolean execute(String value) {
@@ -1135,6 +1160,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachValue() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -1201,6 +1227,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testForEachEntry() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -1262,6 +1289,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testRetain() {
         TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
 
@@ -1346,6 +1374,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testTransformValues() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -1373,6 +1402,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -1433,6 +1463,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testHashCode() {
         int element_count = 20;
         String[] keys = new String[element_count];
@@ -1492,6 +1523,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
 
 
     @SuppressWarnings({"unchecked"})
+    @Test
     public void testSerialize() throws Exception {
         Integer[] keys = {1138, 42, 86, 99, 101, 727, 117};
         int[] vals = new int[keys.length];
@@ -1515,6 +1547,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testToString() {
         TObjectIntHashMap<String> m = new TObjectIntHashMap<String>();
         m.put("One", 11);
@@ -1526,6 +1559,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testDecorator() {
         // TObjectIntHashMap<String> map = new TObjectIntHashMap<String>();
         //
@@ -1552,6 +1586,7 @@ public class TObjectPrimitiveHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testBug3232758() {
         TObjectIntHashMap<String> map = new TObjectIntHashMap<String>(1, 3);
         map.put("1009", 0);

@@ -18,21 +18,25 @@
 package gnu.trove.strategy;
 
 import gnu.trove.map.hash.TCustomHashMap;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
  *
  */
-public class IdentityHashingStrategyTest extends TestCase {
+public class IdentityHashingStrategyTest {
+    @Test
     public void testInMap() {
         Map<Integer, String> map =
                 new TCustomHashMap<Integer, String>(new IdentityHashingStrategy<Integer>());
 
-        Integer first = new Integer(0);
-        Integer second = new Integer(0);
+        Integer first = 0;
+        Integer second = 0;
 
         map.put(first, "first");
 

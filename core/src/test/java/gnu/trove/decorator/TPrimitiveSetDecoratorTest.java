@@ -20,7 +20,8 @@ package gnu.trove.decorator;
 import gnu.trove.TDecorators;
 import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -28,6 +29,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -35,22 +37,18 @@ import java.util.*;
  * @author Robert D. Eden
  * @author Jeff Randall
  */
-public class TPrimitiveSetDecoratorTest extends TestCase {
-
-    public TPrimitiveSetDecoratorTest(String name) {
-        super(name);
-    }
-
+public class TPrimitiveSetDecoratorTest {
 
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
     }
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
     }
 
+    @Test
     public void testConstructorWithNull() {
         boolean expectionThrown = false;
         try {
@@ -64,6 +62,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testConstructors() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -91,6 +90,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testIsEmpty() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -103,6 +103,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -114,6 +115,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
 
 
     @SuppressWarnings({"ForLoopReplaceableByForEach"})
+    @Test
     public void testContainsAll() throws Exception {
 
         Integer[] ints = {1138, 42, 13, 86, 99};
@@ -157,6 +159,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAll() throws Exception {
 
         Integer[] ints = {1138, 42, 13, 86, 99, 101};
@@ -184,6 +187,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAll() throws Exception {
 
         Integer[] ints = {1138, 42, 13, 86, 99, 101};
@@ -227,6 +231,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAll() throws Exception {
 
         Integer[] ints = {1138, 42, 13, 86, 99, 101};
@@ -274,6 +279,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testAdd() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -282,6 +288,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -294,6 +301,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveNonExistant() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -307,6 +315,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testSize() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -319,6 +328,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() throws Exception {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -331,6 +341,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         Integer[] ints = {1138, 42, 86, 99, 101};
 
@@ -351,6 +362,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testToArray() {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -374,6 +386,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayMatchesIteratorOrder() {
         TIntSet raw_set = new TIntHashSet();
         Set<Integer> set = TDecorators.wrap(raw_set);
@@ -393,6 +406,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithParams() {
         int no_entry_value = Integer.MIN_VALUE;
         TIntSet raw_set = new TIntHashSet(10, 0.5f, no_entry_value);
@@ -419,6 +433,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testRehashing() throws Exception {
         int size = 10000;
         TIntSet set = new TIntHashSet(10);
@@ -429,6 +444,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
 
         TIntSet raw_set = new TIntHashSet();
@@ -459,6 +475,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemove() {
 
         TIntSet raw_set = new TIntHashSet();
@@ -495,6 +512,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
 
 
 
+    @Test
     public void testEquals() {
         Integer[] ints = {1138, 42, 86, 99, 101};
         TIntSet raw_set = new TIntHashSet();
@@ -536,6 +554,7 @@ public class TPrimitiveSetDecoratorTest extends TestCase {
     }
 
 
+    @Test
     public void testHashcode() {
         int[] ints = {1138, 42, 86, 99, 101};
         TIntSet raw_set = new TIntHashSet();

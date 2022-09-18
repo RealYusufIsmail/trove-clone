@@ -31,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class GeneratorTest {
 
+
     @Test
     public void testReplicatedContentNoMatch() throws IOException {
         String test = "This is a test\nLine 2\nLine 3";
@@ -39,6 +40,7 @@ public class GeneratorTest {
         assertNull(Generator.findReplicatedBlocks(test, buf));
         assertEquals(0, buf.length());
     }
+
 
     @Test
     public void testReplicatedContent() throws IOException {
@@ -56,6 +58,7 @@ public class GeneratorTest {
         assertEquals("Replicated 2", map.get(2));
         assertEquals("This is a test\nLine 2", buf.toString());
     }
+
 
     @Test
     public void testProcessReplication() {

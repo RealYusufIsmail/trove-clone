@@ -17,7 +17,7 @@
  */ 
 package gnu.trove.set.hash;
 
-import junit.framework.TestCase;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -35,7 +35,7 @@ import java.util.*;
  * @version $Id: THashSetTest.java,v 1.1.2.3 2010/03/02 04:09:50 robeden Exp $
  */
 
-public class TLinkedHashSetTest extends TestCase {
+public class TLinkedHashSetTest {
 
     public TLinkedHashSetTest(String name) {
         super(name);
@@ -52,6 +52,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testConstructors() throws Exception {
         Set<String> set = new TLinkedHashSet<String>();
         assertNotNull(set);
@@ -72,6 +73,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIsEmpty() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         assertTrue("new set wasn't empty", s.isEmpty());
@@ -83,6 +85,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         String o = "testContains";
@@ -92,6 +95,7 @@ public class TLinkedHashSetTest extends TestCase {
 
 
     @SuppressWarnings({"ForLoopReplaceableByForEach"})
+    @Test
     public void testContainsAll() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         String[] o = {"Hello World", "Goodbye World", "Hello Goodbye"};
@@ -106,6 +110,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAll() throws Exception {
         Set<String> set = new TLinkedHashSet<String>();
         String[] strings = {"Hello World", "Goodbye World", "Hello Goodbye", "Remove Me"};
@@ -120,6 +125,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAll() throws Exception {
         Set<String> set = new TLinkedHashSet<String>();
         String[] strings = {"Hello World", "Goodbye World", "Hello Goodbye", "Keep Me"};
@@ -139,6 +145,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testAdd() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         assertTrue("add failed", s.add("One"));
@@ -146,6 +153,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         s.add("One");
@@ -158,6 +166,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveObjectNotInSet() throws Exception {
         Set<String> set = new TLinkedHashSet<String>();
         set.add("One");
@@ -171,6 +180,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testSize() throws Exception {
         Set<Object> o = new TLinkedHashSet<Object>();
         assertEquals("initial size was not 0", 0, o.size());
@@ -182,6 +192,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         s.addAll(Arrays.asList("one", "two", "three"));
@@ -190,6 +201,7 @@ public class TLinkedHashSetTest extends TestCase {
         assertEquals("initial size was not 0", 0, s.size());
     }
 
+    @Test
     public void testIterationOrder() throws Exception {
         TLinkedHashSet<String> lhs = new TLinkedHashSet<String>();
         Set<String> s = lhs;
@@ -225,6 +237,7 @@ public class TLinkedHashSetTest extends TestCase {
         assertEquals("a", it.next());
     }
 
+    @Test
     public void testIteratorRemove() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         s.add("a");
@@ -257,6 +270,7 @@ public class TLinkedHashSetTest extends TestCase {
         assertTrue(s.isEmpty());
     }
 
+    @Test
     public void testSerialize() throws Exception {
         Set<String> s = new TLinkedHashSet<String>();
         s.addAll(Arrays.asList("one", "two", "three"));
@@ -274,6 +288,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArray() {
         Set<String> s = new TLinkedHashSet<String>();
         String[] str = {"hi", "bye", "hello", "goodbye"};
@@ -285,6 +300,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithParams() {
         Set<String> s = new TLinkedHashSet<String>();
         String[] str = {"hi", "bye", "hello", "goodbye"};
@@ -306,6 +322,7 @@ public class TLinkedHashSetTest extends TestCase {
 
 
     @SuppressWarnings({"ToArrayCallWithZeroLengthArrayArgument", "SuspiciousToArrayCall"})
+    @Test
     public void testToArrayAnotherType() throws Exception {
         Set<Number> set = new TLinkedHashSet<Number>();
         Number[] nums = {1138, 42, 86, 99, 101};
@@ -331,6 +348,7 @@ public class TLinkedHashSetTest extends TestCase {
 
 
     @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection"})
+    @Test
     public void testRehashing() throws Exception {
         Set<Integer> s = new TLinkedHashSet<Integer>();
         for (int i = 0; i < 10000; i++) {
@@ -344,6 +362,7 @@ public class TLinkedHashSetTest extends TestCase {
      * java.lang.Object
      */
     @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection"})
+    @Test
     public void testSomeBadlyWrittenObject() {
         Set<Object> s = new TLinkedHashSet<Object>();
         boolean didThrow = false;
@@ -359,6 +378,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIterable() {
 
         Set<String> set = new TLinkedHashSet<String>();
@@ -371,6 +391,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToString() {
         Set<String> set = new TLinkedHashSet<String>();
         set.add("One");
@@ -381,6 +402,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         String[] strings = {"hi", "bye", "hello", "goodbye"};
         Set<String> set = new TLinkedHashSet<String>();
@@ -402,11 +424,12 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testEqualsNonSet() {
         String[] strings = {"hi", "bye", "hello", "goodbye"};
         Set<String> set = new TLinkedHashSet<String>();
         set.addAll(Arrays.asList(strings));
-        List<String> other = new ArrayList<String>();
+        List<String> other = new ArrayList<>();
         other.addAll(Arrays.asList(strings));
 
         assertFalse("sets incorrectly equals list: " + set + ", " + other, set.equals(other));
@@ -419,6 +442,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testHashcode() {
         String[] strings = {"hi", "bye", "hello", "goodbye"};
         Set<String> set = new TLinkedHashSet<String>();
@@ -438,6 +462,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testCompact() {
         int max_size = 10000;
         int reduced_size = 100;
@@ -460,6 +485,7 @@ public class TLinkedHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testDisabledAutoCompact() {
         int max_size = 10000;
         int reduced_size = 100;

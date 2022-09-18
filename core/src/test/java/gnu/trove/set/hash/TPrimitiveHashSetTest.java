@@ -20,7 +20,8 @@ package gnu.trove.set.hash;
 import gnu.trove.iterator.TIntIterator;
 import gnu.trove.procedure.TIntProcedure;
 import gnu.trove.set.TIntSet;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -28,27 +29,27 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Test the primitive HashSet classes.
  */
-public class TPrimitiveHashSetTest extends TestCase {
+public class TPrimitiveHashSetTest {
 
-    public TPrimitiveHashSetTest(String name) {
-        super(name);
-    }
 
 
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
     }
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
     }
 
 
+    @Test
     public void testConstructors() throws Exception {
         TIntSet set = new TIntHashSet();
         assertNotNull(set);
@@ -72,6 +73,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIsEmpty() throws Exception {
         TIntSet s = new TIntHashSet();
         assertTrue("new set wasn't empty", s.isEmpty());
@@ -83,6 +85,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() throws Exception {
         TIntSet s = new TIntHashSet();
         int i = 100;
@@ -93,6 +96,7 @@ public class TPrimitiveHashSetTest extends TestCase {
 
 
     @SuppressWarnings({"ForLoopReplaceableByForEach"})
+    @Test
     public void testContainsAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99};
@@ -144,6 +148,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99, 101};
@@ -177,6 +182,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99, 101};
@@ -228,6 +234,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAll() throws Exception {
 
         int[] ints = {1138, 42, 13, 86, 99, 101};
@@ -286,6 +293,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testAdd() throws Exception {
         TIntSet set = new TIntHashSet();
         assertTrue("add failed", set.add(1));
@@ -293,6 +301,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() throws Exception {
         TIntSet set = new TIntHashSet();
         set.add(1);
@@ -304,6 +313,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveNonExistant() throws Exception {
         TIntSet set = new TIntHashSet();
         set.add(1);
@@ -316,6 +326,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testSize() throws Exception {
         TIntSet set = new TIntHashSet();
         assertEquals("initial size was not 0", 0, set.size());
@@ -327,6 +338,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() throws Exception {
         TIntSet set = new TIntHashSet();
         set.addAll(new int[] {1, 2, 3});
@@ -336,6 +348,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         int[] ints = {1138, 42, 86, 99, 101};
 
@@ -354,6 +367,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArray() {
         TIntSet set = new TIntHashSet();
         int[] ints = {42, 1138, 13, 86, 99};
@@ -366,6 +380,7 @@ public class TPrimitiveHashSetTest extends TestCase {
 
 
     // Test for issue #34 (https://bitbucket.org/robeden/trove/issue/34)
+    @Test
     public void testToArraySmallerInput() {
         TIntSet set = new TIntHashSet();
         int[] ints = {42, 1138, 13, 86, 99};
@@ -386,6 +401,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayMatchesIteratorOrder() {
         TIntSet set = new TIntHashSet();
         int[] ints = {42, 1138, 13, 86, 99};
@@ -404,6 +420,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithParams() {
         int no_entry_value = Integer.MIN_VALUE;
         TIntSet set = new TIntHashSet(10, 0.5f, no_entry_value);
@@ -434,6 +451,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRehashing() throws Exception {
         int size = 10000;
         TIntSet set = new TIntHashSet(10);
@@ -444,6 +462,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIterator() {
 
         TIntSet set = new TIntHashSet();
@@ -473,6 +492,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemove() {
 
         TIntSet set = new TIntHashSet();
@@ -507,6 +527,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testForEach() {
         TIntSet set = new TIntHashSet(10, 0.5f);
         int[] ints = {1138, 42, 86, 99, 101};
@@ -538,6 +559,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         int[] ints = {1138, 42, 86, 99, 101};
         TIntSet set = new TIntHashSet();
@@ -559,6 +581,7 @@ public class TPrimitiveHashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testHashcode() {
         int[] ints = {1138, 42, 86, 99, 101};
         TIntSet set = new TIntHashSet();
@@ -577,6 +600,7 @@ public class TPrimitiveHashSetTest extends TestCase {
                 set.hashCode() == unequal.hashCode());
     }
 
+    @Test
     public void test3445639() throws Exception {
         // Retain all bug AIOBE
         TIntHashSet hs = new TIntHashSet(23, 1f);

@@ -19,16 +19,20 @@ package gnu.trove;
 
 import gnu.trove.list.TIntList;
 import gnu.trove.list.array.TIntArrayList;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.util.Iterator;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
  *
  */
-public class TDecoratorsTest extends TestCase {
+public class TDecoratorsTest {
+    @Test
     public void testIntListDecorator() {
         TIntList list = new TIntArrayList();
         list.add(2);
@@ -63,7 +67,7 @@ public class TDecoratorsTest extends TestCase {
         list.clear();
         assertTrue(wrapped_list.isEmpty());
 
-        wrapped_list.add(Integer.valueOf(7));
+        wrapped_list.add(7);
         assertEquals(1, list.size());
         assertEquals(7, list.get(0));
 
@@ -98,6 +102,7 @@ public class TDecoratorsTest extends TestCase {
         assertEquals(10, list.get(1));
     }
 
+    @Test
     public void testIntListDecoratorSubList() {
         TIntList list = new TIntArrayList();
         list.add(2);

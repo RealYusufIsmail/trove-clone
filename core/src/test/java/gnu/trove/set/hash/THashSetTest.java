@@ -18,7 +18,8 @@
 package gnu.trove.set.hash;
 
 import gnu.trove.impl.PrimeFinder;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -26,6 +27,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -37,23 +39,24 @@ import java.util.*;
  * @version $Id: THashSetTest.java,v 1.1.2.3 2010/03/02 04:09:50 robeden Exp $
  */
 
-public class THashSetTest extends TestCase {
+public class THashSetTest {
 
     public THashSetTest(String name) {
-        super(name);
+        // super(name);
     }
 
 
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
     }
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
     }
 
 
+    @Test
     public void testConstructors() throws Exception {
         Set<String> set = new THashSet<String>();
         assertNotNull(set);
@@ -62,23 +65,25 @@ public class THashSetTest extends TestCase {
         set.addAll(Arrays.asList(strings));
 
         Set<String> copy = new THashSet<String>(set);
-        assertTrue("set not a copy: " + set + ", " + copy, set.equals(copy));
+        assertTrue(set.equals(copy), "set not a copy: " + set + ", " + copy);
 
         Set<String> another = new THashSet<String>(20);
         another.addAll(Arrays.asList(strings));
-        assertTrue("set not equal: " + set + ", " + copy, set.equals(another));
+        assertTrue(set.equals(another), "set not equal: " + set + ", " + copy);
 
         another = new THashSet<String>(2, 1.0f);
         another.addAll(Arrays.asList(strings));
-        assertTrue("set not equal: " + set + ", " + copy, set.equals(another));
+        assertTrue(set.equals(another), "set not equal: " + set + ", " + copy);
     }
 
     // x'd out because we don't usually run tests with > 4gb heaps
+    @Test
     public void xxtestLargeCapacity() throws Exception {
         THashSet<String> large = new THashSet<String>(Integer.MAX_VALUE);
-        assertTrue("capacity was not respected", large.capacity() > 3);
+        assertTrue(large.capacity() > 3, "capacity was not respected");
     }
 
+    @Test
     public void xxtestMaxHashSetCapacity() throws Exception {
         TIntHashSet full = new TIntHashSet(Integer.MAX_VALUE, 0.5f);
         assertEquals(PrimeFinder.nextPrime(Integer.MAX_VALUE), full.capacity());
@@ -95,6 +100,7 @@ public class THashSetTest extends TestCase {
         }
     }
 
+    @Test
     public void testIsEmpty() throws Exception {
         Set<String> s = new THashSet<String>();
         assertTrue("new set wasn't empty", s.isEmpty());
@@ -106,6 +112,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() throws Exception {
         Set<String> s = new THashSet<String>();
         String o = "testContains";
@@ -115,6 +122,7 @@ public class THashSetTest extends TestCase {
 
 
     @SuppressWarnings({"ForLoopReplaceableByForEach"})
+    @Test
     public void testContainsAll() throws Exception {
         Set<String> s = new THashSet<String>();
         String[] o = {"Hello World", "Goodbye World", "Hello Goodbye"};
@@ -129,6 +137,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRetainAll() throws Exception {
         Set<String> set = new THashSet<String>();
         String[] strings = {"Hello World", "Goodbye World", "Hello Goodbye", "Remove Me"};
@@ -143,6 +152,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveAll() throws Exception {
         Set<String> set = new THashSet<String>();
         String[] strings = {"Hello World", "Goodbye World", "Hello Goodbye", "Keep Me"};
@@ -162,6 +172,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testAdd() throws Exception {
         Set<String> s = new THashSet<String>();
         assertTrue("add failed", s.add("One"));
@@ -169,6 +180,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemove() throws Exception {
         Set<String> s = new THashSet<String>();
         s.add("One");
@@ -181,6 +193,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveObjectNotInSet() throws Exception {
         Set<String> set = new THashSet<String>();
         set.add("One");
@@ -194,6 +207,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testSize() throws Exception {
         Set<Object> o = new THashSet<Object>();
         assertEquals("initial size was not 0", 0, o.size());
@@ -205,6 +219,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() throws Exception {
         Set<String> s = new THashSet<String>();
         s.addAll(Arrays.asList("one", "two", "three"));
@@ -214,6 +229,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         Set<String> s = new THashSet<String>();
         s.addAll(Arrays.asList("one", "two", "three"));
@@ -230,6 +246,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArray() {
         Set<String> s = new THashSet<String>();
         String[] str = {"hi", "bye", "hello", "goodbye"};
@@ -241,6 +258,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToArrayWithParams() {
         Set<String> s = new THashSet<String>();
         String[] str = {"hi", "bye", "hello", "goodbye"};
@@ -262,6 +280,7 @@ public class THashSetTest extends TestCase {
 
 
     // Test for issue #34 (https://bitbucket.org/robeden/trove/issue/34)
+    @Test
     public void testToArraySmallerInput() {
         Set<String> s = new THashSet<String>();
         String[] str = {"hi", "bye", "hello", "goodbye"};
@@ -282,6 +301,7 @@ public class THashSetTest extends TestCase {
 
 
     @SuppressWarnings({"ToArrayCallWithZeroLengthArrayArgument", "SuspiciousToArrayCall"})
+    @Test
     public void testToArrayAnotherType() throws Exception {
         Set<Number> set = new THashSet<Number>();
         Number[] nums = {1138, 42, 86, 99, 101};
@@ -307,6 +327,7 @@ public class THashSetTest extends TestCase {
 
 
     @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection"})
+    @Test
     public void testRehashing() throws Exception {
         Set<Integer> s = new THashSet<Integer>();
         for (int i = 0; i < 10000; i++) {
@@ -320,6 +341,7 @@ public class THashSetTest extends TestCase {
      * java.lang.Object
      */
     @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection"})
+    @Test
     public void testSomeBadlyWrittenObject() {
         Set<Object> s = new THashSet<Object>();
         boolean didThrow = false;
@@ -335,6 +357,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testIterable() {
 
         Set<String> set = new THashSet<String>();
@@ -347,6 +370,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testToString() {
         Set<String> set = new THashSet<String>();
         set.add("One");
@@ -357,6 +381,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         String[] strings = {"hi", "bye", "hello", "goodbye"};
         Set<String> set = new THashSet<String>();
@@ -378,11 +403,12 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testEqualsNonSet() {
         String[] strings = {"hi", "bye", "hello", "goodbye"};
         Set<String> set = new THashSet<String>();
         set.addAll(Arrays.asList(strings));
-        List<String> other = new ArrayList<String>();
+        List<String> other = new ArrayList<>();
         other.addAll(Arrays.asList(strings));
 
         assertFalse("sets incorrectly equals list: " + set + ", " + other, set.equals(other));
@@ -395,6 +421,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testHashcode() {
         String[] strings = {"hi", "bye", "hello", "goodbye"};
         Set<String> set = new THashSet<String>();
@@ -414,6 +441,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testCompact() {
         int max_size = 10000;
         int reduced_size = 100;
@@ -436,6 +464,7 @@ public class THashSetTest extends TestCase {
     }
 
 
+    @Test
     public void testDisabledAutoCompact() {
         int max_size = 10000;
         int reduced_size = 100;

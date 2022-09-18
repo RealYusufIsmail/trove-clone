@@ -18,13 +18,14 @@
 package gnu.trove.list.linked;
 
 import gnu.trove.list.TLinkableAdapter;
-import junit.framework.TestCase;
+
 
 
 /**
  *
  */
-public class TLinkableAdapterTest extends TestCase {
+public class TLinkableAdapterTest {
+    @Test
     public void testOverride() {
         TLinkedList<MyObject> list = new TLinkedList<MyObject>();
 

@@ -19,19 +19,21 @@ package gnu.trove.stack.array;
 
 import gnu.trove.list.array.TIntArrayList;
 import gnu.trove.stack.TIntStack;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
  *
  */
-public class TStackTest extends TestCase {
+public class TStackTest {
 
 
     public TStackTest() {
@@ -39,11 +41,7 @@ public class TStackTest extends TestCase {
     }
 
 
-    public TStackTest(String string) {
-        super(string);
-    }
-
-
+    @Test
     public void testConstructors() {
         TIntStack stack = new TIntArrayStack();
         assertEquals(0, stack.size());
@@ -57,13 +55,14 @@ public class TStackTest extends TestCase {
         other.push(20);
         assertEquals(2, other.size());
 
-        assertTrue("stacks should be equal: " + stack + ", " + other, stack.equals(other));
+        assertTrue(stack.equals(other), "stacks should be equal: " + stack + ", " + other);
 
         TIntStack copy = new TIntArrayStack(stack);
-        assertTrue("stacks should be equal: " + stack + ", " + copy, stack.equals(copy));
+        assertTrue(stack.equals(copy), "stacks should be equal: " + stack + ", " + copy);
     }
 
 
+    @Test
     public void testBasic() {
         TIntStack stack = new TIntArrayStack();
 
@@ -92,6 +91,7 @@ public class TStackTest extends TestCase {
     }
 
 
+    @Test
     public void testArrays() {
         int no_entry_value = Integer.MIN_VALUE;
         TIntStack stack = new TIntArrayStack(10, no_entry_value);
@@ -140,6 +140,7 @@ public class TStackTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         TIntStack stack = new TIntArrayStack();
 
@@ -162,6 +163,7 @@ public class TStackTest extends TestCase {
     }
 
 
+    @Test
     public void testEquals() {
         TIntStack stack = new TIntArrayStack();
         assertEquals(0, stack.size());
@@ -175,15 +177,16 @@ public class TStackTest extends TestCase {
         other.push(20);
         assertEquals(2, other.size());
 
-        assertTrue("stacks should equal itself: " + stack, stack.equals(stack));
+        assertTrue(stack.equals(stack), "stacks should equal itself: " + stack);
 
-        assertTrue("stacks should be equal: " + stack + ", " + other, stack.equals(other));
+        assertTrue(stack.equals(other), "stacks should be equal: " + stack + ", " + other);
 
         TIntArrayList list = new TIntArrayList(stack.toArray());
-        assertFalse("stack should not equal list: " + stack + ", " + list, stack.equals(list));
+        assertFalse(stack.equals(list), "stack should not equal list: " + stack + ", " + list);
     }
 
 
+    @Test
     public void testHashCode() {
         TIntStack stack = new TIntArrayStack();
         assertEquals(0, stack.size());
@@ -197,18 +200,19 @@ public class TStackTest extends TestCase {
         other.push(20);
         assertEquals(2, other.size());
 
-        assertTrue("stack hashcode should equal itself: " + stack,
-                stack.hashCode() == stack.hashCode());
+        assertTrue(stack.hashCode() == stack.hashCode(),
+                "stack hashcode should equal itself: " + stack);
 
-        assertTrue("stacks should be equal: " + stack + ", " + other,
-                stack.hashCode() == other.hashCode());
+        assertTrue(stack.hashCode() == other.hashCode(),
+                "stacks should be equal: " + stack + ", " + other);
 
         other.push(30);
-        assertFalse("stack should not equal list: " + stack + ", " + other,
-                stack.hashCode() == other.hashCode());
+        assertFalse(stack.hashCode() == other.hashCode(),
+                "stack should not equal list: " + stack + ", " + other);
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         TIntStack stack = new TIntArrayStack();
         stack.push(10);

@@ -22,7 +22,7 @@ import gnu.trove.list.TIntList;
 import gnu.trove.list.TLinkable;
 import gnu.trove.list.TLongList;
 import gnu.trove.procedure.TObjectProcedure;
-import junit.framework.TestCase;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -41,7 +41,7 @@ import java.util.*;
  */
 
 @SuppressWarnings({"ForLoopReplaceableByForEach", "ManualArrayToCollectionCopy"})
-public class TLinkedListTest extends TestCase {
+public class TLinkedListTest {
 
     protected TLinkedList<Data> list;
 
@@ -61,6 +61,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAdd() throws Exception {
         Data[] data = {new Data(1), new Data(2), new Data(3)};
         for (int i = 0; i < data.length; i++) {
@@ -70,6 +71,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAtIndex() throws Exception {
         Data[] data = {new Data(1), new Data(2), new Data(3), new Data(4), new Data(5), new Data(6),
                 new Data(7), new Data(8), new Data(9)};
@@ -92,6 +94,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddIllegalArgs() {
         Data[] data = {new Data(1), new Data(2), new Data(3), new Data(4), new Data(5), new Data(6),
                 new Data(7), new Data(8), new Data(9)};
@@ -119,6 +122,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testClear() {
         Data[] data = {new Data(1), new Data(2), new Data(3), new Data(4), new Data(5), new Data(6),
                 new Data(7), new Data(8), new Data(9)};
@@ -135,6 +139,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testInsert() throws Exception {
         Data[] data = {new Data(2), new Data(4), new Data(6)};
         for (int i = 0; i < data.length; i++) {
@@ -152,6 +157,7 @@ public class TLinkedListTest extends TestCase {
         }
     }
 
+    @Test
     public void testInsert_bug3484640() {
         list.insert(0, new Data(0));
         list.insert(0, new Data(1));
@@ -164,6 +170,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testToArray() {
         Data[] data = {new Data(1), new Data(2), new Data(3), new Data(4), new Data(5), new Data(6),
                 new Data(7), new Data(8), new Data(9)};
@@ -189,6 +196,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testToUnlinkedArray() {
         Data[] data = {new Data(1), new Data(2), new Data(3), new Data(4), new Data(5), new Data(6),
                 new Data(7), new Data(8), new Data(9)};
@@ -208,6 +216,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testToUnlinkedArrayTyped() {
         Data[] data = {new Data(1), new Data(2), new Data(3), new Data(4), new Data(5), new Data(6),
                 new Data(7), new Data(8), new Data(9)};
@@ -227,6 +236,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testContains() {
         Data[] data = {new Data(1), new Data(2), new Data(3), new Data(4), new Data(5), new Data(6),
                 new Data(7), new Data(8), new Data(9)};
@@ -246,6 +256,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testNextIterator() throws Exception {
         Data[] data = new Data[100];
         for (int i = 0; i < data.length; i++) {
@@ -267,6 +278,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testPreviousIterator() throws Exception {
         Data[] data = new Data[100];
         for (int i = 0; i < data.length; i++) {
@@ -288,6 +300,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorSet() throws Exception {
         Data[] data = new Data[100];
         for (int i = 0; i < data.length; i++) {
@@ -305,6 +318,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveOnlyElementInList() throws Exception {
         Data d = new Data(0);
         list.add(d);
@@ -318,6 +332,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemovePrevious() throws Exception {
         Data[] d = {new Data(0), new Data(1), new Data(2)};
         list.addAll(Arrays.asList(d));
@@ -340,6 +355,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveLast() throws Exception {
         Data[] d = {new Data(0), new Data(1), new Data(2)};
         list.addAll(Arrays.asList(d));
@@ -353,6 +369,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveFirst() throws Exception {
         Data[] d = {new Data(0), new Data(1), new Data(2)};
         list.addAll(Arrays.asList(d));
@@ -366,6 +383,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveNext() throws Exception {
         Data[] d = {new Data(0), new Data(1), new Data(2)};
         list.addAll(Arrays.asList(d));
@@ -387,6 +405,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveThrowsAfterAdd() throws Exception {
         Data d = new Data(0);
         list.add(d);
@@ -402,6 +421,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveThrowsWithoutPrevious() throws Exception {
         Data d = new Data(0);
         list.add(d);
@@ -418,6 +438,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveThrowsWithoutNext() throws Exception {
         Data d = new Data(0);
         list.add(d);
@@ -434,6 +455,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveInvalidObject() {
         Object obj = new Object();
         Data d = new Data(1);
@@ -444,6 +466,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorAddFront() throws Exception {
         Data[] d = {new Data(0), new Data(1), new Data(2)};
         list.addAll(Arrays.asList(d));
@@ -460,6 +483,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorAddBack() throws Exception {
         Data[] d = {new Data(0), new Data(1), new Data(2)};
         list.addAll(Arrays.asList(d));
@@ -480,6 +504,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorAddMiddle() throws Exception {
         Data[] d = {new Data(0), new Data(1), new Data(2)};
         list.addAll(Arrays.asList(d));
@@ -500,6 +525,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorSetSingleElementList() throws Exception {
         Data d1 = new Data(5);
         Data d2 = new Data(4);
@@ -518,6 +544,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorAddEmptyList() throws Exception {
         ListIterator<Data> i = list.listIterator();
         Data d1 = new Data(5);
@@ -532,6 +559,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorRemoveOnNext() throws Exception {
         Data[] data = new Data[100];
         for (int i = 0; i < data.length; i++) {
@@ -549,6 +577,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorPastEnds() {
         int size = 10;
         Data[] data = new Data[size];
@@ -606,6 +635,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testInvalidIterators() {
         int size = 10;
         Data[] data = new Data[size];
@@ -644,6 +674,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialize() throws Exception {
         TLinkedList<Data> list1 = new TLinkedList<Data>();
         Data[] data = new Data[100];
@@ -664,6 +695,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testForEach() throws Exception {
         list.add(new Data(0));
         list.add(new Data(1));
@@ -708,6 +740,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddBefore() {
         Data one = new Data(1);
         Data three = new Data(3);
@@ -751,6 +784,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testAddAfter() {
         Data one = new Data(1);
         Data three = new Data(3);
@@ -794,6 +828,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testMultipleRemove() {
         Data one = new Data(1);
         Data two = new Data(2);
@@ -835,6 +870,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveFirstAll() {
         list.add(new Data(1));
         list.add(new Data(2));
@@ -851,6 +887,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testRemoveLastAll() {
         list.add(new Data(1));
         list.add(new Data(2));
@@ -867,6 +904,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testPastIndexGet() {
         try {
             list.get(0);
@@ -894,6 +932,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testJDKIteratorSet2() {
         LinkedList<Data> list = new LinkedList<Data>();
         list.add(new Data(1));
@@ -915,6 +954,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testIteratorSet2() {
         TLinkedList<Data> list = new TLinkedList<Data>();
         list.add(new Data(1));
@@ -937,6 +977,7 @@ public class TLinkedListTest extends TestCase {
 
 
     // See bug 2993599
+    @Test
     public void testShuffle() {
         for (int loop = 0; loop < 10000; loop++) {
             if ((loop % 10000) == 0)
@@ -972,6 +1013,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testShuffle2() {
         Data data1 = new Data(1);
         Data data2 = new Data(2);
@@ -1001,6 +1043,7 @@ public class TLinkedListTest extends TestCase {
         it.set(data10);
     }
 
+    @Test
     public void testFirstLastIteratorSwap() {
         Data data10 = new Data(10);
 
@@ -1021,6 +1064,7 @@ public class TLinkedListTest extends TestCase {
         it.set(data10);
     }
 
+    @Test
     public void testIteratorSwapSequential() {
         Data slot3 = new Data(3);
         TLinkedList<Data> list = new TLinkedList<Data>();
@@ -1036,6 +1080,7 @@ public class TLinkedListTest extends TestCase {
         it.set(slot3);
     }
 
+    @Test
     public void testBinarySearch() {
         TIntList list;
 
@@ -1084,6 +1129,7 @@ public class TLinkedListTest extends TestCase {
     }
 
 
+    @Test
     public void testSum() {
         TIntList list = new TIntLinkedList();
         assertEquals(0, list.sum());
@@ -1103,6 +1149,7 @@ public class TLinkedListTest extends TestCase {
 
 
     // Test for https://bitbucket.org/robeden/trove/issue/16/
+    @Test
     public void testLastIndexOf() {
         TIntLinkedList list = new TIntLinkedList();
         list.add(0);
@@ -1118,6 +1165,7 @@ public class TLinkedListTest extends TestCase {
 
 
     // Test for https://bitbucket.org/robeden/trove/issue/41
+    @Test
     public void testIndexOfEmpty() {
         TIntLinkedList list = new TIntLinkedList();
 
@@ -1126,6 +1174,7 @@ public class TLinkedListTest extends TestCase {
         assertEquals(-1, list.indexOf(1, 0));
     }
 
+    @Test
     public void testIntUnmodifiableEquality() {
         TIntList list1 = new TIntLinkedList();
         TIntList list2 = new TIntLinkedList();
@@ -1149,6 +1198,7 @@ public class TLinkedListTest extends TestCase {
         assertEquals(TCollections.unmodifiableList(list1), TCollections.unmodifiableList(list2));
     }
 
+    @Test
     public void testLongUnmodifiableEquality() {
         TLongList list1 = new TLongLinkedList();
         TLongList list2 = new TLongLinkedList();

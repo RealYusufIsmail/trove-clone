@@ -18,7 +18,8 @@
 package gnu.trove.map.hash;
 
 import gnu.trove.strategy.HashingStrategy;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -26,22 +27,25 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  *
  */
-public class TCustomHashMapTest extends TestCase {
+public class TCustomHashMapTest {
     // Example from Trove overview doc
+    @Test
     public void testArray() {
         char[] foo = new char[] {'a', 'b', 'c'};
         char[] bar = new char[] {'a', 'b', 'c'};
 
-        assertFalse(foo.hashCode() == bar.hashCode());
+        assertNotEquals(Arrays.hashCode(foo), Arrays.hashCode(bar));
         // noinspection ArrayEquals
-        assertFalse(foo.equals(bar));
+        assertNotEquals(foo, bar);
 
         HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
-        assertTrue(strategy.computeHashCode(foo) == strategy.computeHashCode(bar));
+        assertEquals(strategy.computeHashCode(foo), strategy.computeHashCode(bar));
         assertTrue(strategy.equals(foo, bar));
 
         Map<char[], String> map = new TCustomHashMap<char[], String>(strategy);
@@ -57,6 +61,7 @@ public class TCustomHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialization() throws Exception {
         char[] foo = new char[] {'a', 'b', 'c'};
         char[] bar = new char[] {'a', 'b', 'c'};
@@ -127,6 +132,7 @@ public class TCustomHashMapTest extends TestCase {
         return ba;
     }
 
+    @Test
     public void testBug4706479() throws Exception {
         Random rnd = new Random(1234);
         TCustomHashMap<byte[], Integer> map =
@@ -155,11 +161,11 @@ public class TCustomHashMapTest extends TestCase {
                 }
             }
 
-            assertTrue("Unable to find: " + Arrays.toString(array), found_it);
+            assertTrue(found_it, "Unable to find: " + Arrays.toString(array));
         }
         // Make sure all the Integers are found in the map
         for (Integer obj : map.values()) {
-            assertTrue("Unable to find: " + obj, expected.contains(obj));
+            assertTrue(expected.contains(obj), "Unable to find: " + obj);
         }
 
         for (int i = 0; i < expected.size(); i++) {

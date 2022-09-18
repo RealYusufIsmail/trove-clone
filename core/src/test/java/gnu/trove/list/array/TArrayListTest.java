@@ -20,7 +20,8 @@ package gnu.trove.list.array;
 import gnu.trove.TCollections;
 import gnu.trove.list.TIntList;
 import gnu.trove.list.TLongList;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -28,14 +29,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TArrayListTest extends TestCase {
+
+public class TArrayListTest {
 
     private TIntList list;
 
 
     public void setUp() throws Exception {
-        super.setUp();
+        // super.setUp();
 
         list = new TIntArrayList(15, Integer.MIN_VALUE);
         list.add(1);
@@ -47,15 +50,16 @@ public class TArrayListTest extends TestCase {
 
 
     public void tearDown() throws Exception {
-        super.tearDown();
+        // super.tearDown();
     }
 
 
+    @Test
     public void testToArray() {
-        assertTrue(Arrays.equals(new int[] {1, 2, 3, 4, 5}, list.toArray()));
-        assertTrue(Arrays.equals(new int[] {1, 2, 3, 4}, list.toArray(0, 4)));
-        assertTrue(Arrays.equals(new int[] {2, 3, 4, 5}, list.toArray(1, 4)));
-        assertTrue(Arrays.equals(new int[] {2, 3, 4}, list.toArray(1, 3)));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, list.toArray());
+        assertArrayEquals(new int[] {1, 2, 3, 4}, list.toArray(0, 4));
+        assertArrayEquals(new int[] {2, 3, 4, 5}, list.toArray(1, 4));
+        assertArrayEquals(new int[] {2, 3, 4}, list.toArray(1, 3));
 
         int[] array_correct_size = new int[5];
         list.toArray(array_correct_size);
@@ -82,6 +86,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSubList() throws Exception {
         TIntList subList = list.subList(1, 4);
         assertEquals(3, subList.size());
@@ -90,6 +95,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSublist_Exceptions() {
         try {
             list.subList(1, 0);
@@ -111,6 +117,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testMax() {
         assertEquals(5, list.max());
         assertEquals(1, list.min());
@@ -126,6 +133,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialization() throws Exception {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         ObjectOutputStream oout = new ObjectOutputStream(bout);
@@ -141,6 +149,7 @@ public class TArrayListTest extends TestCase {
 
 
     // From bug 3077245
+    @Test
     public void testInvalidStartRemoveZeroLength() {
         try {
             TIntArrayList bug = new TIntArrayList();
@@ -153,6 +162,7 @@ public class TArrayListTest extends TestCase {
 
 
     // From bug 3197201
+    @Test
     public void testListRemove() {
         // Remove by value
         TIntArrayList list = new TIntArrayList();
@@ -207,6 +217,7 @@ public class TArrayListTest extends TestCase {
     }
 
 
+    @Test
     public void testSum() {
         TIntList list = new TIntArrayList();
         assertEquals(0, list.sum());
@@ -224,6 +235,7 @@ public class TArrayListTest extends TestCase {
         assertEquals(0, list.sum());
     }
 
+    @Test
     public void testBinarySearch() {
         System.out.println("Java version: " + System.getProperty("java.version"));
         TIntList list;
@@ -254,6 +266,7 @@ public class TArrayListTest extends TestCase {
         assertEquals(-2, list.binarySearch(6));
     }
 
+    @Test
     public void testListWrapExpand() {
         // Remove by value
         TIntArrayList list = TIntArrayList.wrap(new int[] {1, 0, 2});
@@ -265,6 +278,7 @@ public class TArrayListTest extends TestCase {
         }
     }
 
+    @Test
     public void testListWrap() {
         // Remove by value
         TIntArrayList list = TIntArrayList.wrap(new int[] {1, 0, 2});
@@ -288,6 +302,7 @@ public class TArrayListTest extends TestCase {
         assertEquals(5, list.get(2));
     }
 
+    @Test
     public void test3448111() throws Exception {
         TIntArrayList i = new TIntArrayList();
         i.add(1);
@@ -299,6 +314,7 @@ public class TArrayListTest extends TestCase {
         i.retainAll(a);
     }
 
+    @Test
     public void testIntUnmodifiableEquality() {
         TIntList list1 = new TIntArrayList();
         TIntList list2 = new TIntArrayList();
@@ -322,6 +338,7 @@ public class TArrayListTest extends TestCase {
         assertEquals(TCollections.unmodifiableList(list1), TCollections.unmodifiableList(list2));
     }
 
+    @Test
     public void testLongUnmodifiableEquality() {
         TLongList list1 = new TLongArrayList();
         TLongList list2 = new TLongArrayList();

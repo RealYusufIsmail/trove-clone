@@ -20,30 +20,35 @@ package gnu.trove.map.hash;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.custom_hash.TObjectIntCustomHashMap;
 import gnu.trove.strategy.HashingStrategy;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
  *
  */
-public class TObjectPrimitiveCustomHashMapTest extends TestCase {
+public class TObjectPrimitiveCustomHashMapTest {
     // Example from Trove overview doc
+    @Test
     public void testArray() {
         char[] foo = new char[] {'a', 'b', 'c'};
         char[] bar = new char[] {'a', 'b', 'c'};
 
-        assertFalse(foo.hashCode() == bar.hashCode());
+        assertNotEquals(Arrays.hashCode(foo), Arrays.hashCode(bar));
         // noinspection ArrayEquals
-        assertFalse(foo.equals(bar));
+        assertNotEquals(foo, bar);
 
         HashingStrategy<char[]> strategy = new ArrayHashingStrategy();
-        assertTrue(strategy.computeHashCode(foo) == strategy.computeHashCode(bar));
+        assertEquals(strategy.computeHashCode(foo), strategy.computeHashCode(bar));
         assertTrue(strategy.equals(foo, bar));
 
         TObjectIntMap<char[]> map = new TObjectIntCustomHashMap<char[]>(strategy);
@@ -59,6 +64,7 @@ public class TObjectPrimitiveCustomHashMapTest extends TestCase {
     }
 
 
+    @Test
     public void testSerialization() throws Exception {
         char[] foo = new char[] {'a', 'b', 'c'};
         char[] bar = new char[] {'a', 'b', 'c'};
