@@ -19,11 +19,11 @@
  */
 package gnu.trove.generator;
 
-import junit.framework.TestCase;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
